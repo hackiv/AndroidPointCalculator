@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:shrinkColumns="0,1,2,3,4,5,6,7,8,9"
+    android:stretchColumns="0,1,2,3,4,5,6,7,8,9"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="新对局"
+            android:layout_column="0"
+            android:id="@+id/btnNewGame" />
+        <Button
+            android:layout_column="2"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="东25000"
+            android:id="@+id/btnOppositePlayer"
+            android:singleLine="false" />
+        <CheckBox
+            android:layout_column="3"
+            android:id="@+id/checkBoxOppositePlayer"
+            android:layout_gravity="center" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:layout_column="0"
+            android:id="@+id/checkBoxLeftPlayer"
+            android:layout_gravity="center"
+            android:layout_height="match_parent" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="南25000"
+            android:layout_column="1"
+            android:id="@+id/btnLeftPlayer" />
+        <TextView
+            android:text="东四局"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_column="2"
+            android:id="@+id/textViewSession"
+            android:layout_gravity="center" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="北200"
+            android:layout_column="3"
+            android:id="@+id/btnRightPlayer" />
+        <CheckBox
+            android:layout_column="4"
+            android:id="@+id/checkBoxRightPlayer"
+            android:layout_gravity="center"
+            android:layout_height="match_parent" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:layout_column="1"
+            android:id="@+id/checkBoxMePlayer"
+            android:layout_gravity="center" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="西2000"
+            android:layout_column="2"
+            android:id="@+id/btnMePlayer" />
+        <ImageView
+            android:layout_column="3"
+            android:id="@+id/imgViewChangBang"
+            android:layout_gravity="center" />
+        <TextView
+            android:layout_column="4"
+            android:id="@+id/textViewChangBang"
+            android:layout_gravity="center"
+            android:text="3" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_column="2"
+            android:id="@+id/textViewControl"
+            android:layout_gravity="center"
+            android:text="(OvO)" />
+        <ImageView
+            android:layout_column="3"
+            android:layout_gravity="center"
+            android:id="@+id/imgViewQianBang" />
+        <TextView
+            android:layout_column="4"
+            android:id="@+id/textViewQianBang"
+            android:layout_gravity="center"
+            android:text="1" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:text="&lt;这里用来记录输入的数据&gt;"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_column="0"
+            android:layout_span="5"
+            android:id="@+id/textViewShowInput"
+            android:layout_width="match_parent"
+            android:singleLine="true" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="设定"
+            android:layout_column="0"
+            android:id="@+id/btnSetting" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="7"
+            android:layout_column="1"
+            android:id="@+id/btnNum7" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="8"
+            android:id="@+id/btnNum8" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="9"
+            android:id="@+id/btnNum9" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="推99"
+            android:layout_column="4"
+            android:id="@+id/btnSuddenlyNagare" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="上一局"
+            android:layout_column="0"
+            android:id="@+id/btnPriGame" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="4"
+            android:layout_column="1"
+            android:id="@+id/btnNum4" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="5"
+            android:id="@+id/btnNum5" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="6"
+            android:id="@+id/btnNum6" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="流局"
+            android:layout_column="4"
+            android:id="@+id/btnNagare" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="下一局"
+            android:layout_column="0"
+            android:id="@+id/btnNextGame" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="1"
+            android:layout_column="1"
+            android:id="@+id/btnNum1" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="2"
+            android:id="@+id/btnNum2" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="3"
+            android:id="@+id/btnNum3" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="和牌"
+            android:layout_column="4"
+            android:id="@+id/btnAgare" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="记录"
+            android:id="@+id/btnShowGameLog" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="/"
+            android:id="@+id/btnNumDiv" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="0"
+            android:id="@+id/btnNum0" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="BS"
+            android:layout_column="3"
+            android:id="@+id/btnBackSpace" />
+        <CheckBox
+            android:layout_column="4"
+            android:id="@+id/checkBoxDoubleRon"
+            android:text="双响" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="测试用"
+            android:layout_column="0"
+            android:id="@+id/btnForTest" />
+    </TableRow>
+</TableLayout>
