@@ -25,6 +25,11 @@
             android:layout_column="3"
             android:id="@+id/checkBoxOppositePlayer"
             android:layout_gravity="center" />
+        <Button
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="帮助"
+            android:id="@+id/btnHelp" />
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"

@@ -54,7 +54,7 @@ namespace TenhouPointCalculatorBeta3
                     {
                         _activity?.RunOnUiThread(() =>
                         {
-                            _adb.SetMessage("完场\n" + PlayerPointSort.Sort());
+                            _adb.SetMessage("完场\n" + End.Sort());
                             _adb.Show();
                         });
                     }
@@ -118,7 +118,7 @@ namespace TenhouPointCalculatorBeta3
                 }
                 catch
                 {
-                    _adb.SetMessage("获取风位出错啦");
+                    _adb.SetMessage("获取立直状态出错啦");
                     _adb.Show();
                     return false;
                 }
@@ -140,7 +140,7 @@ namespace TenhouPointCalculatorBeta3
                 }
                 catch
                 {
-                    _adb.SetMessage("设置风位出错啦");
+                    _adb.SetMessage("设置立直状态出错啦");
                     _adb.Show();
                 }
             }

@@ -8,8 +8,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TenhouPointCalculatorBeta3
 {
@@ -21,7 +19,7 @@ namespace TenhouPointCalculatorBeta3
         public static int Flag;
         private static bool _isShowingDeltaPoint;
         public static int NowSessionNum = 1;
-        public static bool IsReadyToSave;
+        public static bool IsOyaAgare;
 
 
 
@@ -91,7 +89,7 @@ namespace TenhouPointCalculatorBeta3
             meCkb.CheckedChange += (s, e) => Element.MePlayer.IsReach = meCkb.Checked;
             #endregion
 
-            #region 功能性按键 新对局/设定/记录/上一局/下一局
+            #region 功能性按键 新对局/设定/记录/上一局/下一局/帮助
             //新对局
             var newGame = FindViewById<Button>(Resource.Id.btnNewGame);
             newGame.Click += NewGame_Click;
@@ -111,6 +109,9 @@ namespace TenhouPointCalculatorBeta3
             //nextGame.Click += Test_Click;
             //双响
             var doubleRon = FindViewById<CheckBox>(Resource.Id.checkBoxDoubleRon);
+            //帮助
+            var help = FindViewById<Button>(Resource.Id.btnHelp);
+            help.Click += Help_Click;
             #endregion
 
             #region 改变点数的按钮 推99/流局/和牌 ok
@@ -143,6 +144,66 @@ namespace TenhouPointCalculatorBeta3
             //测试用
             var test = FindViewById<Button>(Resource.Id.btnForTest);
             test.Click += Test_Click;
+        }
+
+        private void Help_Click(object sender, EventArgs e)
+        {
+            string txt = "";
+            txt += @"<简单写个使用说明>
+左上角新对局按钮用来新建对局。
+
+上方四个按钮和四个选项框是对应四家状态，这四个按钮中下方是自己，其他三个为对应的其他三家。
+长按按钮可以显示该玩家与其他三家的点差，再长按一次就恢复原来情况（四家按钮都适用。
+请不要在显示点差的状态下进行任何其他操作，要和牌/立直/流局等请先恢复到原来点数状态。
+
+中间是控制框和显示输入文本。
+
+下方中间是键盘区，左右两边是功能键。
+
+新对局：点新对局→点四家按钮中一个→以被按的玩家为东起开始。
+
+和牌：输入和牌大小→点和牌→点铳家再点和家（如果自摸就点同一按钮两下）。
+自摸时可以输入“2000/3900”（不分前后顺序）或者“7900” 。
+在忘记符翻对应点数的时候，可以输入“70//2”来表示70符2翻，控制台还会显示该点数为多少。
+但是实麻移交点数的时候别忘了还要算上本场棒，因为这个点数是没算计算本场棒的。
+例1：对家铳自己3900点：键盘区输入3900→点和牌按钮→点对家按钮→点自己按钮
+例2：自己自摸4000点：键盘区输入4000→点和牌按钮→点自己按钮→点自己按钮
+例3：自己铳上家（子）70符2翻：键盘区输入70//2→点和牌按钮→点自己按钮→点上家按钮→控制台显示“符翻点数为4500”
+
+双响选项框：出现双响局面时，勾选双响→输入和牌大小→点和牌→输入铳/和家→输入和牌大小→输入铳/和家
+注：和牌大小只要在输入和家之前输入完毕就可以。
+注2：请从从铳牌家开始逆时针方向开始输入和牌家，因为只有第一遍计算会涉及本场棒和立直棒。
+
+立直：点击选项框，对应玩家点数-1000。
+注：流局时立直选项框代表是否听牌。
+
+流局：点流局→勾选对应玩家选项框表示听牌→点任意玩家按钮
+
+推99：这是中途流局用的按钮，实际上四风/四立/四杠等都可以按这个，本场直接+1。
+
+设定：按照“上家点数/对家点数/下家点数/自己点数/本场数/供托千棒数/场次（东一为1，依次+1）”格式输入→点设定来设置。这个功能是主动设置局面，在罚满贯/中途进入计分状态的情况下可以使用。
+例：上家10000点，对家20000点，下家40000点，自己30000点，1本0棒，南三局→输入10000/20000/40000/30000/1/0/7→点设定
+注：记得要先点新对局确定起家再用设定！
+
+上一局/下一局：可以用此功能返回到上一局/下一局的状态，比如在东四局输入点数错误时可以按上一局回到东三局重新输入点数。
+注：用上一局进行重新输入点数后，该局以后的旧记录都会销毁。
+
+记录：显示对局中各个时点的状态，半成品状态。
+
+测试用：测试新功能用的按钮，无实际用途。
+
+返回键：用返回键退回桌面再进入程序会有显示bug，所以我把返回键改成了清除显示框文本，刚好省掉一个按钮。
+
+最后，这个软件会有大量的bug，所以使用的时候请多多包涵（捂脸
+建议每新记录一个半庄都先清后台重启再使用，因为有时会出现记录bug，正努力修改中......
+另外请按上面的操作规范来使用，因为我还没对各种边界条件和非法操作进行限制，所以很多非法操作可能会引起程序崩溃丢失记录（booooooooom
+
+如果发现bug，欢迎发邮件到 919703505@qq.com 提交给我哦！
+";
+
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+            adb.SetMessage(txt);
+            adb.Show();
         }
 
         private void Log_Click(object sender, EventArgs e)
@@ -182,14 +243,14 @@ namespace TenhouPointCalculatorBeta3
         private void Nagare_Click(object sender, EventArgs e)
         {
             Element.Session.NagareMode = true;
-            FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "谁听牌？";
+            FindViewById<TextView>(Resource.Id.textViewControl).Text = "谁听牌？";
             Flag = 0;
             Thread th = new Thread(() =>
             {
                 while (Flag == 0) ;
                 Nagare nagare = new Nagare();
                 nagare.NagareMethod();
-                RunOnUiThread(() => FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "");
+                RunOnUiThread(() => FindViewById<TextView>(Resource.Id.textViewControl).Text = "(OvO)");
                 Element.Session.NagareMode = false;
                 Game.Save();
             });
@@ -201,7 +262,10 @@ namespace TenhouPointCalculatorBeta3
         {
             Element.Session.BenChang++;
             NowSessionNum++;
-            Element.Session.NagareMode = true;
+            foreach (var player in Element.Players)
+            {
+                player.IsReach = false;
+            }
             Game.Save();
         }
 
@@ -233,10 +297,6 @@ namespace TenhouPointCalculatorBeta3
                     if (Flag - i - 2 < 0) Flag += 4;
                 }
                 NowSessionNum = 0;
-                //Element.ProcessLogs = new List<ProcessLog>
-                //{
-                //    new ProcessLog() {Players = Element.Players,Session = Element.Session,SessionNum = NowSessionNum}
-                //};
                 Game.Save();
             });
             th.IsBackground = true;

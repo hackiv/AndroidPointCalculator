@@ -20,7 +20,7 @@ namespace TenhouPointCalculatorBeta3
         public static void Save()
         {
             
-            System.Collections.ArrayList gameArrayList = new System.Collections.ArrayList { Element.LeftPlayer.ShallowClone(), Element.OppositePlayer.ShallowClone(), Element.RightPlayer.ShallowClone(), Element.MePlayer.Clone(), Element.Session.ShallowClone() };
+            System.Collections.ArrayList gameArrayList = new System.Collections.ArrayList { Element.LeftPlayer.ShallowClone(), Element.OppositePlayer.ShallowClone(), Element.RightPlayer.ShallowClone(), Element.MePlayer.ShallowClone(), Element.Session.ShallowClone() };
             int i = MainActivity.NowSessionNum;
             while (true)//清除掉已有的记录
             {

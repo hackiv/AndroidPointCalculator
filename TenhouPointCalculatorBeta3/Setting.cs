@@ -44,6 +44,7 @@ namespace TenhouPointCalculatorBeta3
                     else
                         player.Wind = player.OriginalWind - j + 4;
                 }
+                Game.Save();
 
             }
             catch { }

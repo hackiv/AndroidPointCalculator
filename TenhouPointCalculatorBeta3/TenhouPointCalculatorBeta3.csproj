@@ -56,7 +56,6 @@
     <Compile Include="MessageBox.cs" />
     <Compile Include="Nagare.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="PlayerPointSort.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Game.cs" />

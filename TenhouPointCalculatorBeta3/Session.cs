@@ -54,7 +54,7 @@ namespace TenhouPointCalculatorBeta3
             set
             {
                 if (Convert.ToInt32(value) < 13) _nowSession = value;//不超出索引范围
-                if (Convert.ToInt32(value) > 8) End.IsEndWest(_activity, _adb); //西入后判断是否完场
+                if (Convert.ToInt32(value) > 7) End.IsEndWest(_activity, _adb); //西入后判断是否完场
                 _activity?.RunOnUiThread(
                     () => _activity.FindViewById<TextView>(Resource.Id.textViewSession).Text = _nowSession.ToString());
             }

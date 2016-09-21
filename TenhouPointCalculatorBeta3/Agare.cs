@@ -25,7 +25,7 @@ namespace TenhouPointCalculatorBeta3
         {
 
             //定义变量
-            
+
             int changBang = Element.Session.BenChang;
             int qianBang = Element.Session.QianBang;
             bool isOyaAgare = false;
@@ -47,6 +47,7 @@ namespace TenhouPointCalculatorBeta3
                 _activity.RunOnUiThread(() => _activity.FindViewById<TextView>(Resource.Id.textViewControl).Text = "(OvO)");
                 string txt = _activity.FindViewById<TextView>(Resource.Id.textViewShowInput).Text;
                 _flagUp = MainActivity.Flag;
+                isOyaAgare = false;
                 //胡牌计算
                 if (_flagUp == _flagDown)
                     TsumoMethod(txt, qianBang, changBang, ref isOyaAgare);
@@ -71,6 +72,7 @@ namespace TenhouPointCalculatorBeta3
                 //胡牌完后处理
                 _activity.RunOnUiThread(() =>
                 {
+                    MainActivity.IsOyaAgare = isOyaAgare || isOyaAgareFirst;
                     if (isOyaAgare || isOyaAgareFirst)
                     {
                         Element.Session.BenChang++;
@@ -95,20 +97,38 @@ namespace TenhouPointCalculatorBeta3
                     Element.Session.QianBang = 0;
                     _activity.FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "";
                     MainActivity.NowSessionNum++;
-                    Element.Session.NagareMode = true;
                     Game.Save();
                 });
             });
             th.IsBackground = true;
             th.Start();
         }
-        public void AgareMethod(string txt, int qianBang, int changBang, ref bool isOyaAgare)
+
+        private void IsSpecialInput(ref string txt,Dictionary<String,String> dic )
+        {
+            string newtxt = txt;
+            if (dic.ContainsKey(txt))
+            {
+                txt = dic[txt];
+                Activity activity=MainActivity.Context as Activity;
+                activity?.RunOnUiThread(()=>activity.FindViewById<TextView>(Resource.Id.textViewControl).Text="符翻点数为"+dic[newtxt]);
+            }
+        }
+
+        private void AgareMethod(string txt, int qianBang, int changBang, ref bool isOyaAgare)
         {
             Player playerUp = Element.Players[_flagUp - 1];
             Player playerDown = Element.Players[_flagDown - 1];
+            if (playerUp.Name == Element.Session.OyaName) isOyaAgare = true;
+            if (isOyaAgare)
+                IsSpecialInput(ref txt, Element.OyaAgareDictionary);
+            else
+                IsSpecialInput(ref txt, Element.KoAgareDictionary);
+
             int changePoint = 0;
             try
             {
+                IsSpecialInput(ref txt, Element.KoTsumoDictionary);
                 changePoint = Convert.ToInt32(txt);
             }
             catch
@@ -120,10 +140,9 @@ namespace TenhouPointCalculatorBeta3
             _flagUp = 0;
             _flagDown = 0;
             MainActivity.Flag = 0;
-            if (playerUp.Name == Element.Session.OyaName) isOyaAgare = true;
         }
 
-        public void TsumoMethod(string txt, int qianBang, int changBang, ref bool isOyaAgare)
+        private void TsumoMethod(string txt, int qianBang, int changBang, ref bool isOyaAgare)
         {
             int oyaLostPoint = 0;
             int koLostPoint = 0;
@@ -144,6 +163,7 @@ namespace TenhouPointCalculatorBeta3
                 isOyaAgare = true;
 
                 #region 亲自摸时分配对应变动点数
+                IsSpecialInput(ref txt, Element.OyaTsumoDictionary);
                 totalChangePoint = Convert.ToInt32(txt);
                 koLostPoint = totalChangePoint / 3;
                 #endregion
@@ -159,6 +179,7 @@ namespace TenhouPointCalculatorBeta3
                 }
 
                 #region 子自摸时分配对应变动点数
+                IsSpecialInput(ref txt,Element.KoTsumoDictionary);
                 if (Element.OyaDictionary.ContainsKey(txt))//输入点数格式为 "7900"
                 {
                     oyaLostPoint = Element.OyaDictionary[txt];
