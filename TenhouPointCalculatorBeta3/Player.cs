@@ -174,6 +174,7 @@ namespace TenhouPointCalculatorBeta3
             return MemberwiseClone();
         }
 
+        //暂时无法使用深复制，报错说android.app.activity也要加[Serializable]，但无法操作
         public Player DeepClone()
         {
             using (MemoryStream ms = new MemoryStream(1000))
@@ -195,6 +196,7 @@ namespace TenhouPointCalculatorBeta3
         }
     }
 
+    //使用了orderby+thenby基本取代这个排序
     class PlayerComparerByPoint : IComparer<Player>
     {
         public int Compare(Player x, Player y)

@@ -18,7 +18,7 @@
             android:layout_column="2"
             android:gravity="center"
             android:padding="10dp"
-            android:text="东25000"
+            android:text="(?.?)"
             android:id="@+id/btnOppositePlayer"
             android:singleLine="false" />
         <CheckBox
@@ -42,11 +42,10 @@
         <Button
             android:gravity="center"
             android:padding="10dp"
-            android:text="南25000"
+            android:text="(OAO)"
             android:layout_column="1"
             android:id="@+id/btnLeftPlayer" />
         <TextView
-            android:text="东四局"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_column="2"
             android:id="@+id/textViewSession"
@@ -54,7 +53,7 @@
         <Button
             android:gravity="center"
             android:padding="10dp"
-            android:text="北200"
+            android:text="(&gt;.O)"
             android:layout_column="3"
             android:id="@+id/btnRightPlayer" />
         <CheckBox
@@ -73,7 +72,7 @@
         <Button
             android:gravity="center"
             android:padding="10dp"
-            android:text="西2000"
+            android:text="(=v=)"
             android:layout_column="2"
             android:id="@+id/btnMePlayer" />
         <ImageView
@@ -84,7 +83,7 @@
             android:layout_column="4"
             android:id="@+id/textViewChangBang"
             android:layout_gravity="center"
-            android:text="3" />
+            android:text="本场棒" />
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"
@@ -102,7 +101,7 @@
             android:layout_column="4"
             android:id="@+id/textViewQianBang"
             android:layout_gravity="center"
-            android:text="1" />
+            android:text="千点棒" />
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"

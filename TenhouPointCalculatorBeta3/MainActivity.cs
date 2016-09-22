@@ -74,10 +74,42 @@ namespace TenhouPointCalculatorBeta3
                 meBtn
             };
 
-            leftBtn.LongClick += (s, e) => ShowDeltaPointMethod(Element.LeftPlayer, buttons);
-            oppositeBtn.LongClick += (s, e) => ShowDeltaPointMethod(Element.OppositePlayer, buttons);
-            rightBtn.LongClick += (s, e) => ShowDeltaPointMethod(Element.RightPlayer, buttons);
-            meBtn.LongClick += (s, e) => ShowDeltaPointMethod(Element.MePlayer, buttons);
+            leftBtn.LongClick += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    ShowDeltaPointMethod(Element.LeftPlayer, buttons);
+                    RunningOtherProgram = false;
+                }
+            };
+            oppositeBtn.LongClick += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    ShowDeltaPointMethod(Element.OppositePlayer, buttons);
+                    RunningOtherProgram = false;
+                }
+            };
+            rightBtn.LongClick += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    ShowDeltaPointMethod(Element.RightPlayer, buttons);
+                    RunningOtherProgram = false;
+                }
+            };
+            meBtn.LongClick += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    ShowDeltaPointMethod(Element.MePlayer, buttons);
+                    RunningOtherProgram = false;
+                }
+            };
 
             //四家选项框
             var oppositeCkb = FindViewById<CheckBox>(Resource.Id.checkBoxOppositePlayer);
@@ -201,36 +233,45 @@ namespace TenhouPointCalculatorBeta3
             test.Click += Test_Click;
         }
 
+        //帮助文档
         private void Help_Click(object sender, EventArgs e)
         {
             string txt = "";
             txt += @"<简单写个使用说明>
-左上角新对局按钮用来新建对局。
+欢迎使用本软件(OvO)。
+当前软件版本为1.2内测版。
+请原谅这个简陋的界面，因为以实现功能为优先，我完全没学习关于美化界面方面的知识......
+但是请期待后续版本！
+顺带说下我的测试机型为魅蓝note3，版本为5.1（手上也没有别的机型测试......
 
-上方四个按钮和四个选项框是对应四家状态，这四个按钮中下方是自己，其他三个为对应的其他三家。
-长按按钮可以显示该玩家与其他三家的点差，再长按一次就恢复原来情况（四家按钮都适用。
+<大致说下界面各部分组成>
+左上角为新建对局，右上角为帮助文档。
+
+上方四个按钮和四个选项框是对应四家状态，默认下方的按钮表示自己，其他三个按钮为对应的其他三家。
+长按按钮可以显示该玩家与其他三家的点差，再长按一次就恢复原来情况（四家按钮都适用。）
 请不要在显示点差的状态下进行任何其他操作，要和牌/立直/流局等请先恢复到原来点数状态。
 
-中间是控制框和显示输入文本。
+中间是控制框和显示输入文本，中间右边为本场棒（上）和供托中的1000千点棒（下）数量。
 
-下方中间是键盘区，左右两边是功能键。
+下方中间是键盘区（“BS”为退格键BackSpace，“/”为分割符号），左右两边是功能键。
 
+<功能键使用说明>
 新对局：点新对局→点四家按钮中一个→以被按的玩家为东起开始。
 
 和牌：输入和牌大小→点和牌→点铳家再点和家（如果自摸就点同一按钮两下）。
 自摸时可以输入“2000/3900”（不分前后顺序）或者“7900” 。
-在忘记符翻对应点数的时候，可以输入“70//2”来表示70符2翻，控制台还会显示该点数为多少。
+在忘记符翻对应点数的时候，可以输入“70//2”（分前后顺序）来表示70符2翻，控制台还会显示70符2翻点数为多少。
 但是实麻移交点数的时候别忘了还要算上本场棒，因为这个点数是没算计算本场棒的。
 例1：对家铳自己3900点：键盘区输入3900→点和牌按钮→点对家按钮→点自己按钮
 例2：自己自摸4000点：键盘区输入4000→点和牌按钮→点自己按钮→点自己按钮
 例3：自己铳上家（子）70符2翻：键盘区输入70//2→点和牌按钮→点自己按钮→点上家按钮→控制台显示“符翻点数为4500”
 
-双响选项框：出现双响局面时，勾选双响→输入和牌大小→点和牌→输入铳/和家→输入和牌大小→输入铳/和家
-注：和牌大小只要在输入和家之前输入完毕就可以。
-注2：请从从铳牌家开始逆时针方向开始输入和牌家，因为只有第一遍计算会涉及本场棒和立直棒。
+双响选项框：出现双响局面时，勾选双响→输入和牌大小→点和牌→输入铳、和家→输入和牌大小→输入铳、和家
+注：和牌大小只要在当次结算的输入和家之前输入完毕就可以。
+注2：请从铳牌家开始逆时针方向开始输入和牌家，因为只有第一遍计算会涉及本场棒和立直棒。
 
-立直：点击选项框，对应玩家点数-1000。
-注：流局时立直选项框代表是否听牌。
+立直：勾选选项框，对应玩家点数-1000。在普通状态下取消勾选就可以取消立直，点数恢复1000。
+注：流局时立直选项框代表是否听牌，此时取消听牌并不会恢复1000点（当然这个也算是非法操作，将在后续版本中禁止这种操作）。
 
 流局：点流局→勾选对应玩家选项框表示听牌→点任意玩家按钮
 
@@ -243,17 +284,19 @@ namespace TenhouPointCalculatorBeta3
 上一局/下一局：可以用此功能返回到上一局/下一局的状态，比如在东四局输入点数错误时可以按上一局回到东三局重新输入点数。
 注：用上一局进行重新输入点数后，该局以后的旧记录都会销毁。
 
-记录：显示对局中各个时点的状态，半成品状态。
+记录：显示对局中各个时点的状态，半成品，将在后续版本中完善。
 
 测试用：测试新功能用的按钮，无实际用途。
 
 返回键：用返回键退回桌面再进入程序会有显示bug，所以我把返回键改成了清除显示框文本，刚好省掉一个按钮。
 
-最后，这个软件会有大量的bug，所以使用的时候请多多包涵（捂脸
+<结束语>
+这个软件会有大量的bug，所以使用的时候请多多包涵（捂脸
 建议每新记录一个半庄都先清后台重启再使用，因为有时会出现记录bug，正努力修改中......
-另外请按上面的操作规范来使用，因为我还没对各种边界条件和非法操作进行限制，所以很多非法操作可能会引起程序崩溃丢失记录（booooooooom
+因为软件的数据都是在内存中保存，如果被杀后台会导致数据丢失。后续版本中会加入以写入文件形式保存数据，但当前版本还请注意别杀后台......
+另外请按上面的操作规范来使用，因为很多边界条件和非法操作我还没进行限制，所以很多非法操作可能会引起程序崩溃丢失记录（booooooooom
 
-如果发现bug，欢迎发邮件到 919703505@qq.com 提交给我哦！
+如果发现bug，欢迎提交到 919703505@qq.com
 ";
 
             AlertDialog.Builder adb = new AlertDialog.Builder(this);
