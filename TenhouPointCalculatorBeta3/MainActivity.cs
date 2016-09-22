@@ -297,6 +297,7 @@ namespace TenhouPointCalculatorBeta3
 另外请按上面的操作规范来使用，因为很多边界条件和非法操作我还没进行限制，所以很多非法操作可能会引起程序崩溃丢失记录（booooooooom
 
 如果发现bug，欢迎提交到 919703505@qq.com
+github地址：https://github.com/hackiv/PointCalculator
 ";
 
             AlertDialog.Builder adb = new AlertDialog.Builder(this);
