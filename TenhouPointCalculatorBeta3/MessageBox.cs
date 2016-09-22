@@ -16,7 +16,13 @@ namespace TenhouPointCalculatorBeta3
     {
         public static void Show(string txt)
         {
-            
+            Activity activity = MainActivity.Context as Activity;
+            AlertDialog.Builder adb = new AlertDialog.Builder(activity);
+            activity.RunOnUiThread(() =>
+            {
+                adb.SetMessage(txt);
+                adb.Show();
+            });
         }
     }
 }
