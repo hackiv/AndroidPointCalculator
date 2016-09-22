@@ -17,10 +17,6 @@ namespace TenhouPointCalculatorBeta3
 {
     class Session:ICloneable
     {
-        private readonly Activity _activity = (Activity)MainActivity.Context;
-        private readonly AlertDialog.Builder _adb = new AlertDialog.Builder(MainActivity.Context);
-
-
         private int _benChang;
 
         public int BenChang
@@ -29,8 +25,7 @@ namespace TenhouPointCalculatorBeta3
             set
             {
                 _benChang = value;
-                _activity?.RunOnUiThread(
-                    () => _activity.FindViewById<TextView>(Resource.Id.textViewChangBang).Text = _benChang.ToString());
+                UpdateText.Set(MainActivity.ChangBangTextView, _benChang.ToString());
             }
         } //本场数
 
@@ -42,8 +37,7 @@ namespace TenhouPointCalculatorBeta3
             set
             {
                 _qianBang = value;
-                _activity?.RunOnUiThread(
-                    () => _activity.FindViewById<TextView>(Resource.Id.textViewQianBang).Text = _qianBang.ToString());
+                UpdateText.Set(MainActivity.QianBangTextView, _qianBang.ToString());
             }
         } //供托中千棒数
 
@@ -54,9 +48,7 @@ namespace TenhouPointCalculatorBeta3
             set
             {
                 if (Convert.ToInt32(value) < 13) _nowSession = value;//不超出索引范围
-                //if (Convert.ToInt32(value) > 7) End.IsEndWest(_activity, _adb); //西入后判断是否完场
-                _activity?.RunOnUiThread(
-                    () => _activity.FindViewById<TextView>(Resource.Id.textViewSession).Text = _nowSession.ToString());
+                UpdateText.Set(MainActivity.SessionTextView, _nowSession.ToString());
             }
         } //当前场节 东一局到西四局
 

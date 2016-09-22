@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -21,6 +22,21 @@ namespace TenhouPointCalculatorBeta3
         public static int NowSessionNum = 1;
         public static bool IsOyaAgare;
         public static bool RunningOtherProgram;
+        
+        public static TextView InpuTextView;
+        public static TextView ControlTextView;
+        public static TextView SessionTextView;
+        public static Button LeftButton;
+        public static Button OppositeButton;
+        public static Button RightButton;
+        public static Button MeButton;
+        public static CheckBox LeftCheckBox;
+        public static CheckBox RightCheckBox;
+        public static CheckBox OppositeCheckBox;
+        public static CheckBox MeCheckBox;
+        public static TextView ChangBangTextView;
+        public static TextView QianBangTextView;
+        public static CheckBox DoubleRonCheckBox;
 
 
 
@@ -40,41 +56,42 @@ namespace TenhouPointCalculatorBeta3
 
             #region 显示用的控件 输入框/场风框 ok
             //输入框
-            var textOfInput = FindViewById<TextView>(Resource.Id.textViewShowInput);
+            InpuTextView = FindViewById<TextView>(Resource.Id.textViewShowInput);
             //场风框
-            var session = FindViewById<TextView>(Resource.Id.textViewSession);
+            SessionTextView = FindViewById<TextView>(Resource.Id.textViewSession);
             //控制框
-            var control = FindViewById<TextView>(Resource.Id.textViewControl);
+            ControlTextView = FindViewById<TextView>(Resource.Id.textViewControl);
             ////场棒图片
             var changBangImg = FindViewById<ImageView>(Resource.Id.imgViewChangBang);
-            //changBangImg.SetImageDrawable(GetDrawable(Resource.Drawable.ChangBang));
             changBangImg.SetImageResource(Resource.Drawable.ChangBang);
             //千棒图片
             var qianBangImg = FindViewById<ImageView>(Resource.Id.imgViewQianBang);
-            //qianBangImg.SetImageDrawable(GetDrawable(Resource.Drawable.QianBang));
             qianBangImg.SetImageResource(Resource.Drawable.QianBang);
+            //场棒
+            ChangBangTextView = FindViewById<TextView>(Resource.Id.textViewChangBang);
+            QianBangTextView = FindViewById<TextView>(Resource.Id.textViewQianBang);
             #endregion
 
             #region 四家数据控件 ok
             //四家按钮
-            var leftBtn = FindViewById<Button>(Resource.Id.btnLeftPlayer);
-            leftBtn.Click += (s, e) => Flag = 1;
-            var oppositeBtn = FindViewById<Button>(Resource.Id.btnOppositePlayer);
-            oppositeBtn.Click += (s, e) => Flag = 2;
-            var rightBtn = FindViewById<Button>(Resource.Id.btnRightPlayer);
-            rightBtn.Click += (s, e) => Flag = 3;
-            var meBtn = FindViewById<Button>(Resource.Id.btnMePlayer);
-            meBtn.Click += (s, e) => Flag = 4;
+            LeftButton = FindViewById<Button>(Resource.Id.btnLeftPlayer);
+            LeftButton.Click += (s, e) => Flag = 1;
+            OppositeButton = FindViewById<Button>(Resource.Id.btnOppositePlayer);
+            OppositeButton.Click += (s, e) => Flag = 2;
+            RightButton = FindViewById<Button>(Resource.Id.btnRightPlayer);
+            RightButton.Click += (s, e) => Flag = 3;
+            MeButton = FindViewById<Button>(Resource.Id.btnMePlayer);
+            MeButton.Click += (s, e) => Flag = 4;
 
             List<Button> buttons = new List<Button>()
             {
-                leftBtn,
-                oppositeBtn,
-                rightBtn,
-                meBtn
+                LeftButton,
+                OppositeButton,
+                RightButton,
+                MeButton
             };
 
-            leftBtn.LongClick += (s, e) =>
+            LeftButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
@@ -83,7 +100,7 @@ namespace TenhouPointCalculatorBeta3
                     RunningOtherProgram = false;
                 }
             };
-            oppositeBtn.LongClick += (s, e) =>
+            OppositeButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
@@ -92,7 +109,7 @@ namespace TenhouPointCalculatorBeta3
                     RunningOtherProgram = false;
                 }
             };
-            rightBtn.LongClick += (s, e) =>
+            RightButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
@@ -101,7 +118,7 @@ namespace TenhouPointCalculatorBeta3
                     RunningOtherProgram = false;
                 }
             };
-            meBtn.LongClick += (s, e) =>
+            MeButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
@@ -112,14 +129,14 @@ namespace TenhouPointCalculatorBeta3
             };
 
             //四家选项框
-            var oppositeCkb = FindViewById<CheckBox>(Resource.Id.checkBoxOppositePlayer);
-            oppositeCkb.CheckedChange += (s, e) => Element.OppositePlayer.IsReach = oppositeCkb.Checked;
-            var leftCkb = FindViewById<CheckBox>(Resource.Id.checkBoxLeftPlayer);
-            leftCkb.CheckedChange += (s, e) => Element.LeftPlayer.IsReach = leftCkb.Checked;
-            var rightCkb = FindViewById<CheckBox>(Resource.Id.checkBoxRightPlayer);
-            rightCkb.CheckedChange += (s, e) => Element.RightPlayer.IsReach = rightCkb.Checked;
-            var meCkb = FindViewById<CheckBox>(Resource.Id.checkBoxMePlayer);
-            meCkb.CheckedChange += (s, e) => Element.MePlayer.IsReach = meCkb.Checked;
+            OppositeCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxOppositePlayer);
+            OppositeCheckBox.CheckedChange += (s, e) => Element.OppositePlayer.IsReach = OppositeCheckBox.Checked;
+            LeftCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxLeftPlayer);
+            LeftCheckBox.CheckedChange += (s, e) => Element.LeftPlayer.IsReach = LeftCheckBox.Checked;
+            RightCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxRightPlayer);
+            RightCheckBox.CheckedChange += (s, e) => Element.RightPlayer.IsReach = RightCheckBox.Checked;
+            MeCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxMePlayer);
+            MeCheckBox.CheckedChange += (s, e) => Element.MePlayer.IsReach = MeCheckBox.Checked;
             #endregion
 
             #region 功能性按键 新对局/设定/记录/上一局/下一局/帮助
@@ -141,7 +158,7 @@ namespace TenhouPointCalculatorBeta3
                 if (RunningOtherProgram == false)
                 {
                     RunningOtherProgram = true;
-                    Setting.SettingElement(textOfInput.Text);
+                    Setting.SettingElement(InpuTextView.Text);
                     RunningOtherProgram = false;
                 }
             };
@@ -173,7 +190,7 @@ namespace TenhouPointCalculatorBeta3
             };
             //nextGame.Click += Test_Click;
             //双响
-            var doubleRon = FindViewById<CheckBox>(Resource.Id.checkBoxDoubleRon);
+            DoubleRonCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxDoubleRon);
             //帮助
             var help = FindViewById<Button>(Resource.Id.btnHelp);
             help.Click += Help_Click;
@@ -214,18 +231,18 @@ namespace TenhouPointCalculatorBeta3
             #endregion
 
             #region 键盘设定ok
-            FindViewById<Button>(Resource.Id.btnNum0).Click += (s, e) => textOfInput.Text += "0";
-            FindViewById<Button>(Resource.Id.btnNum1).Click += (s, e) => textOfInput.Text += "1";
-            FindViewById<Button>(Resource.Id.btnNum2).Click += (s, e) => textOfInput.Text += "2";
-            FindViewById<Button>(Resource.Id.btnNum3).Click += (s, e) => textOfInput.Text += "3";
-            FindViewById<Button>(Resource.Id.btnNum4).Click += (s, e) => textOfInput.Text += "4";
-            FindViewById<Button>(Resource.Id.btnNum5).Click += (s, e) => textOfInput.Text += "5";
-            FindViewById<Button>(Resource.Id.btnNum6).Click += (s, e) => textOfInput.Text += "6";
-            FindViewById<Button>(Resource.Id.btnNum7).Click += (s, e) => textOfInput.Text += "7";
-            FindViewById<Button>(Resource.Id.btnNum8).Click += (s, e) => textOfInput.Text += "8";
-            FindViewById<Button>(Resource.Id.btnNum9).Click += (s, e) => textOfInput.Text += "9";
-            FindViewById<Button>(Resource.Id.btnNumDiv).Click += (s, e) => textOfInput.Text += "/";
-            FindViewById<Button>(Resource.Id.btnBackSpace).Click += (s, e) => textOfInput.Text = textOfInput.Text.Substring(0, textOfInput.Text.Length - 1);
+            FindViewById<Button>(Resource.Id.btnNum0).Click += (s, e) => InpuTextView.Text += "0";
+            FindViewById<Button>(Resource.Id.btnNum1).Click += (s, e) => InpuTextView.Text += "1";
+            FindViewById<Button>(Resource.Id.btnNum2).Click += (s, e) => InpuTextView.Text += "2";
+            FindViewById<Button>(Resource.Id.btnNum3).Click += (s, e) => InpuTextView.Text += "3";
+            FindViewById<Button>(Resource.Id.btnNum4).Click += (s, e) => InpuTextView.Text += "4";
+            FindViewById<Button>(Resource.Id.btnNum5).Click += (s, e) => InpuTextView.Text += "5";
+            FindViewById<Button>(Resource.Id.btnNum6).Click += (s, e) => InpuTextView.Text += "6";
+            FindViewById<Button>(Resource.Id.btnNum7).Click += (s, e) => InpuTextView.Text += "7";
+            FindViewById<Button>(Resource.Id.btnNum8).Click += (s, e) => InpuTextView.Text += "8";
+            FindViewById<Button>(Resource.Id.btnNum9).Click += (s, e) => InpuTextView.Text += "9";
+            FindViewById<Button>(Resource.Id.btnNumDiv).Click += (s, e) => InpuTextView.Text += "/";
+            FindViewById<Button>(Resource.Id.btnBackSpace).Click += (s, e) => InpuTextView.Text = InpuTextView.Text.Substring(0, InpuTextView.Text.Length - 1);
             #endregion
 
             //测试用
@@ -236,8 +253,7 @@ namespace TenhouPointCalculatorBeta3
         //帮助文档
         private void Help_Click(object sender, EventArgs e)
         {
-            string txt = "";
-            txt += @"<简单写个使用说明>
+            string txt = @"<简单写个使用说明>
 欢迎使用本软件(OvO)。
 当前软件版本为1.2内测版。
 请原谅这个简陋的界面，因为以实现功能为优先，我完全没学习关于美化界面方面的知识......
@@ -298,10 +314,7 @@ namespace TenhouPointCalculatorBeta3
 
 如果发现bug，欢迎提交到 919703505@qq.com
 ";
-
-            AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            adb.SetMessage(txt);
-            adb.Show();
+            MessageBox.Show(txt);
         }
 
         private void Log_Click(object sender, EventArgs e)
@@ -311,10 +324,7 @@ namespace TenhouPointCalculatorBeta3
             {
                 txt += d.Key + " " + d.Value[0] + " " + d.Value[1] + " " + d.Value[2] + " " + d.Value[3] + " " + d.Value[4] + " " + "\n";
             }
-
-            AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            adb.SetMessage(txt);
-            adb.Show();
+            MessageBox.Show(txt);
         }
 
         private void ShowDeltaPointMethod(Player player, List<Button> buttons)
@@ -340,18 +350,17 @@ namespace TenhouPointCalculatorBeta3
 
         private void Nagare_Click(object sender, EventArgs e)
         {
-            AlertDialog.Builder adb = new AlertDialog.Builder(this);
             Element.Session.NagareMode = true;
-            FindViewById<TextView>(Resource.Id.textViewControl).Text = "谁听牌？";
+            UpdateText.Set(ControlTextView, "谁听牌？");
             Flag = 0;
             Thread th = new Thread(() =>
             {
                 while (Flag == 0) ;
                 Nagare nagare = new Nagare();
                 nagare.NagareMethod();
-                RunOnUiThread(() => FindViewById<TextView>(Resource.Id.textViewControl).Text = "(OvO)");
+                UpdateText.Set(ControlTextView, "(OvO)");
                 Game.Save();
-                End.IsOwari(this, adb);
+                End.IsOwari();
                 RunningOtherProgram = false;
             });
             th.IsBackground = true;
@@ -373,20 +382,15 @@ namespace TenhouPointCalculatorBeta3
 
         private void NewGame_Click(object sender, EventArgs e)
         {
-            FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "";
-            FindViewById<TextView>(Resource.Id.textViewControl).Text = "谁是起家？";
+            UpdateText.Set(InpuTextView,"");
+            UpdateText.Set(ControlTextView, "谁是起家？");
             Flag = 0;
             Thread th = new Thread(() =>
             {
                 //flag：上家1 对家2 下家3 自己4
                 while (Flag == 0) ;
-                AlertDialog.Builder adb = new AlertDialog.Builder(Context);
-                adb.SetMessage(Element.Players[Flag - 1].Name + "东起");
-                RunOnUiThread(() =>
-                {
-                    adb.Show();
-                    FindViewById<TextView>(Resource.Id.textViewControl).Text = "(OvO)";
-                });
+                MessageBox.Show(Element.Players[Flag - 1].Name + "东起");
+                UpdateText.Set(ControlTextView, "(OvO)");
                 Element.Session = new Session(0, 0, SessionEnum.东一局, (NameEnum)Flag - 1, false);
                 for (int i = 0; i < 4; i++)
                 {
@@ -415,16 +419,14 @@ namespace TenhouPointCalculatorBeta3
             txt += "千棒：" + Element.Session.QianBang.ToString() + "\n";
             txt += "当前局数：" + NowSessionNum;
 
-            AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            adb.SetMessage(txt);
-            adb.Show();
+            MessageBox.Show(txt);
         }
 
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)//重写返回键
         {
             if (keyCode == Keycode.Back)
             {
-                FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "";
+                UpdateText.Set(InpuTextView,"");
                 return true;
             }
             return base.OnKeyDown(keyCode, e);

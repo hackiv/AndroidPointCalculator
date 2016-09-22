@@ -25,16 +25,5 @@ namespace TenhouPointCalculatorBeta3
          * 9-
          * T-
          */
-
-        public static void TestMethod()
-        {
-            Activity activity = MainActivity.Context as Activity;
-            activity.RunOnUiThread(() =>
-            {
-                AlertDialog.Builder adb = new AlertDialog.Builder(activity);
-                adb.SetMessage("此时流局状态为" + Element.Session.NagareMode.ToString());
-                adb.Show();
-            });
-        }
     }
 }

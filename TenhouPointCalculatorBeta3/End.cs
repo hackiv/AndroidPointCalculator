@@ -14,7 +14,7 @@ namespace TenhouPointCalculatorBeta3
 {
     class End
     {
-        public static void IsOwari(Activity activity, AlertDialog.Builder adb)
+        public static void IsOwari()
         {
             Player player = Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind).FirstOrDefault();
             if (player?.Point > 30000 && (int)Element.Session.NowSession > 7)
@@ -23,27 +23,24 @@ namespace TenhouPointCalculatorBeta3
                 {
                     //亲家胡牌
                     if (player?.Name == Element.Session.OyaName)
-                        Owari(activity, adb);
+                        Owari();
                 }
                 else
                 {
-                    Owari(activity, adb);
+                    Owari();
                 }
+                
             }
         }
 
-        public static void Owari(Activity activity, AlertDialog.Builder adb)
+        public static void Owari()
         {
             string txt = "";
             foreach (var player in Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind))
             {
                 txt += player.Name + ":" + player.Point + "\n";
             }
-            activity?.RunOnUiThread(() =>
-            {
-                adb.SetMessage("完场\n" + txt);
-                adb.Show();
-            });
+            MessageBox.Show("完场\n" + txt);
         }
     }
 }

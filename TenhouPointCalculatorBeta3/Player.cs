@@ -20,8 +20,7 @@ namespace TenhouPointCalculatorBeta3
     [Serializable]
     class Player : ICloneable
     {
-        private readonly Activity _activity = (Activity)MainActivity.Context;
-        private readonly AlertDialog.Builder _adb = new AlertDialog.Builder(MainActivity.Context);
+        readonly Activity _activity = MainActivity.Context as Activity;
         public int Btn { get; set; } //对应的按钮ID
 
         public int Ckb { get; set; } //对应的选项框
@@ -38,8 +37,7 @@ namespace TenhouPointCalculatorBeta3
                 }
                 catch
                 {
-                    _adb.SetMessage("获取点数出错啦");
-                    _adb.Show();
+                    MessageBox.Show("获取点数出错啦");
                     return _point;
                 }
             }
@@ -48,17 +46,17 @@ namespace TenhouPointCalculatorBeta3
                 try
                 {
                     _point = value;
+
                     _activity?.RunOnUiThread(
                         () => _activity.FindViewById<Button>(Btn).Text = this.ToString());
                     if (value < 0)
                     {
-                        End.Owari(_activity, _adb);
+                        End.Owari();
                     }
                 }
                 catch
                 {
-                    _adb.SetMessage("设置点数出错啦");
-                    _adb.Show();
+                    MessageBox.Show("设置点数出错啦");
                 }
             }
         }
@@ -79,8 +77,7 @@ namespace TenhouPointCalculatorBeta3
                 }
                 catch
                 {
-                    _adb.SetMessage("获取风位出错啦");
-                    _adb.Show();
+                    MessageBox.Show("获取风位出错啦");
                     return WindEnum.东;
                 }
             }
@@ -95,9 +92,7 @@ namespace TenhouPointCalculatorBeta3
                 }
                 catch
                 {
-                    AlertDialog.Builder adb = new AlertDialog.Builder(_activity);
-                    adb.SetMessage("设置风位出错啦");
-                    adb.Show();
+                    MessageBox.Show("设置风位出错啦");
                 }
             }
         }
@@ -114,8 +109,7 @@ namespace TenhouPointCalculatorBeta3
                 }
                 catch
                 {
-                    _adb.SetMessage("获取立直状态出错啦");
-                    _adb.Show();
+                    MessageBox.Show("获取立直状态出错啦");
                     return false;
                 }
             }
@@ -144,8 +138,7 @@ namespace TenhouPointCalculatorBeta3
                 }
                 catch
                 {
-                    _adb.SetMessage("设置立直状态出错啦");
-                    _adb.Show();
+                    MessageBox.Show("设置立直状态出错啦");
                 }
             }
         }

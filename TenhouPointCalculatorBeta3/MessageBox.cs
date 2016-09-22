@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 
 using Android.App;
@@ -13,14 +12,17 @@ using Android.Widget;
 
 namespace TenhouPointCalculatorBeta3
 {
-    class MessageBox
+    static class MessageBox
     {
-        Activity _activity = (Activity) MainActivity.Context;
-
-        public void Show(string str)
+        public static void Show(string txt)
         {
-            AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.Context).SetMessage(str);
-            
+            Activity activity = MainActivity.Context as Activity;
+            AlertDialog.Builder adb = new AlertDialog.Builder(activity);
+            activity?.RunOnUiThread(() =>
+            {
+                adb.SetMessage(txt);
+                adb.Show();
+            });
         }
     }
 }

@@ -16,11 +16,17 @@ namespace TenhouPointCalculatorBeta3
 {
     class Game
     {
-        private static Activity _activity = (Activity)MainActivity.Context;
         public static void Save()
         {
             
-            System.Collections.ArrayList gameArrayList = new System.Collections.ArrayList { Element.LeftPlayer.ShallowClone(), Element.OppositePlayer.ShallowClone(), Element.RightPlayer.ShallowClone(), Element.MePlayer.ShallowClone(), Element.Session.ShallowClone() };
+            System.Collections.ArrayList gameArrayList = new System.Collections.ArrayList
+            {
+                Element.LeftPlayer.ShallowClone(),
+                Element.OppositePlayer.ShallowClone(),
+                Element.RightPlayer.ShallowClone(),
+                Element.MePlayer.ShallowClone(),
+                Element.Session.ShallowClone()
+            };
             int i = MainActivity.NowSessionNum;
             while (true)//清除掉已有的记录
             {
@@ -56,9 +62,12 @@ namespace TenhouPointCalculatorBeta3
                         i++;
                     }
                     Session cloneSession = cloneArrayList[i] as Session;
-                    Element.Session.BenChang = cloneSession.BenChang;
-                    Element.Session.QianBang = cloneSession.QianBang;
-                    Element.Session.NowSession = cloneSession.NowSession;
+                    if (cloneSession != null)
+                    {
+                        Element.Session.BenChang = cloneSession.BenChang;
+                        Element.Session.QianBang = cloneSession.QianBang;
+                        Element.Session.NowSession = cloneSession.NowSession;
+                    }
                     MainActivity.NowSessionNum = targetSession;
                     
                 }

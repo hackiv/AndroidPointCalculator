@@ -14,8 +14,6 @@ namespace TenhouPointCalculatorBeta3
 {
     class Agare
     {
-        private Activity _activity = (Activity)MainActivity.Context;
-        private AlertDialog.Builder _adb = new AlertDialog.Builder(MainActivity.Context);
         int _flagUp;
         int _flagDown;
         private int _temp;
@@ -23,9 +21,7 @@ namespace TenhouPointCalculatorBeta3
 
         public void GetFlag()
         {
-
             //定义变量
-
             int changBang = Element.Session.BenChang;
             int qianBang = Element.Session.QianBang;
             bool isOyaAgare = false;
@@ -38,14 +34,14 @@ namespace TenhouPointCalculatorBeta3
 
                 DoubleRon:
                 //获得铳家与和家
-                _activity.RunOnUiThread(() => _activity.FindViewById<TextView>(Resource.Id.textViewControl).Text = "谁出铳？");
+                UpdateText.Set(MainActivity.ControlTextView, "谁出铳？");
                 while (MainActivity.Flag == 0) ;
                 _flagDown = MainActivity.Flag;
-                _activity.RunOnUiThread(() => _activity.FindViewById<TextView>(Resource.Id.textViewControl).Text = "谁和牌？");
+                UpdateText.Set(MainActivity.ControlTextView, "谁和牌？");
                 MainActivity.Flag = 0;
                 while (MainActivity.Flag == 0) ;
-                _activity.RunOnUiThread(() => _activity.FindViewById<TextView>(Resource.Id.textViewControl).Text = "(OvO)");
-                string txt = _activity.FindViewById<TextView>(Resource.Id.textViewShowInput).Text;
+                UpdateText.Set(MainActivity.ControlTextView, "(OvO)");
+                string txt = MainActivity.InpuTextView.Text;
                 _flagUp = MainActivity.Flag;
                 isOyaAgare = false;
                 //胡牌计算
@@ -54,9 +50,9 @@ namespace TenhouPointCalculatorBeta3
                 else
                     AgareMethod(txt, qianBang, changBang, ref isOyaAgare);
                 //双响处理
-                if (_activity.FindViewById<CheckBox>(Resource.Id.checkBoxDoubleRon).Checked)//判断是否双响
+                if (MainActivity.DoubleRonCheckBox.Checked)//判断是否双响
                 {
-                    _activity.RunOnUiThread(() => _activity.FindViewById<CheckBox>(Resource.Id.checkBoxDoubleRon).Checked = false);
+                    MainActivity.DoubleRonCheckBox.Checked = false;
                     _afterDoubleRon = true;
                     isOyaAgareFirst = isOyaAgare;
                     _temp = changBang;
@@ -70,54 +66,50 @@ namespace TenhouPointCalculatorBeta3
                     _afterDoubleRon = false;
                 }
                 //胡牌完后处理
-                _activity.RunOnUiThread(() =>
+                MainActivity.IsOyaAgare = isOyaAgare || isOyaAgareFirst;
+
+                Element.Session.NagareMode = true;//收掉棒子时为流局状态
+                if (isOyaAgare || isOyaAgareFirst)
                 {
-                    MainActivity.IsOyaAgare = isOyaAgare || isOyaAgareFirst;
-
-                    Element.Session.NagareMode = true;//收掉棒子时为流局状态
-                    if (isOyaAgare || isOyaAgareFirst)
+                    Element.Session.BenChang++;
+                    foreach (var player in Element.Players)
                     {
-                        Element.Session.BenChang++;
-                        foreach (var player in Element.Players)
-                        {
-                            player.IsReach = false;
-                        }
+                        player.IsReach = false;
                     }
-                    else
+                }
+                else
+                {
+                    Element.Session.BenChang = 0;
+                    Element.Session.NowSession++;
+                    foreach (var player in Element.Players)
                     {
-                        Element.Session.BenChang = 0;
-                        Element.Session.NowSession++;
-                        foreach (var player in Element.Players)
-                        {
-                            if (player.Wind == 0)
-                                player.Wind = WindEnum.北;
-                            else
-                                player.Wind--;
-                            player.IsReach = false;
-                        }
+                        if (player.Wind == 0)
+                            player.Wind = WindEnum.北;
+                        else
+                            player.Wind--;
+                        player.IsReach = false;
                     }
-                    Element.Session.NagareMode = false;
+                }
+                Element.Session.NagareMode = false;
 
-                    Element.Session.QianBang = 0;
-                    _activity.FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "";
-                    MainActivity.NowSessionNum++;
-                    Game.Save();
-                    End.IsOwari(_activity,_adb);
-                    MainActivity.RunningOtherProgram = false;
-                });
+                Element.Session.QianBang = 0;
+                UpdateText.Set(MainActivity.InpuTextView, "");
+                MainActivity.NowSessionNum++;
+                Game.Save();
+                End.IsOwari();
+                MainActivity.RunningOtherProgram = false;
             });
             th.IsBackground = true;
             th.Start();
         }
 
-        private void IsSpecialInput(ref string txt,Dictionary<String,String> dic )
+        private void IsSpecialInput(ref string txt, Dictionary<String, String> dic)
         {
             string newtxt = txt;
             if (dic.ContainsKey(txt))
             {
                 txt = dic[txt];
-                Activity activity=MainActivity.Context as Activity;
-                activity?.RunOnUiThread(()=>activity.FindViewById<TextView>(Resource.Id.textViewControl).Text="符翻点数为"+dic[newtxt]);
+                UpdateText.Set(MainActivity.ControlTextView, "符翻点数为" + dic[newtxt]);
             }
         }
 
@@ -127,14 +119,14 @@ namespace TenhouPointCalculatorBeta3
             Player playerDown = Element.Players[_flagDown - 1];
             if (playerUp.Name == Element.Session.OyaName) isOyaAgare = true;
             if (isOyaAgare)
-                IsSpecialInput(ref txt, Element.OyaAgareDictionary);
+                IsSpecialInput(ref txt, Dictionaries.OyaAgareDictionary);
             else
-                IsSpecialInput(ref txt, Element.KoAgareDictionary);
+                IsSpecialInput(ref txt, Dictionaries.KoAgareDictionary);
 
             int changePoint = 0;
             try
             {
-                IsSpecialInput(ref txt, Element.KoTsumoDictionary);
+                IsSpecialInput(ref txt, Dictionaries.KoTsumoDictionary);
                 changePoint = Convert.ToInt32(txt);
             }
             catch
@@ -169,7 +161,7 @@ namespace TenhouPointCalculatorBeta3
                 isOyaAgare = true;
 
                 #region 亲自摸时分配对应变动点数
-                IsSpecialInput(ref txt, Element.OyaTsumoDictionary);
+                IsSpecialInput(ref txt, Dictionaries.OyaTsumoDictionary);
                 totalChangePoint = Convert.ToInt32(txt);
                 koLostPoint = totalChangePoint / 3;
                 #endregion
@@ -185,11 +177,11 @@ namespace TenhouPointCalculatorBeta3
                 }
 
                 #region 子自摸时分配对应变动点数
-                IsSpecialInput(ref txt,Element.KoTsumoDictionary);
-                if (Element.OyaDictionary.ContainsKey(txt))//输入点数格式为 "7900"
+                IsSpecialInput(ref txt, Dictionaries.KoTsumoDictionary);
+                if (Dictionaries.OyaDictionary.ContainsKey(txt))//输入点数格式为 "7900"
                 {
-                    oyaLostPoint = Element.OyaDictionary[txt];
-                    koLostPoint = Element.KoDictionary[txt];
+                    oyaLostPoint = Dictionaries.OyaDictionary[txt];
+                    koLostPoint = Dictionaries.KoDictionary[txt];
                     totalChangePoint = Convert.ToInt32(txt);
                 }
                 else//输入点数形式为 "2000/3900" 或者 "3900/2000"
@@ -225,12 +217,8 @@ namespace TenhouPointCalculatorBeta3
 
         private void ThrowInputPointError()
         {
-            _activity.RunOnUiThread(() =>
-            {
-                _adb.SetMessage("点数输入出错\n请重新输入");
-                _adb.Show();
-                _activity.FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "";
-            });
+            MessageBox.Show("点数输入出错\n请重新输入");
+            UpdateText.Set(MainActivity.InpuTextView,"");
             GetFlag();
         }
     }
