@@ -54,6 +54,7 @@
     <Compile Include="Element.cs" />
     <Compile Include="End.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="MessageBox.cs" />
     <Compile Include="Nagare.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

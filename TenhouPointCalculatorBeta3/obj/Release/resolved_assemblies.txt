@@ -1,0 +1,9 @@
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\TenhouPointCalculatorBeta3.dll
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\Java.Interop.dll
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\Mono.Android.dll
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\mscorlib.dll
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\System.Core.dll
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\System.dll
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\System.Xml.dll
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\System.Runtime.Serialization.dll
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\System.ServiceModel.Internals.dll
