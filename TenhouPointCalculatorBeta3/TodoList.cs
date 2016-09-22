@@ -15,9 +15,9 @@ namespace TenhouPointCalculatorBeta3
     class TodoList
     {
         /* 1-设定：可以直接修改某个数值，如-/-/-/-/-/-/1 → 直接修改成东一局，其他数据不变
-         * 2-完场条件修正得更准确
+         * 2-用线程锁方式实现流局时的等待
          * 3-
-         * 4-在非流局状态下可以撤销立直
+         * 4-
          * 5-把双响步骤从和牌方法里分离出来
          * 6-
          * 7-
@@ -25,5 +25,16 @@ namespace TenhouPointCalculatorBeta3
          * 9-
          * T-
          */
+
+        public static void TestMethod()
+        {
+            Activity activity = MainActivity.Context as Activity;
+            activity.RunOnUiThread(() =>
+            {
+                AlertDialog.Builder adb = new AlertDialog.Builder(activity);
+                adb.SetMessage("此时流局状态为" + Element.Session.NagareMode.ToString());
+                adb.Show();
+            });
+        }
     }
 }

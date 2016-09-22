@@ -16,7 +16,7 @@ namespace TenhouPointCalculatorBeta3
     {
         public static void IsOwari(Activity activity, AlertDialog.Builder adb)
         {
-            Player player = Element.Players.OrderByDescending(p => p.Point).ThenByDescending(p => p.OriginalWind).FirstOrDefault();
+            Player player = Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind).FirstOrDefault();
             if (player?.Point > 30000 && (int)Element.Session.NowSession > 7)
             {
                 if (MainActivity.IsOyaAgare)
@@ -35,7 +35,7 @@ namespace TenhouPointCalculatorBeta3
         public static void Owari(Activity activity, AlertDialog.Builder adb)
         {
             string txt = "";
-            foreach (var player in Element.Players.OrderByDescending(p => p.Point).ThenByDescending(p => p.OriginalWind))
+            foreach (var player in Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind))
             {
                 txt += player.Name + ":" + player.Point + "\n";
             }

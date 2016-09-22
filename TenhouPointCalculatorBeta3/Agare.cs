@@ -73,6 +73,8 @@ namespace TenhouPointCalculatorBeta3
                 _activity.RunOnUiThread(() =>
                 {
                     MainActivity.IsOyaAgare = isOyaAgare || isOyaAgareFirst;
+
+                    Element.Session.NagareMode = true;//收掉棒子时为流局状态
                     if (isOyaAgare || isOyaAgareFirst)
                     {
                         Element.Session.BenChang++;
@@ -94,6 +96,8 @@ namespace TenhouPointCalculatorBeta3
                             player.IsReach = false;
                         }
                     }
+                    Element.Session.NagareMode = false;
+
                     Element.Session.QianBang = 0;
                     _activity.FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "";
                     MainActivity.NowSessionNum++;

@@ -252,7 +252,6 @@ namespace TenhouPointCalculatorBeta3
                 Nagare nagare = new Nagare();
                 nagare.NagareMethod();
                 RunOnUiThread(() => FindViewById<TextView>(Resource.Id.textViewControl).Text = "(OvO)");
-                Element.Session.NagareMode = false;
                 Game.Save();
                 End.IsOwari(this,adb);
             });
@@ -264,22 +263,19 @@ namespace TenhouPointCalculatorBeta3
         {
             Element.Session.BenChang++;
             NowSessionNum++;
+            Element.Session.NagareMode = true;
             foreach (var player in Element.Players)
             {
                 player.IsReach = false;
             }
+            Element.Session.NagareMode = false;
             Game.Save();
         }
 
         private void NewGame_Click(object sender, EventArgs e)
         {
             FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "";
-            //先用foreach运行一遍，执行静态构造函数，为子线程for循环输入数据做准备
-            foreach (var player in Element.Players)
-            {
-                player.Point = 25000;
-                player.IsReach = false;
-            }
+            FindViewById<TextView>(Resource.Id.textViewControl).Text = "谁是起家？";
             Flag = 0;
             Thread th = new Thread(() =>
             {
@@ -290,10 +286,13 @@ namespace TenhouPointCalculatorBeta3
                 RunOnUiThread(() =>
                 {
                     adb.Show();
+                    FindViewById<TextView>(Resource.Id.textViewControl).Text = "(OvO)";
                 });
                 Element.Session = new Session(0, 0, SessionEnum.东一局, (NameEnum)Flag - 1, false);
                 for (int i = 0; i < 4; i++)
                 {
+                    Element.Players[Flag - i - 1].Point = 25000;
+                    Element.Players[Flag - i - 1].IsReach = false;
                     Element.Players[Flag - i - 1].Wind = (WindEnum)i;
                     Element.Players[Flag - i - 1].OriginalWind = (WindEnum)i;
                     if (Flag - i - 2 < 0) Flag += 4;

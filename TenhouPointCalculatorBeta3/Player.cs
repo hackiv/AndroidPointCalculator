@@ -52,7 +52,7 @@ namespace TenhouPointCalculatorBeta3
                         () => _activity.FindViewById<Button>(Btn).Text = this.ToString());
                     if (value < 0)
                     {
-                        End.Owari(_activity,_adb);
+                        End.Owari(_activity, _adb);
                     }
                 }
                 catch
@@ -123,16 +123,24 @@ namespace TenhouPointCalculatorBeta3
             {
                 try
                 {
-                    if (_isReach == false && value)
+                    _activity?.RunOnUiThread(() =>
                     {
                         if (!Element.Session.NagareMode)
                         {
-                            Point -= 1000;
-                            _activity?.RunOnUiThread(() => Element.Session.QianBang++);
+                            if (!_isReach && value)
+                            {
+                                Point -= 1000;
+                                Element.Session.QianBang++;
+                            }
+                            if (_isReach && !value)
+                            {
+                                Point += 1000;
+                                Element.Session.QianBang--;
+                            }
                         }
-                    }
-                    _isReach = value;
-                    _activity?.RunOnUiThread(() => _activity.FindViewById<CheckBox>(Ckb).Checked = _isReach);
+                        _isReach = value;
+                        _activity.FindViewById<CheckBox>(Ckb).Checked = _isReach;
+                    });
                 }
                 catch
                 {

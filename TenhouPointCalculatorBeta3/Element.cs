@@ -54,9 +54,7 @@ namespace TenhouPointCalculatorBeta3
         public static Player MePlayer = new Player() { Btn = Resource.Id.btnMePlayer, Ckb = Resource.Id.checkBoxMePlayer, Point = 26000, Name = NameEnum.×Ô¼º, IsReach = false };
 
         public static Session Session = new Session();
-
-        public static string[] ProcesStrings = new string[20];
-        public static List<ArrayList> SavingArrayLists = new List<ArrayList>();
+        
         public static Dictionary<int, ArrayList> GameLogDictionary = new Dictionary<int, ArrayList>();
 
         public static List<Player> Players = new List<Player>()
