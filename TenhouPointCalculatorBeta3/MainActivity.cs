@@ -20,6 +20,7 @@ namespace TenhouPointCalculatorBeta3
         private static bool _isShowingDeltaPoint;
         public static int NowSessionNum = 1;
         public static bool IsOyaAgare;
+        public static bool RunningOtherProgram;
 
 
 
@@ -92,20 +93,52 @@ namespace TenhouPointCalculatorBeta3
             #region 功能性按键 新对局/设定/记录/上一局/下一局/帮助
             //新对局
             var newGame = FindViewById<Button>(Resource.Id.btnNewGame);
-            newGame.Click += NewGame_Click;
+            newGame.Click += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    NewGame_Click(s, e);
+                    RunningOtherProgram = false;
+                }
+            };
             //设定
             var setting = FindViewById<Button>(Resource.Id.btnSetting);
-            setting.Click += (s, e) => Setting.SettingElement(textOfInput.Text);
+            setting.Click += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    Setting.SettingElement(textOfInput.Text);
+                    RunningOtherProgram = false;
+                }
+            };
             //记录
             var log = FindViewById<Button>(Resource.Id.btnShowGameLog);
             log.Click += Log_Click;
             //上一局
             var priGame = FindViewById<Button>(Resource.Id.btnPriGame);
-            priGame.Click += (s, e) => Game.Load(NowSessionNum - 1);
+            priGame.Click += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    Game.Load(NowSessionNum - 1);
+                    RunningOtherProgram = false;
+                }
+            };
             //priGame.Click += Test_Click;
             //下一局
             var nextGame = FindViewById<Button>(Resource.Id.btnNextGame);
-            nextGame.Click += (s, e) => Game.Load(NowSessionNum + 1);
+            nextGame.Click += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    Game.Load(NowSessionNum + 1);
+                    RunningOtherProgram = false;
+                }
+            };
             //nextGame.Click += Test_Click;
             //双响
             var doubleRon = FindViewById<CheckBox>(Resource.Id.checkBoxDoubleRon);
@@ -117,13 +150,35 @@ namespace TenhouPointCalculatorBeta3
             #region 改变点数的按钮 推99/流局/和牌 ok
             //推99
             var suddenlyNagare = FindViewById<Button>(Resource.Id.btnSuddenlyNagare);
-            suddenlyNagare.Click += SuddenlyNagare_Click;
+            suddenlyNagare.Click += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    SuddenlyNagare_Click(s, e);
+                    RunningOtherProgram = false;
+                }
+            };
             //流局
             var nagareBtn = FindViewById<Button>(Resource.Id.btnNagare);
-            nagareBtn.Click += Nagare_Click;
+            nagareBtn.Click += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    Nagare_Click(s, e);
+                }
+            };
             //和牌
             var agareBtn = FindViewById<Button>(Resource.Id.btnAgare);
-            agareBtn.Click += (s, e) => agare.GetFlag();
+            agareBtn.Click += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                {
+                    RunningOtherProgram = true;
+                    agare.GetFlag();
+                }
+            };
             #endregion
 
             #region 键盘设定ok
@@ -253,7 +308,8 @@ namespace TenhouPointCalculatorBeta3
                 nagare.NagareMethod();
                 RunOnUiThread(() => FindViewById<TextView>(Resource.Id.textViewControl).Text = "(OvO)");
                 Game.Save();
-                End.IsOwari(this,adb);
+                End.IsOwari(this, adb);
+                RunningOtherProgram = false;
             });
             th.IsBackground = true;
             th.Start();

@@ -103,6 +103,7 @@ namespace TenhouPointCalculatorBeta3
                     MainActivity.NowSessionNum++;
                     Game.Save();
                     End.IsOwari(_activity,_adb);
+                    MainActivity.RunningOtherProgram = false;
                 });
             });
             th.IsBackground = true;
