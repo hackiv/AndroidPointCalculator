@@ -242,6 +242,7 @@ namespace TenhouPointCalculatorBeta3
 
         private void Nagare_Click(object sender, EventArgs e)
         {
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
             Element.Session.NagareMode = true;
             FindViewById<TextView>(Resource.Id.textViewControl).Text = "谁听牌？";
             Flag = 0;
@@ -253,6 +254,7 @@ namespace TenhouPointCalculatorBeta3
                 RunOnUiThread(() => FindViewById<TextView>(Resource.Id.textViewControl).Text = "(OvO)");
                 Element.Session.NagareMode = false;
                 Game.Save();
+                End.IsOwari(this,adb);
             });
             th.IsBackground = true;
             th.Start();

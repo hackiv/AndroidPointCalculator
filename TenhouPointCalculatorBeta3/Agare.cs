@@ -15,7 +15,7 @@ namespace TenhouPointCalculatorBeta3
     class Agare
     {
         private Activity _activity = (Activity)MainActivity.Context;
-        AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.Context);
+        private AlertDialog.Builder _adb = new AlertDialog.Builder(MainActivity.Context);
         int _flagUp;
         int _flagDown;
         private int _temp;
@@ -98,6 +98,7 @@ namespace TenhouPointCalculatorBeta3
                     _activity.FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "";
                     MainActivity.NowSessionNum++;
                     Game.Save();
+                    End.IsOwari(_activity,_adb);
                 });
             });
             th.IsBackground = true;
@@ -221,8 +222,8 @@ namespace TenhouPointCalculatorBeta3
         {
             _activity.RunOnUiThread(() =>
             {
-                adb.SetMessage("点数输入出错\n请重新输入");
-                adb.Show();
+                _adb.SetMessage("点数输入出错\n请重新输入");
+                _adb.Show();
                 _activity.FindViewById<TextView>(Resource.Id.textViewShowInput).Text = "";
             });
             GetFlag();

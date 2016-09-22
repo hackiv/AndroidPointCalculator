@@ -14,41 +14,36 @@ namespace TenhouPointCalculatorBeta3
 {
     class End
     {
-        static readonly PlayerComparerByPoint Comparer = new PlayerComparerByPoint();
-
-        public static string Sort()
+        public static void IsOwari(Activity activity, AlertDialog.Builder adb)
         {
-            List<Player> clonePlayers = new List<Player>
+            Player player = Element.Players.OrderByDescending(p => p.Point).ThenByDescending(p => p.OriginalWind).FirstOrDefault();
+            if (player?.Point > 30000 && (int)Element.Session.NowSession > 7)
             {
-                Element.LeftPlayer.ShallowClone(),
-                Element.OppositePlayer.ShallowClone(),
-                Element.RightPlayer.ShallowClone(),
-                Element.MePlayer.ShallowClone()
-            };
-            clonePlayers.Sort(Comparer);
-            string sortString = "";
-            foreach (var player in clonePlayers)
-            {
-                sortString += player.Name + ":" + player.Point + "\n";
-            }
-            return sortString;
-        }
-
-        //完场条件：南四开始 亲和牌？→亲点数最高&&亲点数>3w？
-        //                           →某家点数>3w?
-        public static void IsEndWest(Activity activity, AlertDialog.Builder adb)
-        {
-            foreach (var player in Element.Players)
-            {
-                if (player.Point >= 30000)
+                if (MainActivity.IsOyaAgare)
                 {
-                    activity?.RunOnUiThread(() =>
-                    {
-                        adb.SetMessage("完场\n" + Sort());
-                        adb.Show();
-                    });
+                    //亲家胡牌
+                    if (player?.Name == Element.Session.OyaName)
+                        Owari(activity, adb);
+                }
+                else
+                {
+                    Owari(activity, adb);
                 }
             }
+        }
+
+        public static void Owari(Activity activity, AlertDialog.Builder adb)
+        {
+            string txt = "";
+            foreach (var player in Element.Players.OrderByDescending(p => p.Point).ThenByDescending(p => p.OriginalWind))
+            {
+                txt += player.Name + ":" + player.Point + "\n";
+            }
+            activity?.RunOnUiThread(() =>
+            {
+                adb.SetMessage("完场\n" + txt);
+                adb.Show();
+            });
         }
     }
 }

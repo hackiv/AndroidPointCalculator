@@ -52,11 +52,7 @@ namespace TenhouPointCalculatorBeta3
                         () => _activity.FindViewById<Button>(Btn).Text = this.ToString());
                     if (value < 0)
                     {
-                        _activity?.RunOnUiThread(() =>
-                        {
-                            _adb.SetMessage("完场\n" + End.Sort());
-                            _adb.Show();
-                        });
+                        End.Owari(_activity,_adb);
                     }
                 }
                 catch
