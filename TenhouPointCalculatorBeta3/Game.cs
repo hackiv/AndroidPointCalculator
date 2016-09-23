@@ -14,7 +14,7 @@ using Java.Util;
 
 namespace TenhouPointCalculatorBeta3
 {
-    class Game
+    internal static class Game
     {
         public static void Save()
         {
@@ -74,6 +74,7 @@ namespace TenhouPointCalculatorBeta3
             }
             catch
             {
+                // ignored
             }
         }
     }

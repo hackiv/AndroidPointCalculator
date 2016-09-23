@@ -12,7 +12,6 @@ using Android.OS;
 
 namespace TenhouPointCalculatorBeta3
 {
-    [Serializable]
     [Activity(Label = "实麻算点beta3", MainLauncher = true, Icon = "@drawable/DIYIcon")]
     public class MainActivity : Activity
     {
@@ -147,7 +146,7 @@ namespace TenhouPointCalculatorBeta3
                 if (RunningOtherProgram == false)
                 {
                     RunningOtherProgram = true;
-                    NewGame_Click(s, e);
+                    NewGame_Click();
                     RunningOtherProgram = false;
                 }
             };
@@ -204,7 +203,7 @@ namespace TenhouPointCalculatorBeta3
                 if (RunningOtherProgram == false)
                 {
                     RunningOtherProgram = true;
-                    SuddenlyNagare_Click(s, e);
+                    SuddenlyNagare_Click();
                     RunningOtherProgram = false;
                 }
             };
@@ -215,7 +214,7 @@ namespace TenhouPointCalculatorBeta3
                 if (RunningOtherProgram == false)
                 {
                     RunningOtherProgram = true;
-                    Nagare_Click(s, e);
+                    Nagare_Click();
                 }
             };
             //和牌
@@ -349,26 +348,27 @@ github地址：https://github.com/hackiv/PointCalculator
             }
         }
 
-        private void Nagare_Click(object sender, EventArgs e)
+        private void Nagare_Click()
         {
             Element.Session.NagareMode = true;
             UpdateText.Set(ControlTextView, "谁听牌？");
             Flag = 0;
             Thread th = new Thread(() =>
             {
-                while (Flag == 0) ;
+                while (Flag == 0)
+                {
+                }
                 Nagare nagare = new Nagare();
                 nagare.NagareMethod();
                 UpdateText.Set(ControlTextView, "(OvO)");
                 Game.Save();
                 End.IsOwari();
                 RunningOtherProgram = false;
-            });
-            th.IsBackground = true;
+            }) {IsBackground = true};
             th.Start();
         }
 
-        private void SuddenlyNagare_Click(object sender, EventArgs e)
+        private void SuddenlyNagare_Click()
         {
             Element.Session.BenChang++;
             NowSessionNum++;
@@ -381,7 +381,7 @@ github地址：https://github.com/hackiv/PointCalculator
             Game.Save();
         }
 
-        private void NewGame_Click(object sender, EventArgs e)
+        private void NewGame_Click()
         {
             UpdateText.Set(InpuTextView,"");
             UpdateText.Set(ControlTextView, "谁是起家？");
@@ -389,22 +389,23 @@ github地址：https://github.com/hackiv/PointCalculator
             Thread th = new Thread(() =>
             {
                 //flag：上家1 对家2 下家3 自己4
-                while (Flag == 0) ;
+                while (Flag == 0)
+                {
+                }
                 MessageBox.Show(Element.Players[Flag - 1].Name + "东起");
                 UpdateText.Set(ControlTextView, "(OvO)");
-                Element.Session = new Session(0, 0, SessionEnum.东一局, (NameEnum)Flag - 1, false);
+                Element.Session = new Session(0, 0, SessionEnum.东一局, (NameEnum) Flag - 1, false);
                 for (int i = 0; i < 4; i++)
                 {
                     Element.Players[Flag - i - 1].Point = 25000;
                     Element.Players[Flag - i - 1].IsReach = false;
-                    Element.Players[Flag - i - 1].Wind = (WindEnum)i;
-                    Element.Players[Flag - i - 1].OriginalWind = (WindEnum)i;
+                    Element.Players[Flag - i - 1].Wind = (WindEnum) i;
+                    Element.Players[Flag - i - 1].OriginalWind = (WindEnum) i;
                     if (Flag - i - 2 < 0) Flag += 4;
                 }
                 NowSessionNum = 0;
                 Game.Save();
-            });
-            th.IsBackground = true;
+            }) {IsBackground = true};
             th.Start();
         }
 

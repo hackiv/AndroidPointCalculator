@@ -17,13 +17,12 @@ using Android.Widget;
 
 namespace TenhouPointCalculatorBeta3
 {
-    [Serializable]
     class Player : ICloneable
     {
-        readonly Activity _activity = MainActivity.Context as Activity;
+        private readonly Activity _activity = MainActivity.Context as Activity;
         public int Btn { get; set; } //对应的按钮ID
 
-        public int Ckb { get; set; } //对应的选项框
+        public int Ckb { private get; set; } //对应的选项框
 
         private int _point;
 
@@ -48,7 +47,7 @@ namespace TenhouPointCalculatorBeta3
                     _point = value;
 
                     _activity?.RunOnUiThread(
-                        () => _activity.FindViewById<Button>(Btn).Text = this.ToString());
+                        () => _activity.FindViewById<Button>(Btn).Text = ToString());
                     if (value < 0)
                     {
                         End.Owari();
@@ -88,7 +87,7 @@ namespace TenhouPointCalculatorBeta3
                     _wind = value;
                     if (value == WindEnum.东) Element.Session.OyaName = Name;
                     _activity?.RunOnUiThread(
-                        () => _activity.FindViewById<Button>(Btn).Text = this.ToString());
+                        () => _activity.FindViewById<Button>(Btn).Text = ToString());
                 }
                 catch
                 {

@@ -12,14 +12,14 @@ using Android.Widget;
 
 namespace TenhouPointCalculatorBeta3
 {
-    class Setting
+    internal static class Setting
     {
         public static void SettingElement(string txt)
         {
             string[] txtStrings;
             try
             {
-                txtStrings = txt.Split(new char[] { '/' }, options: StringSplitOptions.RemoveEmptyEntries);
+                txtStrings = txt.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             }
             catch
             {
@@ -47,7 +47,10 @@ namespace TenhouPointCalculatorBeta3
                 Game.Save();
 
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
         }
     }
 }

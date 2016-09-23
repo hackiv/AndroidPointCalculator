@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace TenhouPointCalculatorBeta3
 {
-    class Agare
+    internal class Agare
     {
         int _flagUp;
         int _flagDown;
@@ -24,7 +24,7 @@ namespace TenhouPointCalculatorBeta3
             //定义变量
             int changBang = Element.Session.BenChang;
             int qianBang = Element.Session.QianBang;
-            bool isOyaAgare = false;
+            bool isOyaAgare;
             bool isOyaAgareFirst = false;//双响时第一遍是否为亲和牌
             MainActivity.Flag = 0;
 
@@ -35,11 +35,15 @@ namespace TenhouPointCalculatorBeta3
                 DoubleRon:
                 //获得铳家与和家
                 UpdateText.Set(MainActivity.ControlTextView, "谁出铳？");
-                while (MainActivity.Flag == 0) ;
+                while (MainActivity.Flag == 0)
+                {
+                }
                 _flagDown = MainActivity.Flag;
                 UpdateText.Set(MainActivity.ControlTextView, "谁和牌？");
                 MainActivity.Flag = 0;
-                while (MainActivity.Flag == 0) ;
+                while (MainActivity.Flag == 0)
+                {
+                }
                 UpdateText.Set(MainActivity.ControlTextView, "(OvO)");
                 string txt = MainActivity.InpuTextView.Text;
                 _flagUp = MainActivity.Flag;
@@ -188,7 +192,7 @@ namespace TenhouPointCalculatorBeta3
                 {
                     try
                     {
-                        var txtStrings = txt.Split(new char[] { '/' }, options: StringSplitOptions.RemoveEmptyEntries);
+                        var txtStrings = txt.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
                         int point1 = Convert.ToInt32(txtStrings[0]);
                         int point2 = Convert.ToInt32(txtStrings[1]);
                         oyaLostPoint = point1 > point2 ? point1 : point2;

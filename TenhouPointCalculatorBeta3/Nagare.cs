@@ -41,9 +41,9 @@ namespace TenhouPointCalculatorBeta3
                         player.Point -= 3000 / (4 - count);
                     Element.Session.NagareMode = true;
                     player.IsReach = false;
+                    //Thread.Sleep(10);//？？？？
                 }
             }
-            Thread.Sleep(50);//留点时间给上面属性执行完毕，否则下面程序会在属性值修改完成前获取原属性值
             //流局完后处理
             if (!isOyaTenpai)
             {
@@ -55,11 +55,6 @@ namespace TenhouPointCalculatorBeta3
                     else
                         player.Wind--;
                 }
-            }
-            //全部玩家立直状态为false
-            foreach (var player in Element.Players)
-            {
-                player.IsReach = false;
             }
             Element.Session.BenChang++;
             MainActivity.NowSessionNum++;
