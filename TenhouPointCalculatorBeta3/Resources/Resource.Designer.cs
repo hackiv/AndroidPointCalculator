@@ -41,6 +41,22 @@ namespace TenhouPointCalculatorBeta3
 			}
 		}
 		
+		public partial class Color
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int theme_devicedefault_background = 2131034112;
+			
+			static Color()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Color()
+			{
+			}
+		}
+		
 		public partial class Drawable
 		{
 			
@@ -54,7 +70,13 @@ namespace TenhouPointCalculatorBeta3
 			public const int Icon = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int QianBang = 2130837507;
+			public const int Main = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int QianBang = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int theme = 2130837509;
 			
 			static Drawable()
 			{
@@ -69,119 +91,119 @@ namespace TenhouPointCalculatorBeta3
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f05001f
-			public const int btnAgare = 2131034143;
+			// aapt resource value: 0x7f07001f
+			public const int btnAgare = 2131165215;
 			
-			// aapt resource value: 0x7f050023
-			public const int btnBackSpace = 2131034147;
+			// aapt resource value: 0x7f070023
+			public const int btnBackSpace = 2131165219;
 			
-			// aapt resource value: 0x7f050025
-			public const int btnForTest = 2131034149;
+			// aapt resource value: 0x7f070025
+			public const int btnForTest = 2131165221;
 			
-			// aapt resource value: 0x7f050003
-			public const int btnHelp = 2131034115;
+			// aapt resource value: 0x7f070003
+			public const int btnHelp = 2131165187;
 			
-			// aapt resource value: 0x7f050005
-			public const int btnLeftPlayer = 2131034117;
+			// aapt resource value: 0x7f070005
+			public const int btnLeftPlayer = 2131165189;
 			
-			// aapt resource value: 0x7f05000a
-			public const int btnMePlayer = 2131034122;
+			// aapt resource value: 0x7f07000a
+			public const int btnMePlayer = 2131165194;
 			
-			// aapt resource value: 0x7f05001a
-			public const int btnNagare = 2131034138;
+			// aapt resource value: 0x7f07001a
+			public const int btnNagare = 2131165210;
 			
-			// aapt resource value: 0x7f050000
-			public const int btnNewGame = 2131034112;
+			// aapt resource value: 0x7f070000
+			public const int btnNewGame = 2131165184;
 			
-			// aapt resource value: 0x7f05001b
-			public const int btnNextGame = 2131034139;
+			// aapt resource value: 0x7f07001b
+			public const int btnNextGame = 2131165211;
 			
-			// aapt resource value: 0x7f050022
-			public const int btnNum0 = 2131034146;
+			// aapt resource value: 0x7f070022
+			public const int btnNum0 = 2131165218;
 			
-			// aapt resource value: 0x7f05001c
-			public const int btnNum1 = 2131034140;
+			// aapt resource value: 0x7f07001c
+			public const int btnNum1 = 2131165212;
 			
-			// aapt resource value: 0x7f05001d
-			public const int btnNum2 = 2131034141;
+			// aapt resource value: 0x7f07001d
+			public const int btnNum2 = 2131165213;
 			
-			// aapt resource value: 0x7f05001e
-			public const int btnNum3 = 2131034142;
+			// aapt resource value: 0x7f07001e
+			public const int btnNum3 = 2131165214;
 			
-			// aapt resource value: 0x7f050017
-			public const int btnNum4 = 2131034135;
+			// aapt resource value: 0x7f070017
+			public const int btnNum4 = 2131165207;
 			
-			// aapt resource value: 0x7f050018
-			public const int btnNum5 = 2131034136;
+			// aapt resource value: 0x7f070018
+			public const int btnNum5 = 2131165208;
 			
-			// aapt resource value: 0x7f050019
-			public const int btnNum6 = 2131034137;
+			// aapt resource value: 0x7f070019
+			public const int btnNum6 = 2131165209;
 			
-			// aapt resource value: 0x7f050012
-			public const int btnNum7 = 2131034130;
+			// aapt resource value: 0x7f070012
+			public const int btnNum7 = 2131165202;
 			
-			// aapt resource value: 0x7f050013
-			public const int btnNum8 = 2131034131;
+			// aapt resource value: 0x7f070013
+			public const int btnNum8 = 2131165203;
 			
-			// aapt resource value: 0x7f050014
-			public const int btnNum9 = 2131034132;
+			// aapt resource value: 0x7f070014
+			public const int btnNum9 = 2131165204;
 			
-			// aapt resource value: 0x7f050021
-			public const int btnNumDiv = 2131034145;
+			// aapt resource value: 0x7f070021
+			public const int btnNumDiv = 2131165217;
 			
-			// aapt resource value: 0x7f050001
-			public const int btnOppositePlayer = 2131034113;
+			// aapt resource value: 0x7f070001
+			public const int btnOppositePlayer = 2131165185;
 			
-			// aapt resource value: 0x7f050016
-			public const int btnPriGame = 2131034134;
+			// aapt resource value: 0x7f070016
+			public const int btnPriGame = 2131165206;
 			
-			// aapt resource value: 0x7f050007
-			public const int btnRightPlayer = 2131034119;
+			// aapt resource value: 0x7f070007
+			public const int btnRightPlayer = 2131165191;
 			
-			// aapt resource value: 0x7f050011
-			public const int btnSetting = 2131034129;
+			// aapt resource value: 0x7f070011
+			public const int btnSetting = 2131165201;
 			
-			// aapt resource value: 0x7f050020
-			public const int btnShowGameLog = 2131034144;
+			// aapt resource value: 0x7f070020
+			public const int btnShowGameLog = 2131165216;
 			
-			// aapt resource value: 0x7f050015
-			public const int btnSuddenlyNagare = 2131034133;
+			// aapt resource value: 0x7f070015
+			public const int btnSuddenlyNagare = 2131165205;
 			
-			// aapt resource value: 0x7f050024
-			public const int checkBoxDoubleRon = 2131034148;
+			// aapt resource value: 0x7f070024
+			public const int checkBoxDoubleRon = 2131165220;
 			
-			// aapt resource value: 0x7f050004
-			public const int checkBoxLeftPlayer = 2131034116;
+			// aapt resource value: 0x7f070004
+			public const int checkBoxLeftPlayer = 2131165188;
 			
-			// aapt resource value: 0x7f050009
-			public const int checkBoxMePlayer = 2131034121;
+			// aapt resource value: 0x7f070009
+			public const int checkBoxMePlayer = 2131165193;
 			
-			// aapt resource value: 0x7f050002
-			public const int checkBoxOppositePlayer = 2131034114;
+			// aapt resource value: 0x7f070002
+			public const int checkBoxOppositePlayer = 2131165186;
 			
-			// aapt resource value: 0x7f050008
-			public const int checkBoxRightPlayer = 2131034120;
+			// aapt resource value: 0x7f070008
+			public const int checkBoxRightPlayer = 2131165192;
 			
-			// aapt resource value: 0x7f05000b
-			public const int imgViewChangBang = 2131034123;
+			// aapt resource value: 0x7f07000b
+			public const int imgViewChangBang = 2131165195;
 			
-			// aapt resource value: 0x7f05000e
-			public const int imgViewQianBang = 2131034126;
+			// aapt resource value: 0x7f07000e
+			public const int imgViewQianBang = 2131165198;
 			
-			// aapt resource value: 0x7f05000c
-			public const int textViewChangBang = 2131034124;
+			// aapt resource value: 0x7f07000c
+			public const int textViewChangBang = 2131165196;
 			
-			// aapt resource value: 0x7f05000d
-			public const int textViewControl = 2131034125;
+			// aapt resource value: 0x7f07000d
+			public const int textViewControl = 2131165197;
 			
-			// aapt resource value: 0x7f05000f
-			public const int textViewQianBang = 2131034127;
+			// aapt resource value: 0x7f07000f
+			public const int textViewQianBang = 2131165199;
 			
-			// aapt resource value: 0x7f050006
-			public const int textViewSession = 2131034118;
+			// aapt resource value: 0x7f070006
+			public const int textViewSession = 2131165190;
 			
-			// aapt resource value: 0x7f050010
-			public const int textViewShowInput = 2131034128;
+			// aapt resource value: 0x7f070010
+			public const int textViewShowInput = 2131165200;
 			
 			static Id()
 			{
@@ -224,6 +246,22 @@ namespace TenhouPointCalculatorBeta3
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int HackivTheme = 2131099648;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
 			{
 			}
 		}

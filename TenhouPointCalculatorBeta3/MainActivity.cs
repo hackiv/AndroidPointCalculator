@@ -21,7 +21,7 @@ namespace TenhouPointCalculatorBeta3
         public static int NowSessionNum = 1;
         public static bool IsOyaAgare;
         public static bool RunningOtherProgram;
-        
+
         public static TextView InpuTextView;
         public static TextView ControlTextView;
         public static TextView SessionTextView;
@@ -41,6 +41,7 @@ namespace TenhouPointCalculatorBeta3
 
         protected override void OnCreate(Bundle bundle)
         {
+            //SetTheme(Resource.Style.HackivTheme);
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
@@ -246,7 +247,8 @@ namespace TenhouPointCalculatorBeta3
 
             //测试用
             var test = FindViewById<Button>(Resource.Id.btnForTest);
-            test.Click += Test_Click;
+            test.Click += (s, e) => CancelReach();
+            //test.Click += Test_Click;
         }
 
         //帮助文档
@@ -350,7 +352,6 @@ github地址：https://github.com/hackiv/PointCalculator
 
         private void Nagare_Click()
         {
-            Element.Session.NagareMode = true;
             UpdateText.Set(ControlTextView, "谁听牌？");
             Flag = 0;
             Thread th = new Thread(() =>
@@ -364,7 +365,8 @@ github地址：https://github.com/hackiv/PointCalculator
                 Game.Save();
                 End.IsOwari();
                 RunningOtherProgram = false;
-            }) {IsBackground = true};
+            })
+            { IsBackground = true };
             th.Start();
         }
 
@@ -372,18 +374,16 @@ github地址：https://github.com/hackiv/PointCalculator
         {
             Element.Session.BenChang++;
             NowSessionNum++;
-            Element.Session.NagareMode = true;
             foreach (var player in Element.Players)
             {
                 player.IsReach = false;
             }
-            Element.Session.NagareMode = false;
             Game.Save();
         }
 
         private void NewGame_Click()
         {
-            UpdateText.Set(InpuTextView,"");
+            UpdateText.Set(InpuTextView, "");
             UpdateText.Set(ControlTextView, "谁是起家？");
             Flag = 0;
             Thread th = new Thread(() =>
@@ -394,19 +394,33 @@ github地址：https://github.com/hackiv/PointCalculator
                 }
                 MessageBox.Show(Element.Players[Flag - 1].Name + "东起");
                 UpdateText.Set(ControlTextView, "(OvO)");
-                Element.Session = new Session(0, 0, SessionEnum.东一局, (NameEnum) Flag - 1, false);
+                Element.Session = new Session(0, 0, SessionEnum.东一局, (NameEnum)Flag - 1);
                 for (int i = 0; i < 4; i++)
                 {
                     Element.Players[Flag - i - 1].Point = 25000;
                     Element.Players[Flag - i - 1].IsReach = false;
-                    Element.Players[Flag - i - 1].Wind = (WindEnum) i;
-                    Element.Players[Flag - i - 1].OriginalWind = (WindEnum) i;
+                    Element.Players[Flag - i - 1].Wind = (WindEnum)i;
+                    Element.Players[Flag - i - 1].OriginalWind = (WindEnum)i;
                     if (Flag - i - 2 < 0) Flag += 4;
                 }
                 NowSessionNum = 0;
                 Game.Save();
-            }) {IsBackground = true};
+            })
+            { IsBackground = true };
             th.Start();
+        }
+
+        private void CancelReach()
+        {
+            foreach (var p in Element.Players)
+            {
+                if (p.IsReach)
+                {
+                    p.IsReach = false;
+                    p.Point += 1000;
+                    Element.Session.QianBang -= 1;
+                }
+            }
         }
 
         private void Test_Click(object sender, EventArgs e)
@@ -428,7 +442,7 @@ github地址：https://github.com/hackiv/PointCalculator
         {
             if (keyCode == Keycode.Back)
             {
-                UpdateText.Set(InpuTextView,"");
+                UpdateText.Set(InpuTextView, "");
                 return true;
             }
             return base.OnKeyDown(keyCode, e);

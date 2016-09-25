@@ -39,9 +39,7 @@ namespace TenhouPointCalculatorBeta3
                         player.Point += 3000 / count;
                     else
                         player.Point -= 3000 / (4 - count);
-                    Element.Session.NagareMode = true;
                     player.IsReach = false;
-                    //Thread.Sleep(10);//？？？？
                 }
             }
             //流局完后处理
@@ -58,7 +56,6 @@ namespace TenhouPointCalculatorBeta3
             }
             Element.Session.BenChang++;
             MainActivity.NowSessionNum++;
-            Element.Session.NagareMode = false;
         }
     }
 }

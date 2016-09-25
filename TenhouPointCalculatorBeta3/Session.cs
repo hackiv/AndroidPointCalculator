@@ -54,16 +54,13 @@ namespace TenhouPointCalculatorBeta3
 
         public NameEnum OyaName { get; set; }//亲家
 
-        public bool NagareMode { get; set; }//流局模式
 
-
-        public Session(int benChang, int qianBang, SessionEnum session, NameEnum oyaNameEnum, bool nagareMode)
+        public Session(int benChang, int qianBang, SessionEnum session, NameEnum oyaNameEnum)
         {
             BenChang = benChang;
             QianBang = qianBang;
             NowSession = session;
             OyaName = oyaNameEnum;
-            NagareMode = nagareMode;
         }
 
         public Session() { }

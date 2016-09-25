@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:android="http://schemas.android.com/apk/res/android" attributeFormDefault="qualified" elementFormDefault="unqualified" targetNamespace="http://schemas.android.com/apk/res/android" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
-    <xs:documentation>v23</xs:documentation>
-    <xs:documentation>2016/9/23 23:26:32</xs:documentation>
+    <xs:documentation>v22</xs:documentation>
+    <xs:documentation>2016/9/23 20:09:36</xs:documentation>
   </xs:annotation>
   <xs:attribute name="accessibilityLiveRegion">
     <xs:annotation>
@@ -88,18 +88,6 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="allowUndo">
-    <xs:annotation>
-      <xs:documentation>Whether undo should be allowed for editable text. Defaults to true.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
   <xs:attribute name="alpha">
     <xs:annotation>
       <xs:documentation>alpha property of the view, as a value between 0 (completely transparent) and 1 (completely opaque).</xs:documentation>
@@ -126,7 +114,19 @@
   </xs:attribute>
   <xs:attribute name="amPmBackgroundColor">
     <xs:annotation>
-      <xs:documentation>The background color state list for the AM/PM selectors. Deprecated: Use headerBackground instead.</xs:documentation>
+      <xs:documentation>The background color state list for the AM/PM selectors.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union memberTypes="xs:string">
+        <xs:simpleType>
+          <xs:restriction base="xs:string" />
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="amPmSelectedBackgroundColor">
+    <xs:annotation>
+      <xs:documentation>@hide The background color for the AM/PM selectors of the TimePicker when selected. Used if the background color does not explicitly have a color set for the selected state.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -138,7 +138,7 @@
   </xs:attribute>
   <xs:attribute name="amPmTextColor">
     <xs:annotation>
-      <xs:documentation>The color for the AM/PM selectors. Deprecated: Use headerTextColor instead.</xs:documentation>
+      <xs:documentation>The color for the AM/PM selectors.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -352,18 +352,6 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="breakStrategy">
-    <xs:annotation>
-      <xs:documentation>Break strategy (control over paragraph layout).</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
   <xs:attribute name="bufferType">
     <xs:annotation>
       <xs:documentation>Determines the minimum type that getText() will return. The default is "normal". Note that EditText and LogTextBox always return Editable, even if you specify something less powerful here.</xs:documentation>
@@ -436,6 +424,18 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
+  <xs:attribute name="calendarSelectedTextColor">
+    <xs:annotation>
+      <xs:documentation>@hide The selected text color for the calendar. Used as a backup if the text color does not explicitly have a color set for the selected state.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union memberTypes="xs:string">
+        <xs:simpleType>
+          <xs:restriction base="xs:string" />
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:attribute>
   <xs:attribute name="calendarTextColor">
     <xs:annotation>
       <xs:documentation>The text color list of the calendar.</xs:documentation>
@@ -450,7 +450,7 @@
   </xs:attribute>
   <xs:attribute name="calendarViewMode">
     <xs:annotation>
-      <xs:documentation>@hide Which style of calendar delegate to use.</xs:documentation>
+      <xs:documentation>The number of weeks to be shown.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -462,7 +462,7 @@
   </xs:attribute>
   <xs:attribute name="calendarViewShown">
     <xs:annotation>
-      <xs:documentation>Whether the calendar view is shown. Only valid for "spinner" mode.</xs:documentation>
+      <xs:documentation>Whether the calendar view is shown.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -678,7 +678,7 @@
   </xs:attribute>
   <xs:attribute name="clipToPadding">
     <xs:annotation>
-      <xs:documentation>Defines whether the ViewGroup will clip its children and resize (but not clip) any EdgeEffect to its padding, if padding is not zero. This property is set to true by default.</xs:documentation>
+      <xs:documentation>Defines whether the ViewGroup will clip its children to its padding, if padding is not zero. This property is set to true by default.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -892,18 +892,6 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="contextClickable">
-    <xs:annotation>
-      <xs:documentation>Defines whether this view reacts to context click events.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
   <xs:attribute name="cropToPadding">
     <xs:annotation>
       <xs:documentation>If true, the image will be cropped to fit within its padding.</xs:documentation>
@@ -942,19 +930,7 @@
   </xs:attribute>
   <xs:attribute name="dateTextAppearance">
     <xs:annotation>
-      <xs:documentation>The text appearance for the day numbers in the calendar grid.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="dayHighlightColor">
-    <xs:annotation>
-      <xs:documentation>@hide The background color used for the day highlight indicator.</xs:documentation>
+      <xs:documentation>The text appearance for the calendar dates.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -966,7 +942,7 @@
   </xs:attribute>
   <xs:attribute name="dayOfWeekBackground">
     <xs:annotation>
-      <xs:documentation>The background color for the header's day of week. Deprecated: No longer displayed.</xs:documentation>
+      <xs:documentation>The background color for the date selector 's day of week.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -978,31 +954,7 @@
   </xs:attribute>
   <xs:attribute name="dayOfWeekTextAppearance">
     <xs:annotation>
-      <xs:documentation>The text color for the header's day of week. Deprecated: No longer displayed.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="daySelectorColor">
-    <xs:annotation>
-      <xs:documentation>@hide The background color used for the day selection indicator.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="defaultQueryHint">
-    <xs:annotation>
-      <xs:documentation>Default query hint used when  is undefined and the search view's  does not provide a hint. @hide</xs:documentation>
+      <xs:documentation>The text color for the date selector's day of week.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -1192,30 +1144,6 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="drawableTint">
-    <xs:annotation>
-      <xs:documentation>Tint to apply to the compound (left, top, etc.) drawables.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="drawableTintMode">
-    <xs:annotation>
-      <xs:documentation>Blending mode used to apply the compound (left, top, etc.) drawables tint.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
   <xs:attribute name="drawableTop">
     <xs:annotation>
       <xs:documentation>The drawable to be drawn above the text.</xs:documentation>
@@ -1278,7 +1206,7 @@
   </xs:attribute>
   <xs:attribute name="dropDownSelector">
     <xs:annotation>
-      <xs:documentation>Selector in a drop down list.</xs:documentation>
+      <xs:documentation></xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -1290,7 +1218,7 @@
   </xs:attribute>
   <xs:attribute name="dropDownWidth">
     <xs:annotation>
-      <xs:documentation>Specifies the basic width of the dropdown. Its value may be a dimension (such as "12dip") for a constant width, fill_parent or match_parent to match the width of the screen, or wrap_content to match the width of the anchored view.</xs:documentation>
+      <xs:documentation></xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -1542,7 +1470,7 @@
   </xs:attribute>
   <xs:attribute name="fillViewport">
     <xs:annotation>
-      <xs:documentation>Defines whether the scrollview should stretch its content to fill the viewport.</xs:documentation>
+      <xs:documentation></xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -1626,7 +1554,7 @@
   </xs:attribute>
   <xs:attribute name="focusedMonthDateColor">
     <xs:annotation>
-      <xs:documentation>@deprecated The color for the dates of the focused month.</xs:documentation>
+      <xs:documentation>The color for the dates of the focused month.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2034,7 +1962,7 @@
   </xs:attribute>
   <xs:attribute name="headerAmPmTextAppearance">
     <xs:annotation>
-      <xs:documentation>The text appearance for the AM/PM header. @deprecated Use headerTextColor instead.</xs:documentation>
+      <xs:documentation>The text appearance for the AM/PM header.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2058,7 +1986,7 @@
   </xs:attribute>
   <xs:attribute name="headerDayOfMonthTextAppearance">
     <xs:annotation>
-      <xs:documentation>The text appearance for the day of month (ex. 28) in the selected date header. Deprecated: Use headerTextColor instead.</xs:documentation>
+      <xs:documentation>The day of month's text appearance in the date selector.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2082,7 +2010,7 @@
   </xs:attribute>
   <xs:attribute name="headerMonthTextAppearance">
     <xs:annotation>
-      <xs:documentation>The text appearance for the month (ex. May) in the selected date header. Deprecated: Use headerTextColor instead.</xs:documentation>
+      <xs:documentation>The month's text appearance in the date selector.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2092,9 +2020,21 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="headerTextColor">
+  <xs:attribute name="headerSelectedTextColor">
     <xs:annotation>
-      <xs:documentation></xs:documentation>
+      <xs:documentation>@hide The text color for selected time header of the TimePicker. This will override the value from the text appearance if it does not explicitly have a color set for the selected state.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union memberTypes="xs:string">
+        <xs:simpleType>
+          <xs:restriction base="xs:string" />
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="headerSelectedTextColor">
+    <xs:annotation>
+      <xs:documentation>@hide The selected text color for the date selector. Used as a backup if the text appearance does not explicitly have a color set for the selected state.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2106,7 +2046,7 @@
   </xs:attribute>
   <xs:attribute name="headerTimeTextAppearance">
     <xs:annotation>
-      <xs:documentation>The text appearance for the time header. @deprecated Use headerTextColor instead.</xs:documentation>
+      <xs:documentation>The text appearance for the time header.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2118,7 +2058,7 @@
   </xs:attribute>
   <xs:attribute name="headerYearTextAppearance">
     <xs:annotation>
-      <xs:documentation>The text appearance for the year (ex. 2014) in the selected date header. Deprecated: Use headerTextColor instead.</xs:documentation>
+      <xs:documentation>The year's text appearance in the date selector.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2167,18 +2107,6 @@
   <xs:attribute name="horizontalSpacing">
     <xs:annotation>
       <xs:documentation>Defines the default horizontal spacing between columns.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="hyphenationFrequency">
-    <xs:annotation>
-      <xs:documentation>Frequency of automatic hyphenation.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2466,7 +2394,7 @@
   </xs:attribute>
   <xs:attribute name="internalLayout">
     <xs:annotation>
-      <xs:documentation></xs:documentation>
+      <xs:documentation>@hide The layout of the date picker.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2550,7 +2478,7 @@
   </xs:attribute>
   <xs:attribute name="isScrollContainer">
     <xs:annotation>
-      <xs:documentation>Set this if the view will serve as a scrolling container, meaning that it can be resized to shrink its overall window so that there will be space for an input method. If not set, the default value will be true if "scrollbars" has the vertical scrollbar set, else it will be false.</xs:documentation>
+      <xs:documentation>Set this if the view will serve as a scrolling container, meaing that it can be resized to shrink its overall window so that there will be space for an input method. If not set, the default value will be true if "scrollbars" has the vertical scrollbar set, else it will be false.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2778,7 +2706,7 @@
   </xs:attribute>
   <xs:attribute name="legacyLayout">
     <xs:annotation>
-      <xs:documentation>@hide The layout of the legacy time picker.</xs:documentation>
+      <xs:documentation>@hide The layout of the legacy DatePicker.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -2851,30 +2779,6 @@
   <xs:attribute name="listSelector">
     <xs:annotation>
       <xs:documentation>Drawable used to indicate the currently selected item in the list.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="logo">
-    <xs:annotation>
-      <xs:documentation>Drawable to set as the logo that appears at the starting side of the Toolbar, just after the navigation button.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="logoDescription">
-    <xs:annotation>
-      <xs:documentation>A content description string to describe the appearance of the associated logo image.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -3124,18 +3028,6 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="monthTextAppearance">
-    <xs:annotation>
-      <xs:documentation>The text appearance for the month and year in the calendar header.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
   <xs:attribute name="name">
     <xs:annotation>
       <xs:documentation>Supply the name of the fragment class to instantiate.</xs:documentation>
@@ -3268,18 +3160,6 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="numbersInnerTextColor">
-    <xs:annotation>
-      <xs:documentation>The color for the inner hours numbers used in 24-hour mode. This should be a color state list where the activated state will be used when the number is active.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
   <xs:attribute name="numbersSelectorColor">
     <xs:annotation>
       <xs:documentation>The color for the hours/minutes selector.</xs:documentation>
@@ -3294,7 +3174,7 @@
   </xs:attribute>
   <xs:attribute name="numbersTextColor">
     <xs:annotation>
-      <xs:documentation>The color for the hours/minutes numbers. This should be a color state list where the activated state will be used when the number is active.</xs:documentation>
+      <xs:documentation>The color for the hours/minutes numbers.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -3582,7 +3462,7 @@
   </xs:attribute>
   <xs:attribute name="popupTheme">
     <xs:annotation>
-      <xs:documentation>Theme to use for the drop-down or dialog popup window.</xs:documentation>
+      <xs:documentation>Reference to a theme that should be used to inflate popups shown by widgets in the toolbar.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -3822,7 +3702,7 @@
   </xs:attribute>
   <xs:attribute name="saveEnabled">
     <xs:annotation>
-      <xs:documentation>If false, no state will be saved for this view when it is being frozen. The default is true, allowing the view to be saved (however it also must have an ID assigned to it for its state to be saved). Setting this to false only disables the state for this view, not for its children which may still be saved.</xs:documentation>
+      <xs:documentation>If unset, no state will be saved for this view when it is being frozen. The default is true, allowing the view to be saved (however it also must have an ID assigned to it for its state to be saved). Setting this to false only disables the state for this view, not for its children which may still be saved.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -3834,7 +3714,7 @@
   </xs:attribute>
   <xs:attribute name="scaleType">
     <xs:annotation>
-      <xs:documentation>Controls how the image should be resized or moved to match the size of this ImageView. See android.widget.ImageView.ScaleType</xs:documentation>
+      <xs:documentation>Controls how the image should be resized or moved to match the size of this ImageView.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -4012,18 +3892,6 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="scrollIndicators">
-    <xs:annotation>
-      <xs:documentation>Defines which scroll indicators should be displayed when the view can be scrolled. Multiple values may be combined using logical OR, for example "top|bottom".</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
   <xs:attribute name="scrollingCache">
     <xs:annotation>
       <xs:documentation>When set to true, the list uses a drawing cache during scrolling. This makes the rendering faster but uses more memory. The default value is true.</xs:documentation>
@@ -4134,7 +4002,7 @@
   </xs:attribute>
   <xs:attribute name="selectedDateVerticalBar">
     <xs:annotation>
-      <xs:documentation>@deprecated Drawable for the vertical bar shown at the beginning and at the end of the selected date.</xs:documentation>
+      <xs:documentation>Drawable for the vertical bar shown at the beginning and at the end of the selected date.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -4146,7 +4014,7 @@
   </xs:attribute>
   <xs:attribute name="selectedWeekBackgroundColor">
     <xs:annotation>
-      <xs:documentation>@deprecated The background color for the selected week.</xs:documentation>
+      <xs:documentation>The background color for the selected week.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -4254,7 +4122,7 @@
   </xs:attribute>
   <xs:attribute name="shownWeekCount">
     <xs:annotation>
-      <xs:documentation>@deprecated The number of weeks to be shown.</xs:documentation>
+      <xs:documentation>The number of weeks to be shown.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -4278,7 +4146,7 @@
   </xs:attribute>
   <xs:attribute name="showWeekNumber">
     <xs:annotation>
-      <xs:documentation>@deprecated Whether do show week numbers.</xs:documentation>
+      <xs:documentation>Whether do show week numbers.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -4374,7 +4242,7 @@
   </xs:attribute>
   <xs:attribute name="spinnersShown">
     <xs:annotation>
-      <xs:documentation>Whether the spinners are shown. Only valid for "spinner" mode.</xs:documentation>
+      <xs:documentation>Whether the spinners are shown.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -4398,7 +4266,7 @@
   </xs:attribute>
   <xs:attribute name="splitTrack">
     <xs:annotation>
-      <xs:documentation>Whether to split the track and leave a gap for the thumb drawable.</xs:documentation>
+      <xs:documentation></xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -4531,18 +4399,6 @@
   <xs:attribute name="subtitleTextAppearance">
     <xs:annotation>
       <xs:documentation></xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="subtitleTextColor">
-    <xs:annotation>
-      <xs:documentation>A color to apply to the subtitle string.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -4974,7 +4830,7 @@
   </xs:attribute>
   <xs:attribute name="thumb">
     <xs:annotation>
-      <xs:documentation>Draws the thumb on a seekbar.</xs:documentation>
+      <xs:documentation></xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -5164,18 +5020,6 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="titleTextColor">
-    <xs:annotation>
-      <xs:documentation>A color to apply to the title string.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
   <xs:attribute name="topOffset">
     <xs:annotation>
       <xs:documentation>Extra offset for the handle at the top of the SlidingDrawer.</xs:documentation>
@@ -5203,30 +5047,6 @@
   <xs:attribute name="track">
     <xs:annotation>
       <xs:documentation>Drawable to use as the "track" that the switch thumb slides within.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="trackTint">
-    <xs:annotation>
-      <xs:documentation>Tint to apply to the track.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="trackTintMode">
-    <xs:annotation>
-      <xs:documentation>Blending mode used to apply the track tint.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -5358,7 +5178,7 @@
   </xs:attribute>
   <xs:attribute name="unfocusedMonthDateColor">
     <xs:annotation>
-      <xs:documentation>@deprecated The color for the dates of an unfocused month.</xs:documentation>
+      <xs:documentation>The color for the dates of an unfocused month.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -5383,18 +5203,6 @@
   <xs:attribute name="useDefaultMargins">
     <xs:annotation>
       <xs:documentation>When set to true, tells GridLayout to use default margins when none are specified in a view's layout parameters. The default value is false. See android.widget.GridLayout.setUseDefaultMargins(boolean).</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
-  <xs:attribute name="useDisabledAlpha">
-    <xs:annotation>
-      <xs:documentation>Whether to force the track's alpha to ?android:attr/disabledAlpha when disabled. This is required for Holo and Gingerbread, but should always be false for Material and beyond. @hide Developers shouldn't need to change this.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -5466,7 +5274,7 @@
   </xs:attribute>
   <xs:attribute name="weekDayTextAppearance">
     <xs:annotation>
-      <xs:documentation>The text appearance for the week day abbreviation in the calendar header.</xs:documentation>
+      <xs:documentation>The text appearance for the week day abbreviation of the calendar header.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -5478,7 +5286,7 @@
   </xs:attribute>
   <xs:attribute name="weekNumberColor">
     <xs:annotation>
-      <xs:documentation>@deprecated The color for the week numbers.</xs:documentation>
+      <xs:documentation>The color for the week numbers.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -5490,7 +5298,7 @@
   </xs:attribute>
   <xs:attribute name="weekSeparatorLineColor">
     <xs:annotation>
-      <xs:documentation>@deprecated The color for the separator line between weeks.</xs:documentation>
+      <xs:documentation>The color for the separator line between weeks.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -5524,21 +5332,9 @@
       </xs:union>
     </xs:simpleType>
   </xs:attribute>
-  <xs:attribute name="yearListItemActivatedTextAppearance">
-    <xs:annotation>
-      <xs:documentation>@hide The list year's text appearance in the list when activated.</xs:documentation>
-    </xs:annotation>
-    <xs:simpleType>
-      <xs:union memberTypes="xs:string">
-        <xs:simpleType>
-          <xs:restriction base="xs:string" />
-        </xs:simpleType>
-      </xs:union>
-    </xs:simpleType>
-  </xs:attribute>
   <xs:attribute name="yearListItemTextAppearance">
     <xs:annotation>
-      <xs:documentation>The list year's text appearance in the list. Deprecated: Use yearListTextColor. </xs:documentation>
+      <xs:documentation>The list year's text appearance in the list.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">
@@ -5550,7 +5346,7 @@
   </xs:attribute>
   <xs:attribute name="yearListSelectorColor">
     <xs:annotation>
-      <xs:documentation>The list year's selected circle color in the list. Deprecated: No longer displayed.</xs:documentation>
+      <xs:documentation>The list year's selected circle color in the list.</xs:documentation>
     </xs:annotation>
     <xs:simpleType>
       <xs:union memberTypes="xs:string">

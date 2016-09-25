@@ -56,7 +56,8 @@ namespace TenhouPointCalculatorBeta3
                 //双响处理
                 if (MainActivity.DoubleRonCheckBox.Checked)//判断是否双响
                 {
-                    MainActivity.DoubleRonCheckBox.Checked = false;
+                    //MainActivity.DoubleRonCheckBox.Checked = false;
+                    UpdateText.Set(MainActivity.DoubleRonCheckBox, false);
                     _afterDoubleRon = true;
                     isOyaAgareFirst = isOyaAgare;
                     _temp = changBang;
@@ -71,8 +72,7 @@ namespace TenhouPointCalculatorBeta3
                 }
                 //胡牌完后处理
                 MainActivity.IsOyaAgare = isOyaAgare || isOyaAgareFirst;
-
-                Element.Session.NagareMode = true;//收掉棒子时为流局状态
+                
                 if (isOyaAgare || isOyaAgareFirst)
                 {
                     Element.Session.BenChang++;
@@ -94,7 +94,6 @@ namespace TenhouPointCalculatorBeta3
                         player.IsReach = false;
                     }
                 }
-                Element.Session.NagareMode = false;
 
                 Element.Session.QianBang = 0;
                 UpdateText.Set(MainActivity.InpuTextView, "");

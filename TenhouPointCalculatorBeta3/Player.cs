@@ -118,18 +118,10 @@ namespace TenhouPointCalculatorBeta3
                 {
                     _activity?.RunOnUiThread(() =>
                     {
-                        if (!Element.Session.NagareMode)
+                        if (!_isReach && value)
                         {
-                            if (!_isReach && value)
-                            {
-                                Point -= 1000;
-                                Element.Session.QianBang++;
-                            }
-                            if (_isReach && !value)
-                            {
-                                Point += 1000;
-                                Element.Session.QianBang--;
-                            }
+                            Point -= 1000;
+                            Element.Session.QianBang++;
                         }
                         _isReach = value;
                         _activity.FindViewById<CheckBox>(Ckb).Checked = _isReach;
