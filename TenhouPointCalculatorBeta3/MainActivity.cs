@@ -158,22 +158,14 @@ namespace TenhouPointCalculatorBeta3
             priGame.Click += (s, e) =>
             {
                 if (RunningOtherProgram == false)
-                {
-                    RunningOtherProgram = true;
                     Game.Load(NowSessionNum - 1);
-                    RunningOtherProgram = false;
-                }
             };
             //下一局
             var nextGame = FindViewById<Button>(Resource.Id.btnNextGame);
             nextGame.Click += (s, e) =>
             {
                 if (RunningOtherProgram == false)
-                {
-                    RunningOtherProgram = true;
                     Game.Load(NowSessionNum + 1);
-                    RunningOtherProgram = false;
-                }
             };
             //双响
             DoubleRonCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxDoubleRon);
@@ -182,7 +174,11 @@ namespace TenhouPointCalculatorBeta3
             help.Click += Help_Click;
             //取消立直
             var cancelReach = FindViewById<Button>(Resource.Id.btnCancelReach);
-            cancelReach.Click += (s, e) => CancelReach();
+            cancelReach.Click += (s, e) =>
+            {
+                if (RunningOtherProgram == false)
+                    CancelReach();
+            }; 
             #endregion
 
             #region 改变点数的按钮 推99/流局/和牌 ok

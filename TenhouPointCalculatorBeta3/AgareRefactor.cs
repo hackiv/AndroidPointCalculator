@@ -35,7 +35,6 @@ namespace TenhouPointCalculatorBeta3
         public static void Method()
         {
             #region 初始化
-            MainActivity.RunningOtherProgram = true;
             _flagUp = 0;
             _flagDown = 0;
             _upPlayer = null;
@@ -52,35 +51,29 @@ namespace TenhouPointCalculatorBeta3
             //开启子线程
             Thread th = new Thread(() =>
             {
+                MainActivity.RunningOtherProgram = true;
                 //获得铳家与和家
                 SelectPlayer();
                 //判断是否亲和牌
                 _isOyaAgare = Element.Players[_flagUp - 1].Name == Element.Session.OyaName;
                 //判断是否自摸
                 _isTsumo = _flagUp == _flagDown;
-                try
-                {
-                    //标准化点数
-                    StandardizePoint();
-                    //进行点数交换
-                    AgareMethod();
-                }
-                catch (Exception)
-                {
+                //标准化点数
+                StandardizePoint();
+                if (_upPoint == null && _downOyaPoint == null && _downKoPoint == null)
                     MessageBox.Show("输入点数出错");
-                }
-
-                if (MainActivity.DoubleRonCheckBox.Checked)
-                {
-                    //双响准备
-                    DoubleRonPrepare();
-                    Method();
-                }
                 else
                 {
-                    //胡牌后处理
-                    AfterAgare();
+                    AgareMethod();//进行点数交换
+                    if (MainActivity.DoubleRonCheckBox.Checked)
+                    {
+                        DoubleRonPrepare();//双响准备
+                        Method();//递归
+                    }
+                    else
+                        AfterAgare();//胡牌后处理
                 }
+                MainActivity.RunningOtherProgram = false;
             });
             th.IsBackground = true;
             th.Start();
@@ -171,7 +164,7 @@ namespace TenhouPointCalculatorBeta3
 
             #region "2000/3900"
             // "2000/3900" 子自摸only   length==2
-            else if (txtStrings.Length == 2)
+            else if (txtStrings.Length == 2 && txtStrings[0] != "" && txtStrings[1] != "")
             {
                 var lowPoint = Convert.ToInt32(txtStrings[0]) < Convert.ToInt32(txtStrings[1]) ? txtStrings[0] : txtStrings[1];
                 var highPoint = lowPoint == txtStrings[0] ? txtStrings[1] : txtStrings[0];
@@ -189,7 +182,7 @@ namespace TenhouPointCalculatorBeta3
 
             #region "//2000"
             // "//2000"    亲自摸only   length==3 && [0]==null && [1]==null
-            else if (txtStrings.Length == 3 && txtStrings[0] == "")
+            else if (txtStrings.Length == 3 && txtStrings[0] == "" && txtStrings[1] == "" && txtStrings[2] != "")
             {
                 _targetPoint = Element.FuFanPoints.Where(
                         p =>
@@ -205,7 +198,7 @@ namespace TenhouPointCalculatorBeta3
 
             #region "30//4" 
             // "30//4"                  length==3 && [0]!=null && [1]==null
-            else if (txtStrings.Length == 3 && txtStrings[0] != "")
+            else if (txtStrings.Length == 3 && txtStrings[0] != "" && txtStrings[1] == "" && txtStrings[2] != "" && Convert.ToInt32(txtStrings[0]) <= 110)
             {
                 int fan = Convert.ToInt32(txtStrings[2]) < 13 ? Convert.ToInt32(txtStrings[2]) : 13;
                 if (fan <= 4)//4翻及以下
@@ -259,8 +252,8 @@ namespace TenhouPointCalculatorBeta3
 
         private static void AgareMethod()//胡牌算法
         {
-            int cb = Convert.ToInt32(MainActivity.ChangBangTextView.Text);//场棒
-            int qb = Convert.ToInt32(MainActivity.QianBangTextView.Text);//千棒
+            int cb = Element.Session.BenChang;//场棒
+            int qb = Element.Session.QianBang;//千棒
 
             _upPlayer.Point += Convert.ToInt32(_upPoint) + cb * 300 + qb * 1000;
 
@@ -285,7 +278,7 @@ namespace TenhouPointCalculatorBeta3
         private static void DoubleRonPrepare()//双响准备
         {
             UpdateText.Set(MainActivity.DoubleRonCheckBox, false);
-            if(BenChangTemp==0)//三响的时候不交换
+            if (BenChangTemp == 0)//三响的时候不交换
                 BenChangTemp = Element.Session.BenChang;
             Element.Session.BenChang = 0;
             Element.Session.QianBang = 0;
@@ -331,7 +324,6 @@ namespace TenhouPointCalculatorBeta3
             MainActivity.NowSessionNum++;
             Game.Save(_situation);
             End.IsOwari();
-            MainActivity.RunningOtherProgram = false;
 
 
             #region 把胡牌方法里建的字段初始化
