@@ -91,36 +91,28 @@ namespace TenhouPointCalculatorBeta3
             {
                 if (RunningOtherProgram == false)
                 {
-                    RunningOtherProgram = true;
                     ShowDeltaPointMethod(Element.LeftPlayer, buttons);
-                    RunningOtherProgram = false;
                 }
             };
             oppositeButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
-                    RunningOtherProgram = true;
                     ShowDeltaPointMethod(Element.OppositePlayer, buttons);
-                    RunningOtherProgram = false;
                 }
             };
             rightButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
-                    RunningOtherProgram = true;
                     ShowDeltaPointMethod(Element.RightPlayer, buttons);
-                    RunningOtherProgram = false;
                 }
             };
             meButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
-                    RunningOtherProgram = true;
                     ShowDeltaPointMethod(Element.MePlayer, buttons);
-                    RunningOtherProgram = false;
                 }
             };
 
@@ -199,21 +191,14 @@ namespace TenhouPointCalculatorBeta3
             suddenlyNagare.Click += (s, e) =>
             {
                 if (RunningOtherProgram == false)
-                {
-                    RunningOtherProgram = true;
                     SuddenlyNagare_Click();
-                    RunningOtherProgram = false;
-                }
             };
             //流局
             var nagareBtn = FindViewById<Button>(Resource.Id.btnNagare);
             nagareBtn.Click += (s, e) =>
             {
                 if (RunningOtherProgram == false)
-                {
-                    RunningOtherProgram = true;
                     Nagare_Click();
-                }
             };
             //和牌
             var agareBtn = FindViewById<Button>(Resource.Id.btnAgare);
@@ -221,7 +206,6 @@ namespace TenhouPointCalculatorBeta3
             {
                 if (RunningOtherProgram == false)
                 {
-                    RunningOtherProgram = true;
                     AgareRefactor.BenChangTemp = 0;
                     AgareRefactor.IsOyaAgareFirst = false;
                     AgareRefactor.Method();
@@ -278,7 +262,6 @@ namespace TenhouPointCalculatorBeta3
             foreach (var d in Element.GameLogDictionary)
             {
                 txt += d.Value[5] + "\n";
-                //txt += d.Key + " " + d.Value[0] + " " + d.Value[1] + " " + d.Value[2] + " " + d.Value[3] + " " + d.Value[4] + " " + "\n";
             }
             MessageBox.Show(txt);
         }
@@ -311,6 +294,7 @@ namespace TenhouPointCalculatorBeta3
             NagareMode = true;
             Thread th = new Thread(() =>
             {
+                RunningOtherProgram = true;
                 while (Flag == 0)
                 {
                 }
@@ -346,6 +330,7 @@ namespace TenhouPointCalculatorBeta3
             Flag = 0;
             Thread th = new Thread(() =>
             {
+                RunningOtherProgram = true;
                 //flag：上家1 对家2 下家3 自己4
                 while (Flag == 0)
                 {
@@ -364,6 +349,7 @@ namespace TenhouPointCalculatorBeta3
                 }
                 NowSessionNum = 0;
                 Game.Save("对局开始：");
+                RunningOtherProgram = false;
             })
             { IsBackground = true };
             th.Start();

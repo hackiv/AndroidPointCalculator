@@ -24,26 +24,22 @@ namespace TenhouPointCalculatorBeta3
             XmlReader xmlfile = MainActivity.Context.Resources.GetXml(Resource.Xml.database);
             xd.Load(xmlfile);
             XmlNodeList node = xd.SelectNodes("/resources/record");
-            if (node != null)
+            if (node == null) return;
+            foreach (XmlNode data in node)
             {
-                foreach (XmlNode data in node)
-                {
-                    if (data.Attributes != null)
-                    {
-                        var fu = Convert.ToInt32(data.SelectSingleNode("Fu")?.InnerText);
-                        var fan = Convert.ToInt32(data.SelectSingleNode("Fan")?.InnerText);
-                        var koAgareTotalPoint = Convert.ToInt32(data.SelectSingleNode("KoAgareTotalPoint")?.InnerText);
-                        var oyaAgareTotalPoint = Convert.ToInt32(data.SelectSingleNode("OyaAgareTotalPoint")?.InnerText);
-                        var oyaTsumoTotalPoint = Convert.ToInt32(data.SelectSingleNode("OyaTsumoTotalPoint")?.InnerText);
-                        var koTsumoTotalPoint = Convert.ToInt32(data.SelectSingleNode("KoTsumoTotalPoint")?.InnerText);
-                        var koTsumoLostPoint = Convert.ToInt32(data.SelectSingleNode("KoTsumoLostPoint")?.InnerText);
-                        var oyaTsumoLostPoint = Convert.ToInt32(data.SelectSingleNode("OyaTsumoLostPoint")?.InnerText);
+                if (data.Attributes == null) continue;
+                var fu = Convert.ToInt32(data.SelectSingleNode("Fu")?.InnerText);
+                var fan = Convert.ToInt32(data.SelectSingleNode("Fan")?.InnerText);
+                var koAgareTotalPoint = Convert.ToInt32(data.SelectSingleNode("KoAgareTotalPoint")?.InnerText);
+                var oyaAgareTotalPoint = Convert.ToInt32(data.SelectSingleNode("OyaAgareTotalPoint")?.InnerText);
+                var oyaTsumoTotalPoint = Convert.ToInt32(data.SelectSingleNode("OyaTsumoTotalPoint")?.InnerText);
+                var koTsumoTotalPoint = Convert.ToInt32(data.SelectSingleNode("KoTsumoTotalPoint")?.InnerText);
+                var koTsumoLostPoint = Convert.ToInt32(data.SelectSingleNode("KoTsumoLostPoint")?.InnerText);
+                var oyaTsumoLostPoint = Convert.ToInt32(data.SelectSingleNode("OyaTsumoLostPoint")?.InnerText);
 
-                        FuFanPoint point = new FuFanPoint(fu, fan, koAgareTotalPoint, oyaAgareTotalPoint, oyaTsumoTotalPoint, koTsumoTotalPoint, koTsumoLostPoint, oyaTsumoLostPoint);
+                var point = new FuFanPoint(fu, fan, koAgareTotalPoint, oyaAgareTotalPoint, oyaTsumoTotalPoint, koTsumoTotalPoint, koTsumoLostPoint, oyaTsumoLostPoint);
 
-                        Element.FuFanPoints.Add(point);
-                    }
-                }
+                Element.FuFanPoints.Add(point);
             }
         }
 
