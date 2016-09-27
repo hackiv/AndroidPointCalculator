@@ -10,17 +10,12 @@ package tenhoupointcalculatorbeta3.tenhoupointcalculatorbeta3;
 public final class R {
     public static final class attr {
     }
-    public static final class color {
-        public static final int theme_devicedefault_background=0x7f050000;
-    }
     public static final class drawable {
         public static final int changbang=0x7f020000;
-        public static final int database=0x7f020001;
-        public static final int diyicon=0x7f020002;
-        public static final int icon=0x7f020003;
-        public static final int main=0x7f020004;
-        public static final int qianbang=0x7f020005;
-        public static final int theme=0x7f020006;
+        public static final int diyicon=0x7f020001;
+        public static final int icon=0x7f020002;
+        public static final int main=0x7f020003;
+        public static final int qianbang=0x7f020004;
     }
     public static final class id {
         public static final int btnAgare=0x7f07001f;
@@ -66,11 +61,16 @@ public final class R {
     public static final class layout {
         public static final int main=0x7f030000;
     }
-    public static final class string {
-        public static final int ApplicationName=0x7f040001;
-        public static final int Hello=0x7f040000;
+    public static final class raw {
+        public static final int help=0x7f050000;
+        public static final int todolist=0x7f050001;
     }
-    public static final class style {
-        public static final int HackivTheme=0x7f060000;
+    public static final class string {
+        public static final int ApplicationName=0x7f060001;
+        public static final int Hello=0x7f060000;
+    }
+    public static final class xml {
+        public static final int database=0x7f040000;
+        public static final int theme=0x7f040001;
     }
 }

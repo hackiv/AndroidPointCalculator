@@ -47,7 +47,6 @@ namespace TenhouPointCalculatorBeta3
             get { return _nowSession; }
             set
             {
-                //if (Convert.ToInt32(value) < 13) _nowSession = value;//不超出索引范围
                 _nowSession = Convert.ToInt32(value) < 13 ? value : _nowSession;
                 UpdateText.Set(MainActivity.SessionTextView, _nowSession.ToString());
             }

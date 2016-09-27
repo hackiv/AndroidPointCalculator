@@ -13,7 +13,11 @@ c:\users\91970\documents\visual studio 2015\Projects\TenhouPointCalculatorBeta3\
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\drawable\qianbang.bmp
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\drawable\changbang.bmp
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\drawable\diyicon.bmp
-C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\TenhouPointCalculatorBeta3.csprojResolveAssemblyReference.cache
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\drawable\main.xml
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\raw\todolist.txt
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\raw\help.txt
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\xml\theme.xml
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\xml\database.xml
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\bin\Debug\TenhouPointCalculatorBeta3.dll.mdb
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\bin\Debug\Java.Interop.dll.mdb
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\bin\Debug\Mono.Android.dll.mdb
@@ -38,9 +42,6 @@ C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\android\assets\TenhouPointCalculatorBeta3.dll.mdb
-C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\values\theme.xml
-C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\drawable\main.xml
-C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\drawable\theme.xml
-C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\res\drawable\database.xml
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\TenhouPointCalculatorBeta3.csprojResolveAssemblyReference.cache
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\TenhouPointCalculatorBeta3.dll.mdb
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\bin\Debug\TenhouPointCalculatorBeta3.dll.mdb

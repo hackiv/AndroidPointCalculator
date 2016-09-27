@@ -172,10 +172,12 @@ namespace TenhouPointCalculatorBeta3
             // "2000/3900" ×Ó×ÔÃþonly   length==2
             else if (txtStrings.Length == 2)
             {
+                var lowPoint = Convert.ToInt32(txtStrings[0]) < Convert.ToInt32(txtStrings[1]) ? txtStrings[0] : txtStrings[1];
+                var highPoint = lowPoint == txtStrings[0] ? txtStrings[1] : txtStrings[0];
                 _targetPoint = Element.FuFanPoints.Where(
                         p =>
-                            p.KoTsumoLostPoint.ToString() == txtStrings[0] &&
-                            p.OyaTsumoLostPoint.ToString() == txtStrings[1])
+                            p.KoTsumoLostPoint.ToString() == lowPoint &&
+                            p.OyaTsumoLostPoint.ToString() == highPoint)
                             .Select(p => p)
                             .FirstOrDefault();
                 _upPoint = _targetPoint?.KoTsumoTotalPoint;

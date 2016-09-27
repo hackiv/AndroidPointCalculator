@@ -49,10 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agare.cs" />
     <Compile Include="AgareRefactor.cs" />
     <Compile Include="FuFanPoint.cs" />
-    <Compile Include="Dictionaries.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="End.cs" />
     <Compile Include="GetXml.cs" />
@@ -65,7 +63,6 @@
     <Compile Include="Game.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Setting.cs" />
-    <Compile Include="TodoList.cs" />
     <Compile Include="UpdateText.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,20 +100,18 @@
     <AndroidResource Include="Resources\drawable\DIYIcon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\theme.xml">
+    <AndroidResource Include="Resources\xml\theme.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\theme.xml" />
+    <AndroidResource Include="Resources\raw\TodoList.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\database.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
+    <AndroidResource Include="Resources\raw\Help.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\database.xml" />
+    <AndroidResource Include="Resources\xml\database.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -167,7 +167,7 @@ namespace TenhouPointCalculatorBeta3
             {
                 sum += p.Point;
             }
-            return sum.ToString();
+            return sum.ToString()+Element.Session.QianBang;
         }
     }
 }
