@@ -16,7 +16,7 @@ namespace TenhouPointCalculatorBeta3
 {
     internal static class Game
     {
-        public static void Save()
+        public static void Save(string situation)
         {
             
             System.Collections.ArrayList gameArrayList = new System.Collections.ArrayList
@@ -25,7 +25,8 @@ namespace TenhouPointCalculatorBeta3
                 Element.OppositePlayer.ShallowClone(),
                 Element.RightPlayer.ShallowClone(),
                 Element.MePlayer.ShallowClone(),
-                Element.Session.ShallowClone()
+                Element.Session.ShallowClone(),
+                situation
             };
             int i = MainActivity.NowSessionNum;
             while (true)//清除掉已有的记录
@@ -41,6 +42,8 @@ namespace TenhouPointCalculatorBeta3
 
             Element.GameLogDictionary.Add(MainActivity.NowSessionNum, gameArrayList);
 
+            //查看总分 debug用
+            UpdateText.Set(MainActivity.test, showTotalPoint());
         }
 
         public static void Load(int targetSession)
@@ -76,6 +79,15 @@ namespace TenhouPointCalculatorBeta3
             {
                 // ignored
             }
+        }
+        private static string showTotalPoint()
+        {
+            int sum = 0;
+            foreach (var p in Element.Players)
+            {
+                sum += p.Point;
+            }
+            return sum.ToString() + Element.Session.QianBang;
         }
     }
 }

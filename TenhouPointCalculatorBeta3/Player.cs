@@ -45,7 +45,6 @@ namespace TenhouPointCalculatorBeta3
                 try
                 {
                     _point = value;
-                    UpdateText.Set(MainActivity.test, showTotalPoint());
                     UpdateText.Set(_activity.FindViewById<Button>(Btn),ToString());
                     if (value < 0)
                     {
@@ -158,16 +157,6 @@ namespace TenhouPointCalculatorBeta3
         public Player ShallowClone()
         {
             return Clone() as Player;
-        }
-
-        private string showTotalPoint()
-        {
-            int sum = 0;
-            foreach (var p in Element.Players)
-            {
-                sum += p.Point;
-            }
-            return sum.ToString()+Element.Session.QianBang;
         }
     }
 }

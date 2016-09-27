@@ -25,6 +25,7 @@ namespace TenhouPointCalculatorBeta3
         private static int? _downKoPoint;
         private static bool _isOyaAgare;
         private static bool _isTsumo;
+        private static string situation;
         //↓为双响所用数据，不被初始化
         private static int _benChangTemp;
         private static bool _isOyaAgareFirst;
@@ -248,7 +249,7 @@ namespace TenhouPointCalculatorBeta3
                     _downOyaPoint = null;
                     _downKoPoint = null;
                 }
-                UpdateText.Set(MainActivity.ControlTextView,_upPoint.ToString());
+                UpdateText.Set(MainActivity.ControlTextView, _upPoint.ToString());
             }
             #endregion
 
@@ -266,6 +267,7 @@ namespace TenhouPointCalculatorBeta3
             if (!_isTsumo)//荣和
             {
                 _downPlayer.Point -= Convert.ToInt32(_upPoint) + cb * 300;
+                situation = _downPlayer.Name + " 铳 " + _upPlayer.Name + " " + _upPoint + "点";
             }
             else//自摸
             {
@@ -276,6 +278,7 @@ namespace TenhouPointCalculatorBeta3
                     else
                         p.Point -= Convert.ToInt32(_downKoPoint) + cb * 100;
                 }
+                situation = _upPlayer.Name + " 自摸 " + _upPoint + "点";
             }
         }
 
@@ -319,7 +322,7 @@ namespace TenhouPointCalculatorBeta3
             Element.Session.QianBang = 0;
             UpdateText.Set(MainActivity.InpuTextView, "");
             MainActivity.NowSessionNum++;
-            Game.Save();
+            Game.Save(situation);
             End.IsOwari();
             MainActivity.RunningOtherProgram = false;
 

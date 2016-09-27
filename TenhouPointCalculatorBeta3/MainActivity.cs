@@ -275,7 +275,8 @@ namespace TenhouPointCalculatorBeta3
             string txt = "";
             foreach (var d in Element.GameLogDictionary)
             {
-                txt += d.Key + " " + d.Value[0] + " " + d.Value[1] + " " + d.Value[2] + " " + d.Value[3] + " " + d.Value[4] + " " + "\n";
+                txt += d.Value[5] + "\n";
+                //txt += d.Key + " " + d.Value[0] + " " + d.Value[1] + " " + d.Value[2] + " " + d.Value[3] + " " + d.Value[4] + " " + "\n";
             }
             MessageBox.Show(txt);
         }
@@ -315,7 +316,7 @@ namespace TenhouPointCalculatorBeta3
                 nagare.NagareMethod();
                 NagareMode = false;
                 UpdateText.Set(ControlTextView, "(OvO)");
-                Game.Save();
+                Game.Save("流局");
                 End.IsOwari();
                 RunningOtherProgram = false;
             })
@@ -333,7 +334,7 @@ namespace TenhouPointCalculatorBeta3
                 player.IsReach = false;
             }
             NagareMode = false;
-            Game.Save();
+            Game.Save("中途流局");
         }
 
         private void NewGame_Click()
@@ -360,7 +361,7 @@ namespace TenhouPointCalculatorBeta3
                     if (Flag - i - 2 < 0) Flag += 4;
                 }
                 NowSessionNum = 0;
-                Game.Save();
+                Game.Save("对局开始：");
             })
             { IsBackground = true };
             th.Start();
