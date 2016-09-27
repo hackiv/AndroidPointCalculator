@@ -47,13 +47,13 @@ namespace TenhouPointCalculatorBeta3
             get { return _nowSession; }
             set
             {
-                if (Convert.ToInt32(value) < 13) _nowSession = value;//不超出索引范围
+                //if (Convert.ToInt32(value) < 13) _nowSession = value;//不超出索引范围
+                _nowSession = Convert.ToInt32(value) < 13 ? value : _nowSession;
                 UpdateText.Set(MainActivity.SessionTextView, _nowSession.ToString());
             }
         } //当前场节 东一局到西四局
 
         public NameEnum OyaName { get; set; }//亲家
-
 
         public Session(int benChang, int qianBang, SessionEnum session, NameEnum oyaNameEnum)
         {
@@ -73,21 +73,6 @@ namespace TenhouPointCalculatorBeta3
         public object Clone()
         {
             return MemberwiseClone();
-        }
-
-        public Session DeepClone()
-        {
-            using (MemoryStream ms = new MemoryStream(1000))
-            {
-                BinaryFormatter bf = new BinaryFormatter(null, new StreamingContext(StreamingContextStates.Clone));
-                bf.Serialize(ms, this);
-                ms.Seek(0, SeekOrigin.Begin);
-                // 反序列化至另一个对象(即创建了一个原对象的深表副本) 
-                var cloneObject = bf.Deserialize(ms);
-                // 关闭流 
-                ms.Close();
-                return cloneObject as Session;
-            }
         }
 
         public Session ShallowClone()

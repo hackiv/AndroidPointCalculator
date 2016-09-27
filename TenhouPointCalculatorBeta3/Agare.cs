@@ -14,8 +14,8 @@ namespace TenhouPointCalculatorBeta3
 {
     internal class Agare
     {
-        int _flagUp;
-        int _flagDown;
+        private int _flagUp;
+        private int _flagDown;
         private int _temp;
         private bool _afterDoubleRon;
 
@@ -33,30 +33,16 @@ namespace TenhouPointCalculatorBeta3
                 //第一遍和牌运算不执行场棒++和风位变换，记录是否是亲和牌，第二遍和牌运算时场棒=0，执行完场棒恢复正常值
 
                 DoubleRon:
-                //获得铳家与和家
-                UpdateText.Set(MainActivity.ControlTextView, "谁出铳？");
-                while (MainActivity.Flag == 0)
-                {
-                }
-                _flagDown = MainActivity.Flag;
-                UpdateText.Set(MainActivity.ControlTextView, "谁和牌？");
-                MainActivity.Flag = 0;
-                while (MainActivity.Flag == 0)
-                {
-                }
-                UpdateText.Set(MainActivity.ControlTextView, "(OvO)");
-                string txt = MainActivity.InpuTextView.Text;
-                _flagUp = MainActivity.Flag;
-                isOyaAgare = false;
+                //选择铳家与和家
+                SelectPlayer(out isOyaAgare);
                 //胡牌计算
                 if (_flagUp == _flagDown)
-                    TsumoMethod(txt, qianBang, changBang, ref isOyaAgare);
+                    TsumoMethod(MainActivity.InpuTextView.Text, qianBang, changBang, ref isOyaAgare);
                 else
-                    AgareMethod(txt, qianBang, changBang, ref isOyaAgare);
+                    AgareMethod(MainActivity.InpuTextView.Text, qianBang, changBang, ref isOyaAgare);
                 //双响处理
                 if (MainActivity.DoubleRonCheckBox.Checked)//判断是否双响
                 {
-                    //MainActivity.DoubleRonCheckBox.Checked = false;
                     UpdateText.Set(MainActivity.DoubleRonCheckBox, false);
                     _afterDoubleRon = true;
                     isOyaAgareFirst = isOyaAgare;
@@ -70,50 +56,76 @@ namespace TenhouPointCalculatorBeta3
                     changBang = _temp;
                     _afterDoubleRon = false;
                 }
-                //胡牌完后处理
-                MainActivity.IsOyaAgare = isOyaAgare || isOyaAgareFirst;
-                
-                if (isOyaAgare || isOyaAgareFirst)
-                {
-                    Element.Session.BenChang++;
-                    foreach (var player in Element.Players)
-                    {
-                        player.IsReach = false;
-                    }
-                }
-                else
-                {
-                    Element.Session.BenChang = 0;
-                    Element.Session.NowSession++;
-                    foreach (var player in Element.Players)
-                    {
-                        if (player.Wind == 0)
-                            player.Wind = WindEnum.北;
-                        else
-                            player.Wind--;
-                        player.IsReach = false;
-                    }
-                }
-
-                Element.Session.QianBang = 0;
-                UpdateText.Set(MainActivity.InpuTextView, "");
-                MainActivity.NowSessionNum++;
-                Game.Save();
-                End.IsOwari();
-                MainActivity.RunningOtherProgram = false;
+                //胡牌后处理
+                AfterAgare(isOyaAgare, isOyaAgareFirst);
             });
             th.IsBackground = true;
             th.Start();
         }
 
-        private void IsSpecialInput(ref string txt, Dictionary<String, String> dic)
+        private void SelectPlayer(out bool isOyaAgare)//获得铳家与和家
         {
-            string newtxt = txt;
+            MainActivity.Flag = 0;
+            UpdateText.Set(MainActivity.ControlTextView, "谁出铳？");
+            while (MainActivity.Flag == 0)
+            {
+            }
+            _flagDown = MainActivity.Flag;
+
+            MainActivity.Flag = 0;
+            UpdateText.Set(MainActivity.ControlTextView, "谁和牌？");
+            while (MainActivity.Flag == 0)
+            {
+            }
+            _flagUp = MainActivity.Flag;
+
+            UpdateText.Set(MainActivity.ControlTextView, "(OvO)");
+            isOyaAgare = false;
+        }
+
+
+        private static void AfterAgare(bool isOyaAgare, bool isOyaAgareFirst)//胡牌完后处理
+        {
+            MainActivity.IsOyaAgare = isOyaAgare || isOyaAgareFirst;
+
+            if (isOyaAgare || isOyaAgareFirst)
+            {
+                Element.Session.BenChang++;
+                foreach (var player in Element.Players)
+                {
+                    player.IsReach = false;
+                }
+            }
+            else
+            {
+                Element.Session.BenChang = 0;
+                Element.Session.NowSession++;
+                foreach (var player in Element.Players)
+                {
+                    if (player.Wind == 0)
+                        player.Wind = WindEnum.北;
+                    else
+                        player.Wind--;
+                    player.IsReach = false;
+                }
+            }
+
+            Element.Session.QianBang = 0;
+            UpdateText.Set(MainActivity.InpuTextView, "");
+            MainActivity.NowSessionNum++;
+            Game.Save();
+            End.IsOwari();
+            MainActivity.RunningOtherProgram = false;
+        }
+
+        private static bool IsSpecialInput(ref string txt, IReadOnlyDictionary<string, string> dic)
+        {
             if (dic.ContainsKey(txt))
             {
-                txt = dic[txt];
-                UpdateText.Set(MainActivity.ControlTextView, "符翻点数为" + dic[newtxt]);
+                UpdateText.Set(MainActivity.ControlTextView, "符翻点数为" + dic[txt]);
+                return true;
             }
+            return false;
         }
 
         private void AgareMethod(string txt, int qianBang, int changBang, ref bool isOyaAgare)
@@ -178,14 +190,24 @@ namespace TenhouPointCalculatorBeta3
                     else if (player != playerUp)
                         playerDownOya = player;
                 }
-
-                #region 子自摸时分配对应变动点数
                 IsSpecialInput(ref txt, Dictionaries.KoTsumoDictionary);
-                if (Dictionaries.OyaDictionary.ContainsKey(txt))//输入点数格式为 "7900"
+                #region 子自摸时分配对应变动点数 保护ok
+                if (!IsDivInput(txt))
                 {
-                    oyaLostPoint = Dictionaries.OyaDictionary[txt];
-                    koLostPoint = Dictionaries.KoDictionary[txt];
-                    totalChangePoint = Convert.ToInt32(txt);
+                    var point =
+                        Element.FuFanPoints.Where(p => p.KoTsumoTotalPoint.ToString() == txt)
+                            .Select(p => p)
+                            .FirstOrDefault();
+                    if (point != null)
+                    {
+                        oyaLostPoint = point.OyaTsumoLostPoint;
+                        koLostPoint = point.KoTsumoLostPoint;
+                        totalChangePoint = point.KoTsumoTotalPoint;
+                    }
+                    else
+                    {
+                        ThrowInputPointError();
+                    }
                 }
                 else//输入点数形式为 "2000/3900" 或者 "3900/2000"
                 {
@@ -196,7 +218,18 @@ namespace TenhouPointCalculatorBeta3
                         int point2 = Convert.ToInt32(txtStrings[1]);
                         oyaLostPoint = point1 > point2 ? point1 : point2;
                         koLostPoint = oyaLostPoint == point1 ? point2 : point1;
-                        totalChangePoint = oyaLostPoint + 2 * koLostPoint;
+
+                        var point =
+                            Element.FuFanPoints.Where(
+                                p => p.KoTsumoLostPoint == koLostPoint && p.OyaTsumoLostPoint == oyaLostPoint)
+                                .Select(p => p)
+                                .FirstOrDefault();
+                        if (point == null)
+                            ThrowInputPointError();
+                        else
+                        {
+                            totalChangePoint = point.KoTsumoTotalPoint;
+                        }
                     }
                     catch
                     {
@@ -221,8 +254,20 @@ namespace TenhouPointCalculatorBeta3
         private void ThrowInputPointError()
         {
             MessageBox.Show("点数输入出错\n请重新输入");
-            UpdateText.Set(MainActivity.InpuTextView,"");
+            UpdateText.Set(MainActivity.InpuTextView, "");
             GetFlag();
+        }
+
+        private static bool IsDivInput(string txt)
+        {
+            try
+            {
+                return txt.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries)[1] != null;
+            }
+            catch
+            {
+                return true;
+            }
         }
     }
 }

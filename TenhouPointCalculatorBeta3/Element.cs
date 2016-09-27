@@ -48,47 +48,41 @@ namespace TenhouPointCalculatorBeta3
 
     static class Element
     {
-        public static Player OppositePlayer = new Player()
+        public static readonly Player OppositePlayer = new Player()
         {
             Btn = Resource.Id.btnOppositePlayer,
             Ckb = Resource.Id.checkBoxOppositePlayer,
-            Point = 23000,
-            Name = NameEnum.对家,
-            IsReach = false
+            Name = NameEnum.对家
         };
 
-        public static Player LeftPlayer = new Player()
+        public static readonly Player LeftPlayer = new Player()
         {
             Btn = Resource.Id.btnLeftPlayer,
             Ckb = Resource.Id.checkBoxLeftPlayer,
-            Point = 24000,
-            Name = NameEnum.上家,
-            IsReach = false
+            Name = NameEnum.上家
         };
 
-        public static Player RightPlayer = new Player()
+        public static readonly Player RightPlayer = new Player()
         {
             Btn = Resource.Id.btnRightPlayer,
             Ckb = Resource.Id.checkBoxRightPlayer,
-            Point = 25000,
-            Name = NameEnum.下家,
-            IsReach = false
+            Name = NameEnum.下家
         };
 
-        public static Player MePlayer = new Player()
+        public static readonly Player MePlayer = new Player()
         {
             Btn = Resource.Id.btnMePlayer,
             Ckb = Resource.Id.checkBoxMePlayer,
-            Point = 26000,
-            Name = NameEnum.自己,
-            IsReach = false
+            Name = NameEnum.自己
         };
 
         public static Session Session = new Session();
 
-        public static Dictionary<int, ArrayList> GameLogDictionary = new Dictionary<int, ArrayList>();
+        public static readonly Dictionary<int, ArrayList> GameLogDictionary = new Dictionary<int, ArrayList>();
 
-        public static List<Player> Players = new List<Player>()
+        public static List<FuFanPoint> FuFanPoints = new List<FuFanPoint>();
+
+        public static readonly List<Player> Players = new List<Player>()
         {
             LeftPlayer,
             OppositePlayer,

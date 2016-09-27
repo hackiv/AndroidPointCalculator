@@ -64,19 +64,22 @@ namespace TenhouPointCalculatorBeta3
 			public const int ChangBang = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int DIYIcon = 2130837505;
+			public const int database = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int Icon = 2130837506;
+			public const int DIYIcon = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int Main = 2130837507;
+			public const int Icon = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int QianBang = 2130837508;
+			public const int Main = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int theme = 2130837509;
+			public const int QianBang = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int theme = 2130837510;
 			
 			static Drawable()
 			{
@@ -96,6 +99,9 @@ namespace TenhouPointCalculatorBeta3
 			
 			// aapt resource value: 0x7f070023
 			public const int btnBackSpace = 2131165219;
+			
+			// aapt resource value: 0x7f070026
+			public const int btnCancelReach = 2131165222;
 			
 			// aapt resource value: 0x7f070025
 			public const int btnForTest = 2131165221;

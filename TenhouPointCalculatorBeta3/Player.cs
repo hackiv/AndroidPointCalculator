@@ -45,9 +45,8 @@ namespace TenhouPointCalculatorBeta3
                 try
                 {
                     _point = value;
-
-                    _activity?.RunOnUiThread(
-                        () => _activity.FindViewById<Button>(Btn).Text = ToString());
+                    UpdateText.Set(MainActivity.test, showTotalPoint());
+                    UpdateText.Set(_activity.FindViewById<Button>(Btn),ToString());
                     if (value < 0)
                     {
                         End.Owari();
@@ -86,8 +85,7 @@ namespace TenhouPointCalculatorBeta3
                 {
                     _wind = value;
                     if (value == WindEnum.东) Element.Session.OyaName = Name;
-                    _activity?.RunOnUiThread(
-                        () => _activity.FindViewById<Button>(Btn).Text = ToString());
+                    UpdateText.Set(_activity.FindViewById<Button>(Btn), ToString());
                 }
                 catch
                 {
@@ -118,7 +116,7 @@ namespace TenhouPointCalculatorBeta3
                 {
                     _activity?.RunOnUiThread(() =>
                     {
-                        if (!_isReach && value)
+                        if (!_isReach && value && !MainActivity.NagareMode)
                         {
                             Point -= 1000;
                             Element.Session.QianBang++;
@@ -157,37 +155,19 @@ namespace TenhouPointCalculatorBeta3
         {
             return MemberwiseClone();
         }
-
-        //暂时无法使用深复制，报错说android.app.activity也要加[Serializable]，但无法操作
-        public Player DeepClone()
-        {
-            using (MemoryStream ms = new MemoryStream(1000))
-            {
-                BinaryFormatter bf = new BinaryFormatter(null, new StreamingContext(StreamingContextStates.Clone));
-                bf.Serialize(ms, this);
-                ms.Seek(0, SeekOrigin.Begin);
-                // 反序列化至另一个对象(即创建了一个原对象的深表副本) 
-                var cloneObject = bf.Deserialize(ms);
-                // 关闭流 
-                ms.Close();
-                return cloneObject as Player;
-            }
-        }
-
         public Player ShallowClone()
         {
             return Clone() as Player;
         }
-    }
 
-    //使用了orderby+thenby基本取代这个排序
-    class PlayerComparerByPoint : IComparer<Player>
-    {
-        public int Compare(Player x, Player y)
+        private string showTotalPoint()
         {
-            if (x.Point == y.Point)
-                return x.OriginalWind < y.OriginalWind ? -1 : 1; //-1：排在上方 1：排在下方
-            return x.Point > y.Point ? -1 : 1;
+            int sum = 0;
+            foreach (var p in Element.Players)
+            {
+                sum += p.Point;
+            }
+            return sum.ToString();
         }
     }
 }

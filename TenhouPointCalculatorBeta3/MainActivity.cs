@@ -21,23 +21,15 @@ namespace TenhouPointCalculatorBeta3
         public static int NowSessionNum = 1;
         public static bool IsOyaAgare;
         public static bool RunningOtherProgram;
+        public static bool NagareMode;
 
         public static TextView InpuTextView;
         public static TextView ControlTextView;
         public static TextView SessionTextView;
-        public static Button LeftButton;
-        public static Button OppositeButton;
-        public static Button RightButton;
-        public static Button MeButton;
-        public static CheckBox LeftCheckBox;
-        public static CheckBox RightCheckBox;
-        public static CheckBox OppositeCheckBox;
-        public static CheckBox MeCheckBox;
         public static TextView ChangBangTextView;
         public static TextView QianBangTextView;
         public static CheckBox DoubleRonCheckBox;
-
-
+        public static Button test;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -52,6 +44,7 @@ namespace TenhouPointCalculatorBeta3
 
             Context = this;
             Agare agare = new Agare();
+            GetXml.GetPoint();//加载程序时读取符翻对照表
 
 
             #region 显示用的控件 输入框/场风框 ok
@@ -74,24 +67,24 @@ namespace TenhouPointCalculatorBeta3
 
             #region 四家数据控件 ok
             //四家按钮
-            LeftButton = FindViewById<Button>(Resource.Id.btnLeftPlayer);
-            LeftButton.Click += (s, e) => Flag = 1;
-            OppositeButton = FindViewById<Button>(Resource.Id.btnOppositePlayer);
-            OppositeButton.Click += (s, e) => Flag = 2;
-            RightButton = FindViewById<Button>(Resource.Id.btnRightPlayer);
-            RightButton.Click += (s, e) => Flag = 3;
-            MeButton = FindViewById<Button>(Resource.Id.btnMePlayer);
-            MeButton.Click += (s, e) => Flag = 4;
+            var leftButton = FindViewById<Button>(Resource.Id.btnLeftPlayer);
+            leftButton.Click += (s, e) => Flag = 1;
+            var oppositeButton = FindViewById<Button>(Resource.Id.btnOppositePlayer);
+            oppositeButton.Click += (s, e) => Flag = 2;
+            var rightButton = FindViewById<Button>(Resource.Id.btnRightPlayer);
+            rightButton.Click += (s, e) => Flag = 3;
+            var meButton = FindViewById<Button>(Resource.Id.btnMePlayer);
+            meButton.Click += (s, e) => Flag = 4;
 
             List<Button> buttons = new List<Button>()
             {
-                LeftButton,
-                OppositeButton,
-                RightButton,
-                MeButton
+                leftButton,
+                oppositeButton,
+                rightButton,
+                meButton
             };
 
-            LeftButton.LongClick += (s, e) =>
+            leftButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
@@ -100,7 +93,7 @@ namespace TenhouPointCalculatorBeta3
                     RunningOtherProgram = false;
                 }
             };
-            OppositeButton.LongClick += (s, e) =>
+            oppositeButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
@@ -109,7 +102,7 @@ namespace TenhouPointCalculatorBeta3
                     RunningOtherProgram = false;
                 }
             };
-            RightButton.LongClick += (s, e) =>
+            rightButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
@@ -118,7 +111,7 @@ namespace TenhouPointCalculatorBeta3
                     RunningOtherProgram = false;
                 }
             };
-            MeButton.LongClick += (s, e) =>
+            meButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
                 {
@@ -129,17 +122,17 @@ namespace TenhouPointCalculatorBeta3
             };
 
             //四家选项框
-            OppositeCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxOppositePlayer);
-            OppositeCheckBox.CheckedChange += (s, e) => Element.OppositePlayer.IsReach = OppositeCheckBox.Checked;
-            LeftCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxLeftPlayer);
-            LeftCheckBox.CheckedChange += (s, e) => Element.LeftPlayer.IsReach = LeftCheckBox.Checked;
-            RightCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxRightPlayer);
-            RightCheckBox.CheckedChange += (s, e) => Element.RightPlayer.IsReach = RightCheckBox.Checked;
-            MeCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxMePlayer);
-            MeCheckBox.CheckedChange += (s, e) => Element.MePlayer.IsReach = MeCheckBox.Checked;
+            var oppositeCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxOppositePlayer);
+            oppositeCheckBox.CheckedChange += (s, e) => Element.OppositePlayer.IsReach = oppositeCheckBox.Checked;
+            var leftCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxLeftPlayer);
+            leftCheckBox.CheckedChange += (s, e) => Element.LeftPlayer.IsReach = leftCheckBox.Checked;
+            var rightCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxRightPlayer);
+            rightCheckBox.CheckedChange += (s, e) => Element.RightPlayer.IsReach = rightCheckBox.Checked;
+            var meCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxMePlayer);
+            meCheckBox.CheckedChange += (s, e) => Element.MePlayer.IsReach = meCheckBox.Checked;
             #endregion
 
-            #region 功能性按键 新对局/设定/记录/上一局/下一局/帮助
+            #region 功能性按键 新对局/设定/记录/上一局/下一局/帮助/取消立直
             //新对局
             var newGame = FindViewById<Button>(Resource.Id.btnNewGame);
             newGame.Click += (s, e) =>
@@ -176,7 +169,6 @@ namespace TenhouPointCalculatorBeta3
                     RunningOtherProgram = false;
                 }
             };
-            //priGame.Click += Test_Click;
             //下一局
             var nextGame = FindViewById<Button>(Resource.Id.btnNextGame);
             nextGame.Click += (s, e) =>
@@ -188,12 +180,14 @@ namespace TenhouPointCalculatorBeta3
                     RunningOtherProgram = false;
                 }
             };
-            //nextGame.Click += Test_Click;
             //双响
             DoubleRonCheckBox = FindViewById<CheckBox>(Resource.Id.checkBoxDoubleRon);
             //帮助
             var help = FindViewById<Button>(Resource.Id.btnHelp);
             help.Click += Help_Click;
+            //取消立直
+            var cancelReach = FindViewById<Button>(Resource.Id.btnCancelReach);
+            cancelReach.Click += (s, e) => CancelReach();
             #endregion
 
             #region 改变点数的按钮 推99/流局/和牌 ok
@@ -225,7 +219,8 @@ namespace TenhouPointCalculatorBeta3
                 if (RunningOtherProgram == false)
                 {
                     RunningOtherProgram = true;
-                    agare.GetFlag();
+                    //agare.GetFlag();
+                    AgareRefactor.Method();
                 }
             };
             #endregion
@@ -246,9 +241,8 @@ namespace TenhouPointCalculatorBeta3
             #endregion
 
             //测试用
-            var test = FindViewById<Button>(Resource.Id.btnForTest);
-            test.Click += (s, e) => CancelReach();
-            //test.Click += Test_Click;
+            test = FindViewById<Button>(Resource.Id.btnForTest);
+            test.Click += Test_Click;
         }
 
         //帮助文档
@@ -354,6 +348,7 @@ github地址：https://github.com/hackiv/PointCalculator
         {
             UpdateText.Set(ControlTextView, "谁听牌？");
             Flag = 0;
+            NagareMode = true;
             Thread th = new Thread(() =>
             {
                 while (Flag == 0)
@@ -361,6 +356,7 @@ github地址：https://github.com/hackiv/PointCalculator
                 }
                 Nagare nagare = new Nagare();
                 nagare.NagareMethod();
+                NagareMode=false;
                 UpdateText.Set(ControlTextView, "(OvO)");
                 Game.Save();
                 End.IsOwari();
@@ -374,10 +370,12 @@ github地址：https://github.com/hackiv/PointCalculator
         {
             Element.Session.BenChang++;
             NowSessionNum++;
+            NagareMode = true;
             foreach (var player in Element.Players)
             {
                 player.IsReach = false;
             }
+            NagareMode = false;
             Game.Save();
         }
 
@@ -395,6 +393,7 @@ github地址：https://github.com/hackiv/PointCalculator
                 MessageBox.Show(Element.Players[Flag - 1].Name + "东起");
                 UpdateText.Set(ControlTextView, "(OvO)");
                 Element.Session = new Session(0, 0, SessionEnum.东一局, (NameEnum)Flag - 1);
+                NagareMode = false;
                 for (int i = 0; i < 4; i++)
                 {
                     Element.Players[Flag - i - 1].Point = 25000;
@@ -425,17 +424,7 @@ github地址：https://github.com/hackiv/PointCalculator
 
         private void Test_Click(object sender, EventArgs e)
         {
-            string txt = "";
-            foreach (var p in Element.Players)
-            {
-                txt += p.Wind.ToString() + p.Point.ToString() + "\n";
-            }
-            txt += Element.Session.NowSession.ToString() + "\n";
-            txt += "本场：" + Element.Session.BenChang.ToString() + "\n";
-            txt += "千棒：" + Element.Session.QianBang.ToString() + "\n";
-            txt += "当前局数：" + NowSessionNum;
-
-            MessageBox.Show(txt);
+            GetXml.GetPoint();
         }
 
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)//重写返回键

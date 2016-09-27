@@ -2,7 +2,7 @@
 <xs:schema xmlns:android="http://schemas.android.com/apk/res/android" attributeFormDefault="qualified" elementFormDefault="unqualified" targetNamespace="http://schemas.android.com/apk/res/android" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v23</xs:documentation>
-    <xs:documentation>2016/9/25 13:00:55</xs:documentation>
+    <xs:documentation>2016/9/26 11:29:34</xs:documentation>
   </xs:annotation>
   <xs:attribute name="accessibilityLiveRegion">
     <xs:annotation>
@@ -777,6 +777,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -1415,6 +1416,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -2094,6 +2096,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -2462,6 +2465,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -2779,6 +2783,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -3407,6 +3412,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -3728,6 +3734,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -4065,6 +4072,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -4345,6 +4353,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -4602,6 +4611,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -5177,6 +5187,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -5600,6 +5611,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -5988,6 +6000,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -6431,6 +6444,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -6749,6 +6763,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -7067,6 +7082,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -7425,6 +7441,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -7743,6 +7760,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -8172,6 +8190,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -8545,6 +8564,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -8827,6 +8847,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -9266,6 +9287,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -9679,6 +9701,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -10210,6 +10233,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -10680,6 +10704,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -11120,6 +11145,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -11736,6 +11762,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -11975,6 +12002,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -12214,6 +12242,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -12453,6 +12482,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -12692,6 +12722,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -12931,6 +12962,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -13170,6 +13202,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -13409,6 +13442,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -13843,6 +13877,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -14109,6 +14144,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -14348,6 +14384,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -14587,6 +14624,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -14826,6 +14864,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -15105,6 +15144,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -15345,6 +15385,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -15662,6 +15703,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -15941,6 +15983,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -16272,6 +16315,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -16511,6 +16555,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -16970,6 +17015,7 @@
             <xs:enumeration value="@+id/checkBox1" />
             <xs:enumeration value="@id/btnAgare" />
             <xs:enumeration value="@id/btnBackSpace" />
+            <xs:enumeration value="@id/btnCancelReach" />
             <xs:enumeration value="@id/btnForTest" />
             <xs:enumeration value="@id/btnHelp" />
             <xs:enumeration value="@id/btnLeftPlayer" />
@@ -17081,6 +17127,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -17430,6 +17477,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -17764,6 +17812,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -18332,6 +18381,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -18657,6 +18707,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -19056,6 +19107,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -19415,6 +19467,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -19670,6 +19723,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -20370,6 +20424,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -20732,6 +20787,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -21727,6 +21783,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -21978,6 +22035,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -22258,6 +22316,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -22537,6 +22596,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -22776,6 +22836,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -23015,6 +23076,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -23254,6 +23316,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -23493,6 +23556,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -24209,6 +24273,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -24466,6 +24531,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -24784,6 +24850,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -25495,6 +25562,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -25852,6 +25920,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -26273,6 +26342,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -26623,6 +26693,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -26862,6 +26933,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -27646,6 +27718,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -27885,6 +27958,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -28124,6 +28198,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -28363,6 +28438,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -28782,6 +28858,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -29021,6 +29098,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -29429,6 +29507,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -29669,6 +29748,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -29986,6 +30066,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -30670,6 +30751,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -31203,6 +31285,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -31578,6 +31661,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -32769,6 +32853,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -33049,6 +33134,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -33380,6 +33466,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -33699,6 +33786,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -33938,6 +34026,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -34217,6 +34306,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -34456,6 +34546,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -34842,6 +34933,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -35082,6 +35174,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -35400,6 +35493,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -35718,6 +35812,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -36036,6 +36131,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -36353,6 +36449,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -36618,6 +36715,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -36857,6 +36955,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -37096,6 +37195,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -37335,6 +37435,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -37574,6 +37675,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -37987,6 +38089,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -38226,6 +38329,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -38465,6 +38569,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -39642,6 +39747,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -40473,6 +40579,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -40884,6 +40991,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -41641,6 +41749,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -42106,6 +42215,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -42361,6 +42471,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -42600,6 +42711,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -42840,6 +42952,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -43158,6 +43271,7 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@color/theme_devicedefault_background" />
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -43527,6 +43641,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />
@@ -43766,6 +43881,7 @@
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="@drawable/changbang" />
+            <xs:enumeration value="@drawable/database" />
             <xs:enumeration value="@drawable/diyicon" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/main" />

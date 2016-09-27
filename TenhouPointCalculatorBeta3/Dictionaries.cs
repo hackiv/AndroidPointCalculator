@@ -12,11 +12,20 @@ using Android.Widget;
 
 namespace TenhouPointCalculatorBeta3
 {
+    public static class Dictionaries1
+    {
+        public static readonly Dictionary<string, string> KoAgareDictionary = new Dictionary<string, string>();
+        public static readonly Dictionary<string, string> KoTsumoDictionary = new Dictionary<string, string>();
+        public static Dictionary<string, string> OyaAgareDictionary = new Dictionary<string, string>();
+        public static Dictionary<string, string> OyaTsumoDictionary = new Dictionary<string, string>();
+        public static Dictionary<string, int> OyaDictionary = new Dictionary<string, int>();
+        public static Dictionary<string, int> KoDictionary = new Dictionary<string, int>();
+    }
 
     public static class Dictionaries
     {
         //所有符数4翻以下的子家荣和点数
-        public static Dictionary<string, string> KoAgareDictionary = new Dictionary<string, string>()
+        public static readonly Dictionary<string, string> KoAgareDictionary = new Dictionary<string, string>()
         {
             {"30//1","1000"},
             {"30//2","2000"},
@@ -57,7 +66,7 @@ namespace TenhouPointCalculatorBeta3
         };
 
         //所有符数4翻以下的子家自摸点数
-        public static Dictionary<string, string> KoTsumoDictionary = new Dictionary<string, string>()
+        public static readonly Dictionary<string, string> KoTsumoDictionary = new Dictionary<string, string>()
         {
             {"30//1","1100"},
             {"30//2","2000"},
@@ -229,4 +238,5 @@ namespace TenhouPointCalculatorBeta3
             {"7200",1800}
         };
     }
+
 }

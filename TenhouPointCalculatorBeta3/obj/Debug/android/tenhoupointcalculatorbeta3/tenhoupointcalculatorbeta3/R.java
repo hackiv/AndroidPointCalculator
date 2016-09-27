@@ -15,15 +15,17 @@ public final class R {
     }
     public static final class drawable {
         public static final int changbang=0x7f020000;
-        public static final int diyicon=0x7f020001;
-        public static final int icon=0x7f020002;
-        public static final int main=0x7f020003;
-        public static final int qianbang=0x7f020004;
-        public static final int theme=0x7f020005;
+        public static final int database=0x7f020001;
+        public static final int diyicon=0x7f020002;
+        public static final int icon=0x7f020003;
+        public static final int main=0x7f020004;
+        public static final int qianbang=0x7f020005;
+        public static final int theme=0x7f020006;
     }
     public static final class id {
         public static final int btnAgare=0x7f07001f;
         public static final int btnBackSpace=0x7f070023;
+        public static final int btnCancelReach=0x7f070026;
         public static final int btnForTest=0x7f070025;
         public static final int btnHelp=0x7f070003;
         public static final int btnLeftPlayer=0x7f070005;

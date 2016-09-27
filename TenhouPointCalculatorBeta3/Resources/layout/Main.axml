@@ -251,5 +251,9 @@
             android:text="测试用"
             android:layout_column="0"
             android:id="@+id/btnForTest" />
+        <Button
+            android:text="取消立直"
+            android:layout_column="4"
+            android:id="@+id/btnCancelReach" />
     </TableRow>
 </TableLayout>

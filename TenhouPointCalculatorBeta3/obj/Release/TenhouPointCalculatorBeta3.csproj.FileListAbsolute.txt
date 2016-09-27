@@ -38,5 +38,6 @@ C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\res\values\theme.xml
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\res\drawable\main.xml
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\res\drawable\theme.xml
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\res\drawable\database.xml
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\TenhouPointCalculatorBeta3.dll.mdb
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\bin\Release\TenhouPointCalculatorBeta3.dll.mdb
