@@ -222,7 +222,6 @@ namespace TenhouPointCalculatorBeta3
                 if (RunningOtherProgram == false)
                 {
                     RunningOtherProgram = true;
-                    //agare.GetFlag();
                     AgareRefactor.Method();
                 }
             };

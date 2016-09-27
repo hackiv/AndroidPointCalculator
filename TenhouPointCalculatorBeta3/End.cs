@@ -17,7 +17,7 @@ namespace TenhouPointCalculatorBeta3
         public static void IsOwari()
         {
             Player player = Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind).FirstOrDefault();
-            if (player?.Point > 30000 && (int)Element.Session.NowSession > 7)
+            if (player?.Point > 30000 && (int)Element.Session.NowSession > 8)
             {
                 if (MainActivity.IsOyaAgare)
                 {
@@ -29,7 +29,6 @@ namespace TenhouPointCalculatorBeta3
                 {
                     Owari();
                 }
-                
             }
         }
 

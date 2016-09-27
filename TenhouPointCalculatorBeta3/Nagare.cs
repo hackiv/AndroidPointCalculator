@@ -56,6 +56,7 @@ namespace TenhouPointCalculatorBeta3
             }
             Element.Session.BenChang++;
             MainActivity.NowSessionNum++;
+            MainActivity.IsOyaAgare = isOyaTenpai;
         }
     }
 }

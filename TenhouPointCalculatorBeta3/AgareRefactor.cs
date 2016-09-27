@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace TenhouPointCalculatorBeta3
 {
-    class AgareRefactor
+    static class AgareRefactor
     {
         private static int _flagUp;
         private static int _flagDown;
@@ -206,17 +206,29 @@ namespace TenhouPointCalculatorBeta3
             // "30//4"                  length==3 && [0]!=null && [1]==null
             else if (txtStrings.Length == 3 && txtStrings[0] != "")
             {
-                _targetPoint = Element.FuFanPoints.Where(
+                int fan = Convert.ToInt32(txtStrings[2]) < 13 ? Convert.ToInt32(txtStrings[2]) : 13;
+                if (fan <= 4)//4翻及以下
+                {
+                    _targetPoint = Element.FuFanPoints.Where(
                         p =>
                             p.Fu.ToString() == txtStrings[0] &&
-                            p.Fan.ToString() == txtStrings[2])
-                            .Select(p => p)
-                            .FirstOrDefault();
+                            p.Fan == fan)
+                        .Select(p => p)
+                        .FirstOrDefault();
+                }
+                else//5翻以上
+                {
+                    _targetPoint = Element.FuFanPoints.Where(
+                        p => p.Fan == fan)
+                        .Select(p => p)
+                        .FirstOrDefault();
+                }
+
                 if (_isOyaAgare && _isTsumo)
                 {
                     _upPoint = _targetPoint?.OyaTsumoTotalPoint;
                     _downOyaPoint = null;
-                    _downKoPoint = _targetPoint?.KoTsumoLostPoint;
+                    _downKoPoint = _targetPoint?.OyaTsumoLostPoint;
                 }
                 else if (_isOyaAgare)
                 {
@@ -236,6 +248,7 @@ namespace TenhouPointCalculatorBeta3
                     _downOyaPoint = null;
                     _downKoPoint = null;
                 }
+                UpdateText.Set(MainActivity.ControlTextView,_upPoint.ToString());
             }
             #endregion
 
@@ -281,6 +294,7 @@ namespace TenhouPointCalculatorBeta3
             if (_benChangTemp != 0)
                 Element.Session.BenChang = _benChangTemp;
             //判断是否亲家和牌
+            MainActivity.IsOyaAgare = _isOyaAgare || _isOyaAgareFirst;
             if (_isOyaAgare || _isOyaAgareFirst)
             {
                 Element.Session.BenChang++;
