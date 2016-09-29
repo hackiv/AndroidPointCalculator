@@ -59,7 +59,7 @@ namespace TenhouPointCalculatorBeta3
         public bool IsNagareMode { get; set; }//流局模式
         public bool IsNewGame { get; set; }
 
-        private int _save;
+        public int Save { get; set; }
         private int _flag;
         public int Flag
         {
@@ -67,11 +67,11 @@ namespace TenhouPointCalculatorBeta3
             set
             {
                 _flag = value;
-                if (IsAgareMode == true)
+                if (IsAgareMode == true)//胡牌
                 {
-                    if (_save == 0)
+                    if (Save==0)
                     {
-                        _save = value;
+                        Save = value;
                         UpdateText.Set(MainActivity.ControlTextView, "谁和牌？");
                     }
                     else
@@ -84,11 +84,11 @@ namespace TenhouPointCalculatorBeta3
                             AgareRefactor.IsOyaAgareFirst = false;
                             IsNewAgare = false;
                         }
-                        AgareRefactor.Method(value, _save);
-                        _save = 0;
+                        AgareRefactor.Method(value, Save);
+                        Save = 0;
                     }
                 }
-                if (IsNagareMode)
+                if (IsNagareMode)//流局
                 {
                     Nagare nagare = new Nagare();
                     nagare.NagareMethod();
@@ -98,7 +98,7 @@ namespace TenhouPointCalculatorBeta3
                     End.IsOwari();
                     MainActivity.RunningOtherProgram = false;
                 }
-                if (IsNewGame)
+                if (IsNewGame)//新对局
                 {
                     int a = value;
                     MessageBox.Show(Element.Players[a - 1].Name + "东起");

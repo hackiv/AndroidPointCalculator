@@ -16,7 +16,6 @@ namespace TenhouPointCalculatorBeta3
     {
         public void NagareMethod()
         {
-            MessageBox.Show(MainActivity.NagareMode.ToString());
             int count = 0;
             bool isOyaTenpai = false;
             List<Player> upPlayers = new List<Player>();

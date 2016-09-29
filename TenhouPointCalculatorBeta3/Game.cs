@@ -43,7 +43,7 @@ namespace TenhouPointCalculatorBeta3
             Element.GameLogDictionary.Add(MainActivity.NowSessionNum, gameArrayList);
 
             //查看总分 debug用
-            UpdateText.Set(MainActivity.test, showTotalPoint());
+            UpdateText.Set(MainActivity.Test, showTotalPoint());
         }
 
         public static void Load(int targetSession)

@@ -60,18 +60,22 @@ namespace TenhouPointCalculatorBeta3
             //标准化点数
             StandardizePoint();
             if (_upPoint == null && _downOyaPoint == null && _downKoPoint == null)
+            {
                 MessageBox.Show("输入点数出错");
+                UpdateText.Set(MainActivity.ControlTextView,"谁胡牌？");
+            }
             else
             {
-                AgareMethod();//进行点数交换
+                AgareMethod(); //进行点数交换
                 if (MainActivity.DoubleRonCheckBox.Checked)
                 {
-                    DoubleRonPrepare();//双响准备
+                    DoubleRonPrepare(); //双响准备
                 }
                 else
-                    AfterAgare();//胡牌后处理
+                {
+                    AfterAgare(); //胡牌后处理
+                }
             }
-            MainActivity.RunningOtherProgram = false;
         }
 
         private static void StandardizePoint()//标准化点数
@@ -291,28 +295,15 @@ namespace TenhouPointCalculatorBeta3
                 }
             }
 
-            UpdateText.Set(MainActivity.ControlTextView,"(OvO)");
+            UpdateText.Set(MainActivity.ControlTextView, "(OvO)");
+            UpdateText.Set(MainActivity.AgareBtn, "和牌");
             Element.Session.IsAgareMode = false;
             Element.Session.QianBang = 0;
             UpdateText.Set(MainActivity.InpuTextView, "");
             MainActivity.NowSessionNum++;
             Game.Save(_situation);
             End.IsOwari();
-
-
-            #region 把胡牌方法里建的字段初始化
-            _flagUp = 0;
-            _flagDown = 0;
-            _upPlayer = null;
-            _downPlayer = null;
-            _downPlayers = null;
-            _targetPoint = null;
-            _upPoint = null;
-            _downOyaPoint = null;
-            _downKoPoint = null;
-            _isOyaAgare = false;
-            _isTsumo = false;
-            #endregion
+            MainActivity.RunningOtherProgram = false;
         }
     }
 }

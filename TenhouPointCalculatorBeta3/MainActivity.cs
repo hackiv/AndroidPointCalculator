@@ -20,12 +20,10 @@ namespace TenhouPointCalculatorBeta3
     public class MainActivity : Activity
     {
         public static Context Context;
-        public static int Flag;
         private static bool _isShowingDeltaPoint;
         public static int NowSessionNum = 1;
         public static bool IsOyaAgare;
         public static bool RunningOtherProgram;
-        public static bool NagareMode;
 
         public static TextView InpuTextView;
         public static TextView ControlTextView;
@@ -33,7 +31,8 @@ namespace TenhouPointCalculatorBeta3
         public static TextView ChangBangTextView;
         public static TextView QianBangTextView;
         public static CheckBox DoubleRonCheckBox;
-        public static Button test;
+        public static Button Test;
+        public static Button AgareBtn;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -71,29 +70,13 @@ namespace TenhouPointCalculatorBeta3
             #region 四家数据控件 ok
             //四家按钮
             var leftButton = FindViewById<Button>(Resource.Id.btnLeftPlayer);
-            leftButton.Click += (s, e) =>
-            {
-                Element.Session.Flag = 1;
-                Flag = 1;
-            };
+            leftButton.Click += (s, e) => Element.Session.Flag = 1;
             var oppositeButton = FindViewById<Button>(Resource.Id.btnOppositePlayer);
-            oppositeButton.Click += (s, e) =>
-            {
-                Element.Session.Flag = 2;
-                Flag = 2;
-            };
+            oppositeButton.Click += (s, e) => Element.Session.Flag = 2;
             var rightButton = FindViewById<Button>(Resource.Id.btnRightPlayer);
-            rightButton.Click += (s, e) =>
-            {
-                Element.Session.Flag = 3;
-                Flag = 3;
-            };
+            rightButton.Click += (s, e) => Element.Session.Flag = 3;
             var meButton = FindViewById<Button>(Resource.Id.btnMePlayer);
-            meButton.Click += (s, e) =>
-            {
-                Element.Session.Flag = 4;
-                Flag = 4;
-            };
+            meButton.Click += (s, e) => Element.Session.Flag = 4;
 
             List<Button> buttons = new List<Button>()
             {
@@ -140,7 +123,7 @@ namespace TenhouPointCalculatorBeta3
             var newGame = FindViewById<Button>(Resource.Id.btnNewGame);
             newGame.Click += (s, e) =>
             {
-                if (RunningOtherProgram != false) return;
+                if (RunningOtherProgram) return;
                 RunningOtherProgram = true;
                 NewGame_Click();
                 RunningOtherProgram = false;
@@ -149,7 +132,7 @@ namespace TenhouPointCalculatorBeta3
             var setting = FindViewById<Button>(Resource.Id.btnSetting);
             setting.Click += (s, e) =>
             {
-                if (RunningOtherProgram != false) return;
+                if (RunningOtherProgram) return;
                 RunningOtherProgram = true;
                 Setting.SettingElement(InpuTextView.Text);
                 RunningOtherProgram = false;
@@ -201,14 +184,8 @@ namespace TenhouPointCalculatorBeta3
                     Nagare_Click();
             };
             //和牌
-            var agareBtn = FindViewById<Button>(Resource.Id.btnAgare);
-            agareBtn.Click += (s, e) =>
-            {
-                if (RunningOtherProgram) return;
-                Element.Session.IsAgareMode = true;
-                Element.Session.IsNewAgare = true;
-                UpdateText.Set(ControlTextView, "谁出铳？");
-            };
+            AgareBtn = FindViewById<Button>(Resource.Id.btnAgare);
+            AgareBtn.Click += AgareBtn_Click;
             #endregion
 
             #region 键盘设定ok
@@ -227,8 +204,31 @@ namespace TenhouPointCalculatorBeta3
             #endregion
 
             //测试用
-            test = FindViewById<Button>(Resource.Id.btnForTest);
-            test.Click += Test_Click;
+            Test = FindViewById<Button>(Resource.Id.btnForTest);
+            Test.Click += Test_Click;
+        }
+
+        private void AgareBtn_Click(object sender, EventArgs e)
+        {
+            if (AgareBtn.Text == "和牌")
+            {
+                if (RunningOtherProgram) return;
+                Element.Session.IsAgareMode = true;
+                Element.Session.IsNewAgare = true;
+                Element.Session.Save = 0;
+                UpdateText.Set(ControlTextView, "谁出铳？");
+                RunningOtherProgram = true;
+                UpdateText.Set(AgareBtn, "取消和牌");
+            }
+            else
+            {
+                Element.Session.IsAgareMode = false;
+                UpdateText.Set(ControlTextView, "(OvO)");
+                UpdateText.Set(InpuTextView, "");
+                UpdateText.Set(AgareBtn, "和牌");
+                Element.Session.IsAgareMode = false;
+                RunningOtherProgram = false;
+            }
         }
 
         //帮助文档
@@ -296,12 +296,12 @@ namespace TenhouPointCalculatorBeta3
         {
             Element.Session.BenChang++;
             NowSessionNum++;
-            NagareMode = true;
+            Element.Session.IsNagareMode = true;
             foreach (var player in Element.Players)
             {
                 player.IsReach = false;
             }
-            NagareMode = false;
+            Element.Session.IsNagareMode = false;
             Game.Save("中途流局");
         }
 
@@ -327,7 +327,14 @@ namespace TenhouPointCalculatorBeta3
 
         private void Test_Click(object sender, EventArgs e)
         {
-            GetXml.GetPoint();
+            if (Element.Session.IsAgareMode)
+            {
+                Element.Session.IsAgareMode = false;
+                UpdateText.Set(ControlTextView, "(OvO)");
+                UpdateText.Set(MainActivity.InpuTextView, "");
+                Element.Session.IsAgareMode = false;
+                RunningOtherProgram = false;
+            }
         }
 
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)//重写返回键
