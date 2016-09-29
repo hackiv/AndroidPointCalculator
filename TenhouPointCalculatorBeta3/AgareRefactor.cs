@@ -32,11 +32,11 @@ namespace TenhouPointCalculatorBeta3
 
 
 
-        public static void Method()
+        public static void Method(int flagUp, int flagDown)
         {
             #region 初始化
-            _flagUp = 0;
-            _flagDown = 0;
+            _flagUp = flagUp;
+            _flagDown = flagDown;
             _upPlayer = null;
             _downPlayer = null;
             _downPlayers = null;
@@ -48,60 +48,30 @@ namespace TenhouPointCalculatorBeta3
             _isTsumo = false;
             #endregion
 
-            //开启子线程
-            Thread th = new Thread(() =>
-            {
-                MainActivity.RunningOtherProgram = true;
-                //获得铳家与和家
-                SelectPlayer();
-                //判断是否亲和牌
-                _isOyaAgare = Element.Players[_flagUp - 1].Name == Element.Session.OyaName;
-                //判断是否自摸
-                _isTsumo = _flagUp == _flagDown;
-                //标准化点数
-                StandardizePoint();
-                if (_upPoint == null && _downOyaPoint == null && _downKoPoint == null)
-                    MessageBox.Show("输入点数出错");
-                else
-                {
-                    AgareMethod();//进行点数交换
-                    if (MainActivity.DoubleRonCheckBox.Checked)
-                    {
-                        DoubleRonPrepare();//双响准备
-                        Method();//递归
-                    }
-                    else
-                        AfterAgare();//胡牌后处理
-                }
-                MainActivity.RunningOtherProgram = false;
-            });
-            th.IsBackground = true;
-            th.Start();
-        }
-
-        private static void SelectPlayer()//获得铳家与和家
-        {
-            //获取flag
-            MainActivity.Flag = 0;
-            UpdateText.Set(MainActivity.ControlTextView, "谁出铳？");
-            while (MainActivity.Flag == 0) { }
-            _flagDown = MainActivity.Flag;
-
-            MainActivity.Flag = 0;
-            UpdateText.Set(MainActivity.ControlTextView, "谁和牌？");
-            while (MainActivity.Flag == 0)
-            {
-            }
-            _flagUp = MainActivity.Flag;
-
-            UpdateText.Set(MainActivity.ControlTextView, "(OvO)");
-            _upPlayer = Element.Players[_flagUp - 1];
-            _downPlayer = Element.Players[_flagDown - 1];
-
             //对号入座
             _upPlayer = Element.Players[_flagUp - 1];
             _downPlayer = Element.Players[_flagDown - 1];
             _downPlayers = Element.Players.Where(p => p.Name != _upPlayer.Name).Select(p => p);
+            MainActivity.RunningOtherProgram = true;
+            //判断是否亲和牌
+            _isOyaAgare = Element.Players[_flagUp - 1].Name == Element.Session.OyaName;
+            //判断是否自摸
+            _isTsumo = _flagUp == _flagDown;
+            //标准化点数
+            StandardizePoint();
+            if (_upPoint == null && _downOyaPoint == null && _downKoPoint == null)
+                MessageBox.Show("输入点数出错");
+            else
+            {
+                AgareMethod();//进行点数交换
+                if (MainActivity.DoubleRonCheckBox.Checked)
+                {
+                    DoubleRonPrepare();//双响准备
+                }
+                else
+                    AfterAgare();//胡牌后处理
+            }
+            MainActivity.RunningOtherProgram = false;
         }
 
         private static void StandardizePoint()//标准化点数
@@ -217,32 +187,35 @@ namespace TenhouPointCalculatorBeta3
                         .Select(p => p)
                         .FirstOrDefault();
                 }
-
+                if (_targetPoint == null) return;
                 if (_isOyaAgare && _isTsumo)
                 {
-                    _upPoint = _targetPoint?.OyaTsumoTotalPoint;
+                    _upPoint = _targetPoint.OyaTsumoTotalPoint;
                     _downOyaPoint = null;
-                    _downKoPoint = _targetPoint?.OyaTsumoLostPoint;
+                    _downKoPoint = _targetPoint.OyaTsumoLostPoint;
+                    UpdateText.Set(MainActivity.ControlTextView, _targetPoint.OyaTsumoLostPoint + "all");
                 }
                 else if (_isOyaAgare)
                 {
-                    _upPoint = _targetPoint?.OyaAgareTotalPoint;
+                    _upPoint = _targetPoint.OyaAgareTotalPoint;
                     _downOyaPoint = null;
                     _downKoPoint = null;
+                    UpdateText.Set(MainActivity.ControlTextView, _upPoint.ToString());
                 }
                 else if (_isTsumo)
                 {
-                    _upPoint = _targetPoint?.KoTsumoTotalPoint;
-                    _downOyaPoint = _targetPoint?.OyaTsumoLostPoint;
-                    _downKoPoint = _targetPoint?.KoTsumoLostPoint;
+                    _upPoint = _targetPoint.KoTsumoTotalPoint;
+                    _downOyaPoint = _targetPoint.OyaTsumoLostPoint;
+                    _downKoPoint = _targetPoint.KoTsumoLostPoint;
+                    UpdateText.Set(MainActivity.ControlTextView, _upPoint.ToString());
                 }
                 else
                 {
                     _upPoint = _targetPoint?.KoAgareTotalPoint;
                     _downOyaPoint = null;
                     _downKoPoint = null;
+                    UpdateText.Set(MainActivity.ControlTextView, _upPoint.ToString());
                 }
-                UpdateText.Set(MainActivity.ControlTextView, _upPoint.ToString());
             }
             #endregion
 
@@ -318,7 +291,8 @@ namespace TenhouPointCalculatorBeta3
                 }
             }
 
-
+            UpdateText.Set(MainActivity.ControlTextView,"(OvO)");
+            Element.Session.IsAgareMode = false;
             Element.Session.QianBang = 0;
             UpdateText.Set(MainActivity.InpuTextView, "");
             MainActivity.NowSessionNum++;

@@ -14,14 +14,14 @@ namespace TenhouPointCalculatorBeta3
 {
     class FuFanPoint
     {
-        public int Fu { get; set; }
-        public int Fan { get; set; }
-        public int KoAgareTotalPoint { get; set; }
-        public int OyaAgareTotalPoint { get; set; }
-        public int OyaTsumoTotalPoint { get; set; }
-        public int KoTsumoTotalPoint { get; set; }
-        public int KoTsumoLostPoint { get; set; }
-        public int OyaTsumoLostPoint { get; set; }
+        public int Fu { get; }
+        public int Fan { get; }
+        public int KoAgareTotalPoint { get; }
+        public int OyaAgareTotalPoint { get; }
+        public int OyaTsumoTotalPoint { get; }
+        public int KoTsumoTotalPoint { get; }
+        public int KoTsumoLostPoint { get; }
+        public int OyaTsumoLostPoint { get; }
 
         public FuFanPoint()
         {

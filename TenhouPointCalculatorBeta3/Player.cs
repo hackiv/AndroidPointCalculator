@@ -115,7 +115,7 @@ namespace TenhouPointCalculatorBeta3
                 {
                     _activity?.RunOnUiThread(() =>
                     {
-                        if (!_isReach && value && !MainActivity.NagareMode)
+                        if (!_isReach && value && !Element.Session.IsNagareMode)
                         {
                             Point -= 1000;
                             Element.Session.QianBang++;

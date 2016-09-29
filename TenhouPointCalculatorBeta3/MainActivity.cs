@@ -71,13 +71,29 @@ namespace TenhouPointCalculatorBeta3
             #region 四家数据控件 ok
             //四家按钮
             var leftButton = FindViewById<Button>(Resource.Id.btnLeftPlayer);
-            leftButton.Click += (s, e) => Flag = 1;
+            leftButton.Click += (s, e) =>
+            {
+                Element.Session.Flag = 1;
+                Flag = 1;
+            };
             var oppositeButton = FindViewById<Button>(Resource.Id.btnOppositePlayer);
-            oppositeButton.Click += (s, e) => Flag = 2;
+            oppositeButton.Click += (s, e) =>
+            {
+                Element.Session.Flag = 2;
+                Flag = 2;
+            };
             var rightButton = FindViewById<Button>(Resource.Id.btnRightPlayer);
-            rightButton.Click += (s, e) => Flag = 3;
+            rightButton.Click += (s, e) =>
+            {
+                Element.Session.Flag = 3;
+                Flag = 3;
+            };
             var meButton = FindViewById<Button>(Resource.Id.btnMePlayer);
-            meButton.Click += (s, e) => Flag = 4;
+            meButton.Click += (s, e) =>
+            {
+                Element.Session.Flag = 4;
+                Flag = 4;
+            };
 
             List<Button> buttons = new List<Button>()
             {
@@ -90,30 +106,22 @@ namespace TenhouPointCalculatorBeta3
             leftButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
-                {
                     ShowDeltaPointMethod(Element.LeftPlayer, buttons);
-                }
             };
             oppositeButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
-                {
                     ShowDeltaPointMethod(Element.OppositePlayer, buttons);
-                }
             };
             rightButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
-                {
                     ShowDeltaPointMethod(Element.RightPlayer, buttons);
-                }
             };
             meButton.LongClick += (s, e) =>
             {
                 if (RunningOtherProgram == false)
-                {
                     ShowDeltaPointMethod(Element.MePlayer, buttons);
-                }
             };
 
             //四家选项框
@@ -132,23 +140,19 @@ namespace TenhouPointCalculatorBeta3
             var newGame = FindViewById<Button>(Resource.Id.btnNewGame);
             newGame.Click += (s, e) =>
             {
-                if (RunningOtherProgram == false)
-                {
-                    RunningOtherProgram = true;
-                    NewGame_Click();
-                    RunningOtherProgram = false;
-                }
+                if (RunningOtherProgram != false) return;
+                RunningOtherProgram = true;
+                NewGame_Click();
+                RunningOtherProgram = false;
             };
             //设定
             var setting = FindViewById<Button>(Resource.Id.btnSetting);
             setting.Click += (s, e) =>
             {
-                if (RunningOtherProgram == false)
-                {
-                    RunningOtherProgram = true;
-                    Setting.SettingElement(InpuTextView.Text);
-                    RunningOtherProgram = false;
-                }
+                if (RunningOtherProgram != false) return;
+                RunningOtherProgram = true;
+                Setting.SettingElement(InpuTextView.Text);
+                RunningOtherProgram = false;
             };
             //记录
             var log = FindViewById<Button>(Resource.Id.btnShowGameLog);
@@ -178,7 +182,7 @@ namespace TenhouPointCalculatorBeta3
             {
                 if (RunningOtherProgram == false)
                     CancelReach();
-            }; 
+            };
             #endregion
 
             #region 改变点数的按钮 推99/流局/和牌 ok
@@ -200,12 +204,10 @@ namespace TenhouPointCalculatorBeta3
             var agareBtn = FindViewById<Button>(Resource.Id.btnAgare);
             agareBtn.Click += (s, e) =>
             {
-                if (RunningOtherProgram == false)
-                {
-                    AgareRefactor.BenChangTemp = 0;
-                    AgareRefactor.IsOyaAgareFirst = false;
-                    AgareRefactor.Method();
-                }
+                if (RunningOtherProgram) return;
+                Element.Session.IsAgareMode = true;
+                Element.Session.IsNewAgare = true;
+                UpdateText.Set(ControlTextView, "谁出铳？");
             };
             #endregion
 
@@ -285,25 +287,9 @@ namespace TenhouPointCalculatorBeta3
 
         private void Nagare_Click()
         {
+            RunningOtherProgram = true;
             UpdateText.Set(ControlTextView, "谁听牌？");
-            Flag = 0;
-            NagareMode = true;
-            Thread th = new Thread(() =>
-            {
-                RunningOtherProgram = true;
-                while (Flag == 0)
-                {
-                }
-                Nagare nagare = new Nagare();
-                nagare.NagareMethod();
-                NagareMode = false;
-                UpdateText.Set(ControlTextView, "(OvO)");
-                Game.Save("流局");
-                End.IsOwari();
-                RunningOtherProgram = false;
-            })
-            { IsBackground = true };
-            th.Start();
+            Element.Session.IsNagareMode = true;
         }
 
         private void SuddenlyNagare_Click()
@@ -321,46 +307,21 @@ namespace TenhouPointCalculatorBeta3
 
         private void NewGame_Click()
         {
+            RunningOtherProgram = true;
             UpdateText.Set(InpuTextView, "");
             UpdateText.Set(ControlTextView, "谁是起家？");
-            Flag = 0;
-            Thread th = new Thread(() =>
-            {
-                RunningOtherProgram = true;
-                //flag：上家1 对家2 下家3 自己4
-                while (Flag == 0)
-                {
-                }
-                MessageBox.Show(Element.Players[Flag - 1].Name + "东起");
-                UpdateText.Set(ControlTextView, "(OvO)");
-                Element.Session = new Session(0, 0, SessionEnum.东一局, (NameEnum)Flag - 1);
-                NagareMode = false;
-                for (int i = 0; i < 4; i++)
-                {
-                    Element.Players[Flag - i - 1].Point = 25000;
-                    Element.Players[Flag - i - 1].IsReach = false;
-                    Element.Players[Flag - i - 1].Wind = (WindEnum)i;
-                    Element.Players[Flag - i - 1].OriginalWind = (WindEnum)i;
-                    if (Flag - i - 2 < 0) Flag += 4;
-                }
-                NowSessionNum = 0;
-                Game.Save("对局开始：");
-                RunningOtherProgram = false;
-            })
-            { IsBackground = true };
-            th.Start();
+            Element.Session.Flag = 0;
+            Element.Session.IsNewGame = true;
         }
 
         private void CancelReach()
         {
             foreach (var p in Element.Players)
             {
-                if (p.IsReach)
-                {
-                    p.IsReach = false;
-                    p.Point += 1000;
-                    Element.Session.QianBang -= 1;
-                }
+                if (!p.IsReach) continue;
+                p.IsReach = false;
+                p.Point += 1000;
+                Element.Session.QianBang -= 1;
             }
         }
 
