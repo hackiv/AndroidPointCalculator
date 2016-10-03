@@ -33,6 +33,7 @@ namespace TenhouPointCalculatorBeta3
         public static CheckBox DoubleRonCheckBox;
         public static Button Test;
         public static Button AgareBtn;
+        public static Button nagareBtn;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -159,13 +160,6 @@ namespace TenhouPointCalculatorBeta3
             //帮助
             var help = FindViewById<Button>(Resource.Id.btnHelp);
             help.Click += Help_Click;
-            //取消立直
-            var cancelReach = FindViewById<Button>(Resource.Id.btnCancelReach);
-            cancelReach.Click += (s, e) =>
-            {
-                if (RunningOtherProgram == false)
-                    CancelReach();
-            };
             #endregion
 
             #region 改变点数的按钮 推99/流局/和牌 ok
@@ -177,12 +171,8 @@ namespace TenhouPointCalculatorBeta3
                     SuddenlyNagare_Click();
             };
             //流局
-            var nagareBtn = FindViewById<Button>(Resource.Id.btnNagare);
-            nagareBtn.Click += (s, e) =>
-            {
-                if (RunningOtherProgram == false)
-                    Nagare_Click();
-            };
+            nagareBtn = FindViewById<Button>(Resource.Id.btnNagare);
+            nagareBtn.Click += (s, e) => Nagare_Click();
             //和牌
             AgareBtn = FindViewById<Button>(Resource.Id.btnAgare);
             AgareBtn.Click += AgareBtn_Click;
@@ -200,7 +190,12 @@ namespace TenhouPointCalculatorBeta3
             FindViewById<Button>(Resource.Id.btnNum8).Click += (s, e) => InpuTextView.Text += "8";
             FindViewById<Button>(Resource.Id.btnNum9).Click += (s, e) => InpuTextView.Text += "9";
             FindViewById<Button>(Resource.Id.btnNumDiv).Click += (s, e) => InpuTextView.Text += "/";
-            FindViewById<Button>(Resource.Id.btnBackSpace).Click += (s, e) => InpuTextView.Text = InpuTextView.Text.Substring(0, InpuTextView.Text.Length - 1);
+            FindViewById<Button>(Resource.Id.btnBackSpace).Click += (s, e) =>
+            {
+                if (InpuTextView.Text != "")
+                    InpuTextView.Text = InpuTextView.Text.Substring(0, InpuTextView.Text.Length - 1);
+            };
+            FindViewById<Button>(Resource.Id.btnBackSpace).LongClick += (s, e) => InpuTextView.Text = "";
             #endregion
 
             //测试用
@@ -287,9 +282,30 @@ namespace TenhouPointCalculatorBeta3
 
         private void Nagare_Click()
         {
-            RunningOtherProgram = true;
-            UpdateText.Set(ControlTextView, "谁听牌？");
-            Element.Session.IsNagareMode = true;
+            if (nagareBtn.Text == "流局")
+            {
+                RunningOtherProgram = true;
+                UpdateText.Set(ControlTextView, "谁听牌？");
+                Element.Session.IsNagareMode = true;
+                foreach (var player in Element.Players)
+                {
+                    if (player.IsReach)
+                        player.IsReachLockOn = true;
+                }
+                UpdateText.Set(nagareBtn, "取消流局");
+            }
+            else
+            {
+                foreach (var player in Element.Players)
+                {
+                    player.IsReach = false;
+                    player.IsReachLockOn = false;
+                }
+                Element.Session.IsNagareMode = false;
+                UpdateText.Set(ControlTextView, "(OvO)");
+                UpdateText.Set(nagareBtn, "流局");
+                RunningOtherProgram = false;
+            }
         }
 
         private void SuddenlyNagare_Click()
@@ -302,7 +318,7 @@ namespace TenhouPointCalculatorBeta3
                 player.IsReach = false;
             }
             Element.Session.IsNagareMode = false;
-            Game.Save("中途流局");
+            Game.Save(Element.Session.ToString() + Element.Session.BenChang + "本 " + "中途流局");
         }
 
         private void NewGame_Click()
@@ -314,24 +330,13 @@ namespace TenhouPointCalculatorBeta3
             Element.Session.IsNewGame = true;
         }
 
-        private void CancelReach()
-        {
-            foreach (var p in Element.Players)
-            {
-                if (!p.IsReach) continue;
-                p.IsReach = false;
-                p.Point += 1000;
-                Element.Session.QianBang -= 1;
-            }
-        }
-
         private void Test_Click(object sender, EventArgs e)
         {
             if (Element.Session.IsAgareMode)
             {
                 Element.Session.IsAgareMode = false;
                 UpdateText.Set(ControlTextView, "(OvO)");
-                UpdateText.Set(MainActivity.InpuTextView, "");
+                UpdateText.Set(InpuTextView, "");
                 Element.Session.IsAgareMode = false;
                 RunningOtherProgram = false;
             }

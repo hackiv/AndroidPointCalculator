@@ -39,10 +39,14 @@ namespace TenhouPointCalculatorBeta3
                         player.Point += 3000 / count;
                     else
                         player.Point -= 3000 / (4 - count);
-                    player.IsReach = false;
                 }
             }
             //流局完后处理
+            foreach (var player in Element.Players)
+            {
+                player.IsReachLockOn = false;
+                player.IsReach = false;
+            }
             if (!isOyaTenpai)
             {
                 Element.Session.NowSession++;

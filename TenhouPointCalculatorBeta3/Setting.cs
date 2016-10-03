@@ -16,26 +16,26 @@ namespace TenhouPointCalculatorBeta3
     {
         public static void SettingElement(string txt)
         {
-            string[] txtStrings;
-            try
-            {
-                txtStrings = txt.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-            }
-            catch
-            {
-                txtStrings = new string[7];
-            }
+            var txtStrings = txt.Split('/');
             int i = 0;
             try
             {
                 foreach (var player in Element.Players)
                 {
-                    player.Point = Convert.ToInt32(txtStrings[i]);
                     i++;
+                    if (txtStrings[i - 1] == "") continue;
+                    player.Point = Convert.ToInt32(txtStrings[i - 1]);
                 }
-                Element.Session.BenChang = Convert.ToInt32(txtStrings[i]);
-                Element.Session.QianBang = Convert.ToInt32(txtStrings[i + 1]);
-                Element.Session.NowSession = (SessionEnum)Convert.ToInt32(txtStrings[i + 2]);
+
+                if (txtStrings[i] != "")
+                    Element.Session.BenChang = Convert.ToInt32(txtStrings[i]);
+
+                if (txtStrings[i + 1] != "")
+                    Element.Session.QianBang = Convert.ToInt32(txtStrings[i + 1]);
+
+                if (txtStrings[i + 2] != "")
+                    Element.Session.NowSession = (SessionEnum)Convert.ToInt32(txtStrings[i + 2]);
+                //设定玩家风位
                 int j = (Convert.ToInt32(txtStrings[i + 2]) - 1) % 4;
                 foreach (var player in Element.Players)
                 {

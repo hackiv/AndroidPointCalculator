@@ -18,9 +18,8 @@ public final class R {
         public static final int qianbang=0x7f020004;
     }
     public static final class id {
-        public static final int btnAgare=0x7f07001f;
+        public static final int btnAgare=0x7f070024;
         public static final int btnBackSpace=0x7f070023;
-        public static final int btnCancelReach=0x7f070026;
         public static final int btnForTest=0x7f070025;
         public static final int btnHelp=0x7f070003;
         public static final int btnLeftPlayer=0x7f070005;
@@ -45,7 +44,7 @@ public final class R {
         public static final int btnSetting=0x7f070011;
         public static final int btnShowGameLog=0x7f070020;
         public static final int btnSuddenlyNagare=0x7f070015;
-        public static final int checkBoxDoubleRon=0x7f070024;
+        public static final int checkBoxDoubleRon=0x7f07001f;
         public static final int checkBoxLeftPlayer=0x7f070004;
         public static final int checkBoxMePlayer=0x7f070009;
         public static final int checkBoxOppositePlayer=0x7f070002;

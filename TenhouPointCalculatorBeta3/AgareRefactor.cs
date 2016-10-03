@@ -59,22 +59,18 @@ namespace TenhouPointCalculatorBeta3
             _isTsumo = _flagUp == _flagDown;
             //标准化点数
             StandardizePoint();
-            if (_upPoint == null && _downOyaPoint == null && _downKoPoint == null)
+            if (_targetPoint == null)
             {
                 MessageBox.Show("输入点数出错");
-                UpdateText.Set(MainActivity.ControlTextView,"谁胡牌？");
+                UpdateText.Set(MainActivity.ControlTextView, "谁胡牌？");
             }
             else
             {
                 AgareMethod(); //进行点数交换
                 if (MainActivity.DoubleRonCheckBox.Checked)
-                {
                     DoubleRonPrepare(); //双响准备
-                }
                 else
-                {
                     AfterAgare(); //胡牌后处理
-                }
             }
         }
 
@@ -99,7 +95,7 @@ namespace TenhouPointCalculatorBeta3
                         .FirstOrDefault();
                     _upPoint = _targetPoint?.OyaTsumoTotalPoint;
                     _downOyaPoint = null;
-                    _downKoPoint = _targetPoint?.KoTsumoLostPoint;
+                    _downKoPoint = _targetPoint?.OyaTsumoLostPoint;
                 }
                 else if (_isOyaAgare)
                 {
@@ -197,33 +193,47 @@ namespace TenhouPointCalculatorBeta3
                     _upPoint = _targetPoint.OyaTsumoTotalPoint;
                     _downOyaPoint = null;
                     _downKoPoint = _targetPoint.OyaTsumoLostPoint;
-                    UpdateText.Set(MainActivity.ControlTextView, _targetPoint.OyaTsumoLostPoint + "all");
+                    if (_targetPoint.Fu != 110 && _targetPoint.Fan != 1)
+                        MessageBox.Show("亲家自摸" + _targetPoint.Fu + "符" + _targetPoint.Fan + "番为\n" + _targetPoint.OyaTsumoLostPoint + "点all");
+                    else
+                        _targetPoint = null;
                 }
                 else if (_isOyaAgare)
                 {
                     _upPoint = _targetPoint.OyaAgareTotalPoint;
                     _downOyaPoint = null;
                     _downKoPoint = null;
-                    UpdateText.Set(MainActivity.ControlTextView, _upPoint.ToString());
+                    if (_targetPoint.Fu != 20)
+                        MessageBox.Show("亲家荣和" + _targetPoint.Fu + "符" + _targetPoint.Fan + "番为\n" + _targetPoint.OyaAgareTotalPoint + "点");
+                    else
+                    {
+                        _targetPoint = null;
+                    }
                 }
                 else if (_isTsumo)
                 {
                     _upPoint = _targetPoint.KoTsumoTotalPoint;
                     _downOyaPoint = _targetPoint.OyaTsumoLostPoint;
                     _downKoPoint = _targetPoint.KoTsumoLostPoint;
-                    UpdateText.Set(MainActivity.ControlTextView, _upPoint.ToString());
+                    if (_targetPoint.Fu != 110 || _targetPoint.Fan != 1)
+                        MessageBox.Show("子家自摸" + _targetPoint.Fu + "符" + _targetPoint.Fan + "番为\n" + _targetPoint.KoTsumoLostPoint + "点/" + _targetPoint.OyaTsumoLostPoint + "点");
+                    else
+                        _targetPoint = null;
                 }
                 else
                 {
                     _upPoint = _targetPoint?.KoAgareTotalPoint;
                     _downOyaPoint = null;
                     _downKoPoint = null;
-                    UpdateText.Set(MainActivity.ControlTextView, _upPoint.ToString());
+                    if (_targetPoint.Fu != 20)
+                        MessageBox.Show("子家荣和" + _targetPoint.Fu + "符" + _targetPoint.Fan + "番为\n" + _targetPoint.KoAgareTotalPoint + "点");
+                    else
+                    {
+                        _targetPoint = null;
+                    }
                 }
             }
             #endregion
-
-
 
         }
 
@@ -237,7 +247,7 @@ namespace TenhouPointCalculatorBeta3
             if (!_isTsumo)//荣和
             {
                 _downPlayer.Point -= Convert.ToInt32(_upPoint) + cb * 300;
-                _situation = _downPlayer.Name + " 铳 " + _upPlayer.Name + " " + _upPoint + "点";
+                _situation = Element.Session.ToString() + Element.Session.BenChang + "本 " + _downPlayer.Name + " 铳 " + _upPlayer.Name + " " + _upPoint + "点";
             }
             else//自摸
             {
@@ -248,7 +258,7 @@ namespace TenhouPointCalculatorBeta3
                     else
                         p.Point -= Convert.ToInt32(_downKoPoint) + cb * 100;
                 }
-                _situation = _upPlayer.Name + " 自摸 " + _upPoint + "点";
+                _situation = Element.Session.ToString() + Element.Session.BenChang + "本 " + _upPlayer.Name + " 自摸 " + _upPoint + "点";
             }
         }
 
@@ -260,6 +270,7 @@ namespace TenhouPointCalculatorBeta3
             Element.Session.BenChang = 0;
             Element.Session.QianBang = 0;
             IsOyaAgareFirst = _isOyaAgare || IsOyaAgareFirst;
+            UpdateText.Set(MainActivity.InpuTextView, "");
         }
 
         private static void AfterAgare()//胡牌后处理

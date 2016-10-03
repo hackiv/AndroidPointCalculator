@@ -249,6 +249,6 @@
             android:padding="10dp"
             android:text="测试用"
             android:layout_column="0"
-            android:id="@+id/btnForTest" />
+            android:id="@+id/btnForTest"/>
     </TableRow>
 </TableLayout>

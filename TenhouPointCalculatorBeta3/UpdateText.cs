@@ -19,12 +19,12 @@ namespace TenhouPointCalculatorBeta3
             Activity activity = MainActivity.Context as Activity;
             activity?.RunOnUiThread(() =>
             {
-                if (control as Button != null)
+                if (control is Button)
                 {
                     Button btn = (Button) control;
                     btn.Text = txt;
                 }
-                else if (control as TextView != null)
+                else if (control is TextView)
                 {
                     TextView tv = (TextView) control;
                     tv.Text = txt;
@@ -37,7 +37,7 @@ namespace TenhouPointCalculatorBeta3
             Activity activity = MainActivity.Context as Activity;
             activity?.RunOnUiThread(() =>
             {
-                if (control as CheckBox != null)
+                if (control is CheckBox)
                 {
                     CheckBox ckb = (CheckBox) control;
                     ckb.Checked = checkValue;

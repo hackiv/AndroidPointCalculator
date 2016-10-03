@@ -45,11 +45,7 @@ namespace TenhouPointCalculatorBeta3
                 try
                 {
                     _point = value;
-                    UpdateText.Set(_activity.FindViewById<Button>(Btn),ToString());
-                    if (value < 0)
-                    {
-                        End.Owari();
-                    }
+                    UpdateText.Set(_activity.FindViewById<Button>(Btn), ToString());
                 }
                 catch
                 {
@@ -93,6 +89,8 @@ namespace TenhouPointCalculatorBeta3
             }
         }
 
+
+        public bool IsReachLockOn { get; set; }
         private bool _isReach;
 
         public bool IsReach //立直状态判断
@@ -113,16 +111,23 @@ namespace TenhouPointCalculatorBeta3
             {
                 try
                 {
-                    _activity?.RunOnUiThread(() =>
+                    if (IsReachLockOn)
                     {
-                        if (!_isReach && value && !Element.Session.IsNagareMode)
-                        {
-                            Point -= 1000;
-                            Element.Session.QianBang++;
-                        }
-                        _isReach = value;
                         _activity.FindViewById<CheckBox>(Ckb).Checked = _isReach;
-                    });
+                        return;
+                    }
+                    if (!_isReach && value && !Element.Session.IsNagareMode)
+                    {
+                        Point -= 1000;
+                        Element.Session.QianBang++;
+                    }
+                    if (_isReach && !value && !Element.Session.IsNagareMode)
+                    {
+                        Point += 1000;
+                        Element.Session.QianBang--;
+                    }
+                    _isReach = value;
+                    _activity.FindViewById<CheckBox>(Ckb).Checked = _isReach;
                 }
                 catch
                 {

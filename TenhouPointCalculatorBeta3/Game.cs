@@ -18,7 +18,7 @@ namespace TenhouPointCalculatorBeta3
     {
         public static void Save(string situation)
         {
-            
+
             System.Collections.ArrayList gameArrayList = new System.Collections.ArrayList
             {
                 Element.LeftPlayer.ShallowClone(),
@@ -72,7 +72,7 @@ namespace TenhouPointCalculatorBeta3
                         Element.Session.NowSession = cloneSession.NowSession;
                     }
                     MainActivity.NowSessionNum = targetSession;
-                    
+
                 }
             }
             catch
@@ -87,7 +87,7 @@ namespace TenhouPointCalculatorBeta3
             {
                 sum += p.Point;
             }
-            return sum.ToString() + Element.Session.QianBang;
+            return (sum + Element.Session.QianBang * 1000).ToString();
         }
     }
 }

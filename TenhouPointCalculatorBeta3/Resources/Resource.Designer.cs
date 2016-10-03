@@ -72,14 +72,11 @@ namespace TenhouPointCalculatorBeta3
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f07001f
-			public const int btnAgare = 2131165215;
+			// aapt resource value: 0x7f070024
+			public const int btnAgare = 2131165220;
 			
 			// aapt resource value: 0x7f070023
 			public const int btnBackSpace = 2131165219;
-			
-			// aapt resource value: 0x7f070026
-			public const int btnCancelReach = 2131165222;
 			
 			// aapt resource value: 0x7f070025
 			public const int btnForTest = 2131165221;
@@ -153,8 +150,8 @@ namespace TenhouPointCalculatorBeta3
 			// aapt resource value: 0x7f070015
 			public const int btnSuddenlyNagare = 2131165205;
 			
-			// aapt resource value: 0x7f070024
-			public const int checkBoxDoubleRon = 2131165220;
+			// aapt resource value: 0x7f07001f
+			public const int checkBoxDoubleRon = 2131165215;
 			
 			// aapt resource value: 0x7f070004
 			public const int checkBoxLeftPlayer = 2131165188;

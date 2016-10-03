@@ -2,16 +2,6 @@
 <resources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<record>
 		<Fu>20</Fu>
-		<Fan>1</Fan>
-		<KoAgareTotalPoint>0</KoAgareTotalPoint>
-		<OyaAgareTotalPoint>0</OyaAgareTotalPoint>
-		<OyaTsumoTotalPoint>0</OyaTsumoTotalPoint>
-		<KoTsumoTotalPoint>0</KoTsumoTotalPoint>
-		<KoTsumoLostPoint>0</KoTsumoLostPoint>
-		<OyaTsumoLostPoint>0</OyaTsumoLostPoint>
-	</record>
-	<record>
-		<Fu>20</Fu>
 		<Fan>2</Fan>
 		<KoAgareTotalPoint>0</KoAgareTotalPoint>
 		<OyaAgareTotalPoint>0</OyaAgareTotalPoint>

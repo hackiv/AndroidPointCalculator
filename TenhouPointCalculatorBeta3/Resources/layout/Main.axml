@@ -205,12 +205,10 @@
             android:padding="10dp"
             android:text="3"
             android:id="@+id/btnNum3" />
-        <Button
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="和牌"
-            android:layout_column="4"
-            android:id="@+id/btnAgare" />
+      <CheckBox
+          android:layout_column="4"
+          android:id="@+id/checkBoxDoubleRon"
+          android:text="双响" />
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"
@@ -236,10 +234,12 @@
             android:text="BS"
             android:layout_column="3"
             android:id="@+id/btnBackSpace" />
-        <CheckBox
-            android:layout_column="4"
-            android:id="@+id/checkBoxDoubleRon"
-            android:text="双响" />
+      <Button
+          android:gravity="center"
+          android:padding="10dp"
+          android:text="和牌"
+          android:layout_column="4"
+          android:id="@+id/btnAgare" />
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"
@@ -249,10 +249,7 @@
             android:padding="10dp"
             android:text="测试用"
             android:layout_column="0"
-            android:id="@+id/btnForTest" />
-        <Button
-            android:text="取消立直"
-            android:layout_column="4"
-            android:id="@+id/btnCancelReach" />
+            android:id="@+id/btnForTest" 
+            android:visibility="invisible"/>
     </TableRow>
 </TableLayout>

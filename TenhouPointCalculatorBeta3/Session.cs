@@ -67,7 +67,7 @@ namespace TenhouPointCalculatorBeta3
             set
             {
                 _flag = value;
-                if (IsAgareMode == true)//胡牌
+                if (IsAgareMode)//胡牌
                 {
                     if (Save==0)
                     {
@@ -101,7 +101,8 @@ namespace TenhouPointCalculatorBeta3
                 if (IsNewGame)//新对局
                 {
                     int a = value;
-                    MessageBox.Show(Element.Players[a - 1].Name + "东起");
+                    string name = Element.Players[a - 1].Name.ToString();
+                    MessageBox.Show(name + "东起");
                     UpdateText.Set(MainActivity.ControlTextView, "(OvO)");
                     Element.Session = new Session(0, 0, SessionEnum.东一局, (NameEnum)a - 1, 0) { IsNagareMode = false };
                     for (int i = 0; i < 4; i++)
@@ -113,7 +114,7 @@ namespace TenhouPointCalculatorBeta3
                         if (a - i - 2 < 0) a += 4;
                     }
                     MainActivity.NowSessionNum = 0;
-                    Game.Save("对局开始：");
+                    Game.Save("对局开始，" + name + "东起:");
                     MainActivity.RunningOtherProgram = false;
                     IsNewGame = false;
                 }

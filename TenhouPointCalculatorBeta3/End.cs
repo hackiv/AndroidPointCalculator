@@ -16,13 +16,16 @@ namespace TenhouPointCalculatorBeta3
     {
         public static void IsOwari()
         {
-            Player player = Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind).FirstOrDefault();
-            if (player?.Point > 30000 && (int)Element.Session.NowSession > 8)
+            Player highestplayer = Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind).FirstOrDefault();
+            Player lowestPlayer= Element.Players.OrderBy(p => p.Point).FirstOrDefault();
+            if(lowestPlayer != null && lowestPlayer.Point<0)
+                Owari();
+            if (highestplayer?.Point > 30000 && (int)Element.Session.NowSession > 8)
             {
                 if (MainActivity.IsOyaAgare)
                 {
                     //Ç×¼ÒºúÅÆ
-                    if (player?.Name == Element.Session.OyaName)
+                    if (highestplayer.Name == Element.Session.OyaName)
                         Owari();
                 }
                 else
