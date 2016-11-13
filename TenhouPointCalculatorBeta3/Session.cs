@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -69,7 +70,7 @@ namespace TenhouPointCalculatorBeta3
                 _flag = value;
                 if (IsAgareMode)//胡牌
                 {
-                    if (Save==0)
+                    if (Save == 0)
                     {
                         Save = value;
                         UpdateText.Set(MainActivity.ControlTextView, "谁和牌？");
@@ -94,6 +95,7 @@ namespace TenhouPointCalculatorBeta3
                     nagare.NagareMethod();
                     IsNagareMode = false;
                     UpdateText.Set(MainActivity.ControlTextView, "(OvO)");
+                    UpdateText.Set(MainActivity.nagareBtn,"流局");
                     Game.Save("流局");
                     End.IsOwari();
                     MainActivity.RunningOtherProgram = false;
@@ -114,6 +116,7 @@ namespace TenhouPointCalculatorBeta3
                         if (a - i - 2 < 0) a += 4;
                     }
                     MainActivity.NowSessionNum = 0;
+                    Element.GameLogDictionary = new Dictionary<int, ArrayList>();
                     Game.Save("对局开始，" + name + "东起:");
                     MainActivity.RunningOtherProgram = false;
                     IsNewGame = false;

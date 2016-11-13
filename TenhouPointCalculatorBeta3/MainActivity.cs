@@ -34,10 +34,11 @@ namespace TenhouPointCalculatorBeta3
         public static Button Test;
         public static Button AgareBtn;
         public static Button nagareBtn;
+        public static TextView GameLogTextView;
 
         protected override void OnCreate(Bundle bundle)
         {
-            //SetTheme(Resource.Style.HackivTheme);
+            SetTheme(Resource.Xml.theme);
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
@@ -57,7 +58,7 @@ namespace TenhouPointCalculatorBeta3
             SessionTextView = FindViewById<TextView>(Resource.Id.textViewSession);
             //控制框
             ControlTextView = FindViewById<TextView>(Resource.Id.textViewControl);
-            ////场棒图片
+            //场棒图片
             var changBangImg = FindViewById<ImageView>(Resource.Id.imgViewChangBang);
             changBangImg.SetImageResource(Resource.Drawable.ChangBang);
             //千棒图片
@@ -66,6 +67,10 @@ namespace TenhouPointCalculatorBeta3
             //场棒
             ChangBangTextView = FindViewById<TextView>(Resource.Id.textViewChangBang);
             QianBangTextView = FindViewById<TextView>(Resource.Id.textViewQianBang);
+            //对局记录框
+            GameLogTextView = FindViewById<TextView>(Resource.Id.textViewShowLog);
+            GameLogTextView.MovementMethod= new Android.Text.Method.ScrollingMovementMethod();
+            GameLogTextView.Visibility = ViewStates.Invisible;
             #endregion
 
             #region 四家数据控件 ok
@@ -221,7 +226,6 @@ namespace TenhouPointCalculatorBeta3
                 UpdateText.Set(ControlTextView, "(OvO)");
                 UpdateText.Set(InpuTextView, "");
                 UpdateText.Set(AgareBtn, "和牌");
-                Element.Session.IsAgareMode = false;
                 RunningOtherProgram = false;
             }
         }
@@ -251,12 +255,7 @@ namespace TenhouPointCalculatorBeta3
 
         private void Log_Click(object sender, EventArgs e)
         {
-            string txt = "";
-            foreach (var d in Element.GameLogDictionary)
-            {
-                txt += d.Value[5] + "\n";
-            }
-            MessageBox.Show(txt);
+            GameLogTextView.Visibility = GameLogTextView.Visibility == ViewStates.Invisible ? ViewStates.Visible : ViewStates.Invisible;
         }
 
         private void ShowDeltaPointMethod(Player player, List<Button> buttons)
@@ -284,6 +283,7 @@ namespace TenhouPointCalculatorBeta3
         {
             if (nagareBtn.Text == "流局")
             {
+                if (RunningOtherProgram) return;
                 RunningOtherProgram = true;
                 UpdateText.Set(ControlTextView, "谁听牌？");
                 Element.Session.IsNagareMode = true;
@@ -337,7 +337,6 @@ namespace TenhouPointCalculatorBeta3
                 Element.Session.IsAgareMode = false;
                 UpdateText.Set(ControlTextView, "(OvO)");
                 UpdateText.Set(InpuTextView, "");
-                Element.Session.IsAgareMode = false;
                 RunningOtherProgram = false;
             }
         }

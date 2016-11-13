@@ -78,7 +78,7 @@ namespace TenhouPointCalculatorBeta3
 
         public static Session Session = new Session();
 
-        public static readonly Dictionary<int, ArrayList> GameLogDictionary = new Dictionary<int, ArrayList>();
+        public static Dictionary<int, ArrayList> GameLogDictionary;
 
         public static List<FuFanPoint> FuFanPoints = new List<FuFanPoint>();
 

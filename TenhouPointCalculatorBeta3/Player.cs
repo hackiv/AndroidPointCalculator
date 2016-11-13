@@ -121,7 +121,7 @@ namespace TenhouPointCalculatorBeta3
                         Point -= 1000;
                         Element.Session.QianBang++;
                     }
-                    if (_isReach && !value && !Element.Session.IsNagareMode)
+                    if (_isReach && !value && !Element.Session.IsNagareMode && !Element.Session.IsAgareMode)
                     {
                         Point += 1000;
                         Element.Session.QianBang--;

@@ -296,6 +296,7 @@ namespace TenhouPointCalculatorBeta3
             {
                 Element.Session.BenChang = 0;
                 Element.Session.NowSession++;
+                //Element.Session.IsNagareMode = true;
                 foreach (var player in Element.Players)
                 {
                     if (player.Wind == 0)

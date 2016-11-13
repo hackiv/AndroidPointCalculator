@@ -43,7 +43,8 @@ namespace TenhouPointCalculatorBeta3
             Element.GameLogDictionary.Add(MainActivity.NowSessionNum, gameArrayList);
 
             //查看总分 debug用
-            UpdateText.Set(MainActivity.Test, showTotalPoint());
+            UpdateText.Set(MainActivity.Test, ShowTotalPoint());
+            ShowGameLog();
         }
 
         public static void Load(int targetSession)
@@ -80,7 +81,7 @@ namespace TenhouPointCalculatorBeta3
                 // ignored
             }
         }
-        private static string showTotalPoint()
+        private static string ShowTotalPoint()
         {
             int sum = 0;
             foreach (var p in Element.Players)
@@ -88,6 +89,18 @@ namespace TenhouPointCalculatorBeta3
                 sum += p.Point;
             }
             return (sum + Element.Session.QianBang * 1000).ToString();
+        }
+
+        private static void ShowGameLog()
+        {
+            Activity activity= MainActivity.Context as Activity;
+            string txt = "";
+            foreach (var d in Element.GameLogDictionary)
+            {
+                txt += d.Value[5] + "\n";
+            }
+            //MessageBox.Show(txt);
+            UpdateText.Set(activity?.FindViewById<TextView>(Resource.Id.textViewShowLog), txt);
         }
     }
 }

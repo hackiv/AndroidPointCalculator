@@ -3,6 +3,6 @@
   <PropertyGroup>
     <AndroidDesignerPreferredDevice>Nexus 5</AndroidDesignerPreferredDevice>
     <SelectedDevice>5" KitKat %284.4%29 XXHDPI Phone</SelectedDevice>
-    <AndroidDesignerPreferredTheme>Theme.DeviceDefault</AndroidDesignerPreferredTheme>
+    <AndroidDesignerPreferredTheme>Theme.Holo.Light.Dialog.NoActionBar.FixedSize</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>
