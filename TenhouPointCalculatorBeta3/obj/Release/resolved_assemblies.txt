@@ -6,4 +6,4 @@ C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\System.dll
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\System.Xml.dll
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\System.Runtime.Serialization.dll
-C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\System.ServiceModel.Internals.dll
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Release\android\assets\Mono.Security.dll

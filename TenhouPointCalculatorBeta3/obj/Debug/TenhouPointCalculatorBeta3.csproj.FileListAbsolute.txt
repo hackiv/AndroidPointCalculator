@@ -43,5 +43,4 @@ C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\android\assets\TenhouPointCalculatorBeta3.dll.mdb
 C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\TenhouPointCalculatorBeta3.csprojResolveAssemblyReference.cache
-C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\TenhouPointCalculatorBeta3.dll.mdb
-C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\bin\Debug\TenhouPointCalculatorBeta3.dll.mdb
+C:\Users\91970\Documents\Visual Studio 2015\Projects\TenhouPointCalculatorBeta3\TenhouPointCalculatorBeta3\obj\Debug\TenhouPointCalculatorBeta3.csproj.CoreCompileInputs.cache
