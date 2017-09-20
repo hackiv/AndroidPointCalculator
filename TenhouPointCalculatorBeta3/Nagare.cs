@@ -16,6 +16,7 @@ namespace TenhouPointCalculatorBeta3
     {
         public void NagareMethod()
         {
+            PlayerCondition.AgareJudge();
             int count = 0;
             bool isOyaTenpai = false;
             List<Player> upPlayers = new List<Player>();

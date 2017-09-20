@@ -214,6 +214,7 @@ namespace TenhouPointCalculatorBeta3
             {
                 if (RunningOtherProgram) return;
                 Element.Session.IsAgareMode = true;
+                PlayerCondition.AgareJudge();
                 Element.Session.IsNewAgare = true;
                 Element.Session.Save = 0;
                 UpdateText.Set(ControlTextView, "谁出铳？");

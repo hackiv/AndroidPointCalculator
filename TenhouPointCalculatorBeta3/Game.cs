@@ -18,7 +18,7 @@ namespace TenhouPointCalculatorBeta3
     {
         public static void Save(string situation)
         {
-
+            situation = PlayerCondition.GetCondition() + "|" + situation;
             System.Collections.ArrayList gameArrayList = new System.Collections.ArrayList
             {
                 Element.LeftPlayer.ShallowClone(),
@@ -93,7 +93,7 @@ namespace TenhouPointCalculatorBeta3
 
         private static void ShowGameLog()
         {
-            Activity activity= MainActivity.Context as Activity;
+            Activity activity = MainActivity.Context as Activity;
             string txt = "";
             foreach (var d in Element.GameLogDictionary)
             {
