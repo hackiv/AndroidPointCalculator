@@ -14,7 +14,7 @@ namespace TenhouPointCalculatorBeta3
 {
     public static class PlayerCondition
     {
-        public static string[] PlayersCondition = new string[4] { "无", "无", "无", "无" };
+        public static string[] PlayersCondition = new string[4] { "对", "局", "开", "始" };
         public static void AgareJudge()
         {
             int i = 0;
