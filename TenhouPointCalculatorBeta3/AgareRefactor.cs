@@ -144,6 +144,7 @@ namespace TenhouPointCalculatorBeta3
                             p.OyaTsumoLostPoint.ToString() == highPoint)
                             .Select(p => p)
                             .FirstOrDefault();
+                if (_isOyaAgare == true) _targetPoint = null;
                 _upPoint = _targetPoint?.KoTsumoTotalPoint;
                 _downOyaPoint = _targetPoint?.OyaTsumoLostPoint;
                 _downKoPoint = _targetPoint?.KoTsumoLostPoint;
@@ -160,6 +161,7 @@ namespace TenhouPointCalculatorBeta3
                             (p.OyaTsumoTotalPoint / 3).ToString() == txtStrings[2])
                             .Select(p => p)
                             .FirstOrDefault();
+                if (_isOyaAgare == false) _targetPoint = null;
                 _upPoint = _targetPoint?.OyaTsumoTotalPoint;
                 _downOyaPoint = null;
                 _downKoPoint = _targetPoint?.OyaTsumoLostPoint;

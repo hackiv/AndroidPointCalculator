@@ -214,7 +214,15 @@ namespace TenhouPointCalculatorBeta3
             {
                 if (RunningOtherProgram) return;
                 Element.Session.IsAgareMode = true;
+                foreach (var player in Element.Players)
+                {
+                    if (player.IsReach == true) player.IsReachLockOn = true;
+                }
                 PlayerCondition.AgareJudge();
+                foreach (var player in Element.Players)
+                {
+                    player.IsReachLockOn = false;
+                }
                 Element.Session.IsNewAgare = true;
                 Element.Session.Save = 0;
                 UpdateText.Set(ControlTextView, "谁出铳？");
@@ -316,6 +324,12 @@ namespace TenhouPointCalculatorBeta3
             Element.Session.IsNagareMode = true;
             foreach (var player in Element.Players)
             {
+                if (player.IsReach == true) player.IsReachLockOn = true;
+            }
+            PlayerCondition.NagareJudge();
+            foreach (var player in Element.Players)
+            {
+                player.IsReachLockOn = false;
                 player.IsReach = false;
             }
             Element.Session.IsNagareMode = false;
