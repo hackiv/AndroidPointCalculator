@@ -18,8 +18,8 @@ namespace TenhouPointCalculatorBeta3
         public static void IsOwari()
         {
             Player highestplayer = Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind).FirstOrDefault();
-            Player lowestPlayer= Element.Players.OrderBy(p => p.Point).FirstOrDefault();
-            if(lowestPlayer != null && lowestPlayer.Point<0)
+            Player lowestPlayer = Element.Players.OrderBy(p => p.Point).FirstOrDefault();
+            if (lowestPlayer != null && lowestPlayer.Point < 0)
                 Owari();
             if (highestplayer?.Point > 30000 && (int)Element.Session.NowSession > 8)
             {
@@ -50,7 +50,7 @@ namespace TenhouPointCalculatorBeta3
                 gameLog += d.Value[5] + "\n";
             }
             totalLog = gameLog + result;
-            MessageBox.Show(totalLog+ Application.Context.FilesDir.ToString());
+            MessageBox.Show(totalLog);
             CreatGameLogFile(totalLog);
         }
 
@@ -59,11 +59,11 @@ namespace TenhouPointCalculatorBeta3
             //创建一个文本文件,最好先判断一下 
             StreamWriter sw;
             string path = Android.OS.Environment.ExternalStorageDirectory.ToString();
-            if (!File.Exists(path+"/GameLog.txt"))
+            if (!File.Exists(path + "/GameLog.txt"))
             {
                 //不存在就新建一个文本文件,并写入一些内容 
                 sw = File.CreateText(path + "/GameLog.txt");
-                sw.WriteLine("当前日期是:"+ DateTime.Now);
+                sw.WriteLine("当前日期是:" + DateTime.Now);
                 sw.Write(totalLog);
             }
             else

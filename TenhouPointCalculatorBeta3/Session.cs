@@ -117,6 +117,7 @@ namespace TenhouPointCalculatorBeta3
                     }
                     MainActivity.NowSessionNum = 0;
                     Element.GameLogDictionary = new Dictionary<int, ArrayList>();
+                    PlayerCondition.PlayersCondition = new string[]{ "对", "局", "开", "始" };
                     Game.Save(name + "东起:");
                     MainActivity.RunningOtherProgram = false;
                     IsNewGame = false;
