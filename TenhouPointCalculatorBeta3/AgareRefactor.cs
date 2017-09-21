@@ -249,7 +249,7 @@ namespace TenhouPointCalculatorBeta3
             if (!_isTsumo)//荣和
             {
                 _downPlayer.Point -= Convert.ToInt32(_upPoint) + cb * 300;
-                _situation = Element.Session.ToString() + Element.Session.BenChang + "本 " + _downPlayer.Name + " 铳 " + _upPlayer.Name + " " + _upPoint + "点";
+                _situation = Element.Session.ToString() + Element.Session.BenChang + "本 " + _downPlayer.RealName + " 铳 " + _upPlayer.RealName + " " + _upPoint + "点";
             }
             else//自摸
             {
@@ -260,7 +260,7 @@ namespace TenhouPointCalculatorBeta3
                     else
                         p.Point -= Convert.ToInt32(_downKoPoint) + cb * 100;
                 }
-                _situation = Element.Session.ToString() + Element.Session.BenChang + "本 " + _upPlayer.Name + " 自摸 " + _upPoint + "点";
+                _situation = Element.Session.ToString() + Element.Session.BenChang + "本 " + _upPlayer.RealName + " 自摸 " + _upPoint + "点";
             }
         }
 

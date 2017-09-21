@@ -52,28 +52,32 @@ namespace TenhouPointCalculatorBeta3
         {
             Btn = Resource.Id.btnOppositePlayer,
             Ckb = Resource.Id.checkBoxOppositePlayer,
-            Name = NameEnum.对家
+            Name = NameEnum.对家,
+            RealName = "对家"
         };
 
         public static readonly Player LeftPlayer = new Player()
         {
             Btn = Resource.Id.btnLeftPlayer,
             Ckb = Resource.Id.checkBoxLeftPlayer,
-            Name = NameEnum.上家
+            Name = NameEnum.上家,
+            RealName = "上家"
         };
 
         public static readonly Player RightPlayer = new Player()
         {
             Btn = Resource.Id.btnRightPlayer,
             Ckb = Resource.Id.checkBoxRightPlayer,
-            Name = NameEnum.下家
+            Name = NameEnum.下家,
+            RealName = "下家"
         };
 
         public static readonly Player MePlayer = new Player()
         {
             Btn = Resource.Id.btnMePlayer,
             Ckb = Resource.Id.checkBoxMePlayer,
-            Name = NameEnum.自己
+            Name = NameEnum.自己,
+            RealName = "自己"
         };
 
         public static Session Session = new Session();

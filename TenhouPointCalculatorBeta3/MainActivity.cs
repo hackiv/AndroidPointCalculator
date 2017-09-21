@@ -31,7 +31,7 @@ namespace TenhouPointCalculatorBeta3
         public static TextView ChangBangTextView;
         public static TextView QianBangTextView;
         public static CheckBox DoubleRonCheckBox;
-        public static Button Test;
+        public static Button InputName;
         public static Button AgareBtn;
         public static Button nagareBtn;
         public static TextView GameLogTextView;
@@ -69,7 +69,7 @@ namespace TenhouPointCalculatorBeta3
             QianBangTextView = FindViewById<TextView>(Resource.Id.textViewQianBang);
             //对局记录框
             GameLogTextView = FindViewById<TextView>(Resource.Id.textViewShowLog);
-            GameLogTextView.MovementMethod= new Android.Text.Method.ScrollingMovementMethod();
+            GameLogTextView.MovementMethod = new Android.Text.Method.ScrollingMovementMethod();
             GameLogTextView.Visibility = ViewStates.Invisible;
             #endregion
 
@@ -203,9 +203,9 @@ namespace TenhouPointCalculatorBeta3
             FindViewById<Button>(Resource.Id.btnBackSpace).LongClick += (s, e) => InpuTextView.Text = "";
             #endregion
 
-            //测试用
-            Test = FindViewById<Button>(Resource.Id.btnForTest);
-            Test.Click += Test_Click;
+            //输入名字
+            InputName = FindViewById<Button>(Resource.Id.btnName);
+            InputName.Click += InputName_Click;
         }
 
         private void AgareBtn_Click(object sender, EventArgs e)
@@ -345,15 +345,24 @@ namespace TenhouPointCalculatorBeta3
             Element.Session.IsNewGame = true;
         }
 
-        private void Test_Click(object sender, EventArgs e)
+        private void InputName_Click(object sender, EventArgs e)
         {
-            if (Element.Session.IsAgareMode)
-            {
-                Element.Session.IsAgareMode = false;
-                UpdateText.Set(ControlTextView, "(OvO)");
-                UpdateText.Set(InpuTextView, "");
-                RunningOtherProgram = false;
-            }
+            var names = new EditText(this);
+            var builder = new AlertDialog.Builder(this)
+                .SetTitle("左/对/右/自家名称是：")
+                .SetView(names)
+                .SetPositiveButton("确定", (s, args) =>
+                {
+                    var txtStrings = names.Text.Split(new[] { '/' });
+                    for (int i = 0; i < txtStrings.Length; i++)
+                    {
+                        Element.Players[i].RealName = txtStrings[i];
+                    }
+                    MessageBox.Show(Element.Players[0].RealName + Element.Players[1].RealName + Element.Players[2].RealName + Element.Players[3].RealName);
+                })
+                .SetNegativeButton("取消", (EventHandler<DialogClickEventArgs>)null);
+            AlertDialog dialog = builder.Create();
+            dialog.Show();
         }
 
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)//重写返回键

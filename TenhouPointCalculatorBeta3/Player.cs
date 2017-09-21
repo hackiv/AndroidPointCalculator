@@ -56,6 +56,8 @@ namespace TenhouPointCalculatorBeta3
 
         public NameEnum Name { get; set; } //玩家名称，上家left 下家right 自己me 对家opposite
 
+        public string RealName { get; set; } //玩家ID
+
         public WindEnum OriginalWind { get; set; } //最开始时的风位
 
         private WindEnum _wind;

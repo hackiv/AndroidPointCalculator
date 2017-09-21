@@ -39,11 +39,7 @@ namespace TenhouPointCalculatorBeta3
                 else
                     break;
             }
-
             Element.GameLogDictionary.Add(MainActivity.NowSessionNum, gameArrayList);
-
-            //查看总分 debug用
-            UpdateText.Set(MainActivity.Test, ShowTotalPoint());
             ShowGameLog();
         }
 
@@ -73,7 +69,7 @@ namespace TenhouPointCalculatorBeta3
                         Element.Session.NowSession = cloneSession.NowSession;
                     }
                     MainActivity.NowSessionNum = targetSession;
-
+                    ShowGameLog();
                 }
             }
             catch

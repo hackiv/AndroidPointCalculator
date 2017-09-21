@@ -20,11 +20,12 @@ public final class R {
     public static final class id {
         public static final int btnAgare=0x7f070020;
         public static final int btnBackSpace=0x7f070024;
-        public static final int btnForTest=0x7f070009;
+        public static final int btnForTest=0x7f070027;
         public static final int btnHelp=0x7f070003;
         public static final int btnLeftPlayer=0x7f070005;
         public static final int btnMePlayer=0x7f07000b;
         public static final int btnNagare=0x7f07001b;
+        public static final int btnName=0x7f070009;
         public static final int btnNewGame=0x7f070000;
         public static final int btnNextGame=0x7f07001c;
         public static final int btnNum0=0x7f070023;

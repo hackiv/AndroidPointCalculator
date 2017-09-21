@@ -78,8 +78,8 @@ namespace TenhouPointCalculatorBeta3
 			// aapt resource value: 0x7f070024
 			public const int btnBackSpace = 2131165220;
 			
-			// aapt resource value: 0x7f070009
-			public const int btnForTest = 2131165193;
+			// aapt resource value: 0x7f070027
+			public const int btnForTest = 2131165223;
 			
 			// aapt resource value: 0x7f070003
 			public const int btnHelp = 2131165187;
@@ -92,6 +92,9 @@ namespace TenhouPointCalculatorBeta3
 			
 			// aapt resource value: 0x7f07001b
 			public const int btnNagare = 2131165211;
+			
+			// aapt resource value: 0x7f070009
+			public const int btnName = 2131165193;
 			
 			// aapt resource value: 0x7f070000
 			public const int btnNewGame = 2131165184;
