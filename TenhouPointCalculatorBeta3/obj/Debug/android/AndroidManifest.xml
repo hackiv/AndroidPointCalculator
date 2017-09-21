@@ -5,6 +5,8 @@
   <!--<application android:theme="@style/HackivTheme" android:label="TenhouPointCalculatorBeta3"></application>-->
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
   <application android:label="TenhouPointCalculatorBeta3" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/diyicon" android:debuggable="true">
     <activity android:icon="@drawable/diyicon" android:label="实麻算点beta3" android:name="md55084d2fc2e66de6b8c48c399fb952bfb.MainActivity">
       <intent-filter>
@@ -21,4 +23,6 @@
       </intent-filter>
     </receiver>
   </application>
+  <!--往sdcard中写入数据的权限 -->
+  <!--在sdcard中创建/删除文件的权限 -->
 </manifest>

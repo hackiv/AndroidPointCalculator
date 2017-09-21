@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 using Android.App;
 using Android.Content;
@@ -37,12 +38,45 @@ namespace TenhouPointCalculatorBeta3
 
         public static void Owari()
         {
-            string txt = "";
+            string result = "";
+            string gameLog = "";
+            string totalLog = "";
             foreach (var player in Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind))
             {
-                txt += player.Name + ":" + player.Point + "\n";
+                result += player.Name + ":" + player.Point + "\n";
             }
-            MessageBox.Show("完场\n" + txt);
+            foreach (var d in Element.GameLogDictionary)
+            {
+                gameLog += d.Value[5] + "\n";
+            }
+            totalLog = gameLog + result;
+            MessageBox.Show(totalLog+ Application.Context.FilesDir.ToString());
+            CreatGameLogFile(totalLog);
+        }
+
+        public static void CreatGameLogFile(string totalLog)
+        {
+            //创建一个文本文件,最好先判断一下 
+            StreamWriter sw;
+            string path = Android.OS.Environment.ExternalStorageDirectory.ToString();
+            if (!File.Exists(path+"/GameLog.txt"))
+            {
+                //不存在就新建一个文本文件,并写入一些内容 
+                sw = File.CreateText(path + "/GameLog.txt");
+                sw.WriteLine("当前日期是:"+ DateTime.Now);
+                sw.Write(totalLog);
+            }
+            else
+            {
+                //如果存在就添加一些文本内容 
+                sw = File.AppendText(path + "/GameLog.txt");
+                sw.WriteLine("\n");
+                sw.WriteLine("--------------------");
+                sw.WriteLine("\n");
+                sw.WriteLine("当前日期是:" + DateTime.Now);
+                sw.Write(totalLog);
+            }
+            sw.Close();
         }
     }
 }
