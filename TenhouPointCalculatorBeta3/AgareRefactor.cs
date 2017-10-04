@@ -80,6 +80,8 @@ namespace TenhouPointCalculatorBeta3
             var txtStrings = txt.Split(new[] { '/' });
             int totalPoint;
 
+            if (txt == "") { _targetPoint = null; return; }
+
             #region "7900"
             // "7900"                   length==1
             if (txtStrings.Length == 1)
