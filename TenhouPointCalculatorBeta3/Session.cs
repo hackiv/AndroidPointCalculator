@@ -48,7 +48,7 @@ namespace TenhouPointCalculatorBeta3
             get { return _nowSession; }
             set
             {
-                if (_nowSession == SessionEnum.南四局 && Convert.ToInt32(value) >=8)
+                if (_nowSession == SessionEnum.南四局 && Convert.ToInt32(value) >= 8)
                     IsAllLast = true;
                 _nowSession = Convert.ToInt32(value) < 13 ? value : _nowSession;
                 UpdateText.Set(MainActivity.SessionTextView, _nowSession.ToString());
@@ -70,6 +70,8 @@ namespace TenhouPointCalculatorBeta3
             get { return _flag; }
             set
             {
+                //if (Isinitialized == false && IsNewGame == false) return;//保证开启程序时先按新对局进行初始化
+                if (MainActivity.IsInitialized == false && IsNewGame == false) return;
                 _flag = value;
                 if (IsAgareMode)//胡牌
                 {
@@ -98,7 +100,7 @@ namespace TenhouPointCalculatorBeta3
                     nagare.NagareMethod();
                     IsNagareMode = false;
                     UpdateText.Set(MainActivity.ControlTextView, "(OvO)");
-                    UpdateText.Set(MainActivity.nagareBtn,"流局");
+                    UpdateText.Set(MainActivity.nagareBtn, "流局");
                     Game.Save("流局");
                     End.IsOwari();
                     MainActivity.RunningOtherProgram = false;
@@ -124,6 +126,8 @@ namespace TenhouPointCalculatorBeta3
                     Game.Save(name + "东起:");
                     MainActivity.RunningOtherProgram = false;
                     IsNewGame = false;
+                    MainActivity.IsInitialized = true;
+                    //Isinitialized = true;
                 }
             }
         }

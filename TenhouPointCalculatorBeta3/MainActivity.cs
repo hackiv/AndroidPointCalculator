@@ -24,6 +24,7 @@ namespace TenhouPointCalculatorBeta3
         public static int NowSessionNum = 1;
         public static bool IsOyaAgare;
         public static bool RunningOtherProgram;
+        public static bool IsInitialized = false;
 
         public static TextView InpuTextView;
         public static TextView ControlTextView;
@@ -172,15 +173,24 @@ namespace TenhouPointCalculatorBeta3
             var suddenlyNagare = FindViewById<Button>(Resource.Id.btnSuddenlyNagare);
             suddenlyNagare.Click += (s, e) =>
             {
+                if (MainActivity.IsInitialized == false) return;
                 if (RunningOtherProgram == false)
                     SuddenlyNagare_Click();
             };
             //流局
             nagareBtn = FindViewById<Button>(Resource.Id.btnNagare);
-            nagareBtn.Click += (s, e) => Nagare_Click();
+            nagareBtn.Click += (s, e) =>
+            {
+                if (MainActivity.IsInitialized == false) return;
+                Nagare_Click();
+            };
             //和牌
             AgareBtn = FindViewById<Button>(Resource.Id.btnAgare);
-            AgareBtn.Click += AgareBtn_Click;
+            AgareBtn.Click += (s, e) =>
+            {
+                if (MainActivity.IsInitialized == false) return;
+                AgareBtn_Click();
+            };
             #endregion
 
             #region 键盘设定ok
@@ -208,7 +218,7 @@ namespace TenhouPointCalculatorBeta3
             InputName.Click += InputName_Click;
         }
 
-        private void AgareBtn_Click(object sender, EventArgs e)
+        private void AgareBtn_Click()
         {
             if (AgareBtn.Text == "和牌")
             {

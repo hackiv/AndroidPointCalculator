@@ -12,4 +12,8 @@
     <ResultingAbi>armeabi-v7a</ResultingAbi>
     <SdkVersion>24</SdkVersion>
   </Device>
+  <Device id="169.254.138.177:5555">
+    <ResultingAbi>x86</ResultingAbi>
+    <SdkVersion>19</SdkVersion>
+  </Device>
 </Devices>
