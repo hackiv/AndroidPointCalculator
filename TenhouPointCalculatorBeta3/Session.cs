@@ -48,6 +48,8 @@ namespace TenhouPointCalculatorBeta3
             get { return _nowSession; }
             set
             {
+                if (_nowSession == SessionEnum.南四局 && Convert.ToInt32(value) >=8)
+                    IsAllLast = true;
                 _nowSession = Convert.ToInt32(value) < 13 ? value : _nowSession;
                 UpdateText.Set(MainActivity.SessionTextView, _nowSession.ToString());
             }
@@ -59,6 +61,7 @@ namespace TenhouPointCalculatorBeta3
         public bool IsNewAgare { get; set; }//是否为新一次胡牌（双响第二次不算新一次胡牌
         public bool IsNagareMode { get; set; }//流局模式
         public bool IsNewGame { get; set; }
+        public bool IsAllLast { get; set; }//是否进alllast
 
         public int Save { get; set; }
         private int _flag;
@@ -117,7 +120,7 @@ namespace TenhouPointCalculatorBeta3
                     }
                     MainActivity.NowSessionNum = 0;
                     Element.GameLogDictionary = new Dictionary<int, ArrayList>();
-                    PlayerCondition.PlayersCondition = new string[]{ "对", "局", "开", "始" };
+                    PlayerCondition.PlayersCondition = new string[] { "对", "局", "开", "始" };
                     Game.Save(name + "东起:");
                     MainActivity.RunningOtherProgram = false;
                     IsNewGame = false;

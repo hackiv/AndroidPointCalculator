@@ -21,18 +21,11 @@ namespace TenhouPointCalculatorBeta3
             Player lowestPlayer = Element.Players.OrderBy(p => p.Point).FirstOrDefault();
             if (lowestPlayer != null && lowestPlayer.Point < 0)
                 Owari();
-            if (highestplayer?.Point > 30000 && (int)Element.Session.NowSession > 8)
+            //if ((int)Element.Session.NowSession == 8 && Element.Session.BenChang >= 1 && highestplayer.Name == Element.Session.OyaName) Owari();//亲家南四一位胡牌完场
+            if(highestplayer?.Point >30000 && Element.Session.IsAllLast == true)
             {
-                if (MainActivity.IsOyaAgare)
-                {
-                    //亲家胡牌
-                    if (highestplayer.Name == Element.Session.OyaName)
-                        Owari();
-                }
-                else
-                {
+                if (MainActivity.IsOyaAgare == false || highestplayer.Name == Element.Session.OyaName)
                     Owari();
-                }
             }
         }
 
@@ -43,12 +36,14 @@ namespace TenhouPointCalculatorBeta3
             string totalLog = "";
             foreach (var player in Element.Players.OrderByDescending(p => p.Point).ThenBy(p => p.OriginalWind))
             {
-                result += player.Name + ":" + player.Point + "\n";
+                result += player.RealName + ":" + player.Point + "\n";
             }
+            /*
             foreach (var d in Element.GameLogDictionary)
             {
                 gameLog += d.Value[5] + "\n";
             }
+            */
             totalLog = gameLog + result;
             MessageBox.Show(totalLog);
             CreatGameLogFile(totalLog);

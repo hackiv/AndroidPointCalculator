@@ -354,11 +354,18 @@ namespace TenhouPointCalculatorBeta3
                 .SetPositiveButton("确定", (s, args) =>
                 {
                     var txtStrings = names.Text.Split(new[] { '/' });
-                    for (int i = 0; i < txtStrings.Length; i++)
+                    try
                     {
-                        Element.Players[i].RealName = txtStrings[i];
+                        for (int i = 0; i < txtStrings.Length; i++)
+                        {
+                            Element.Players[i].RealName = txtStrings[i];
+                        }
+                        MessageBox.Show("上家是" + Element.Players[0].RealName + "\n对家是" + Element.Players[1].RealName + "\n下家是" + Element.Players[2].RealName + "\n自己是" + Element.Players[3].RealName);
                     }
-                    MessageBox.Show(Element.Players[0].RealName + Element.Players[1].RealName + Element.Players[2].RealName + Element.Players[3].RealName);
+                    catch
+                    {
+                        MessageBox.Show("输入名字格式错误");
+                    }
                 })
                 .SetNegativeButton("取消", (EventHandler<DialogClickEventArgs>)null);
             AlertDialog dialog = builder.Create();
